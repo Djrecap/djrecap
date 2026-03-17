@@ -317,6 +317,10 @@ input[type="range"]::-webkit-slider-thumb {
       <div class="stat"><div class="stat-num" id="s-avg">–</div><div class="stat-lbl">Note moy.</div></div>
     </div>
     <div id="limit-banner-home"></div>
+    <div style="position:relative;margin:10px 0 0">
+      <input type="text" id="search-input" placeholder="🔍 Rechercher une soirée, une ville..." oninput="searchEvents(this.value)" style="padding-left:14px;font-size:14px">
+      <button id="search-clear" onclick="clearSearch()" style="display:none;position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text3);font-size:18px;cursor:pointer">✕</button>
+    </div>
     <div class="chips" id="filter-chips">
       <div class="chip active" data-f="tous">Tous</div>
       <div class="chip" data-f="mariage">Mariages</div>
@@ -424,7 +428,10 @@ input[type="range"]::-webkit-slider-thumb {
   <div class="topbar">
     <button onclick="goTo('home')" style="background:none;border:none;color:var(--text2);font-size:15px;cursor:pointer">← Retour</button>
     <div class="topbar-logo" id="d-title">Détail</div>
-    <button onclick="deleteEv()" style="background:none;border:none;color:var(--pink);font-size:13px;cursor:pointer">Suppr.</button>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button onclick="openEditEvent()" style="background:none;border:none;color:var(--cyan);font-size:13px;cursor:pointer">Modifier</button>
+      <button onclick="deleteEv()" style="background:none;border:none;color:var(--pink);font-size:13px;cursor:pointer">Suppr.</button>
+    </div>
   </div>
   <div class="scroll-area" id="detail-content"></div>
 </div>
@@ -1228,8 +1235,88 @@ function openDetail(id) {
   goTo('detail');
 }
 
+function openEditEvent() {
+  if (!currentEv) return;
+  const e = currentEv;
+
+  // Pré-remplir le formulaire avec les données existantes
+  document.getElementById('f-type').value = e.type || 'mariage';
+  document.getElementById('f-lieu').value = e.lieu || '';
+  document.getElementById('f-date').value = e.date || '';
+  document.getElementById('f-ville').value = e.ville || '';
+  document.getElementById('f-maries').value = e.maries || '';
+  document.getElementById('f-email').value = e.email || '';
+  document.getElementById('f-acoustique').value = e.acoustique || '';
+  document.getElementById('f-capacite').value = e.capacite || '';
+  document.getElementById('f-notes').value = e.notes || '';
+  document.getElementById('f-private').value = e.private || '';
+  document.getElementById('f-ambiance').value = e.ambiance || 5;
+  document.getElementById('amb-val').textContent = (e.ambiance || 5) + '/10';
+
+  currentNote = e.note || 0;
+  tracks = e.tracks ? [...e.tracks] : [];
+  selectedStyles = e.styles ? [...e.styles] : [];
+
+  renderStars(currentNote);
+  const l = ['','Bof…','Pas top','Correct','Bien !','🔥 Parfaite !'];
+  document.getElementById('note-label').textContent = currentNote ? l[currentNote] : 'Appuie sur une étoile';
+  renderTracks();
+  renderStyles();
+  toggleMaries(e.type || 'mariage');
+
+  document.querySelectorAll('#stars-input .star').forEach(s => {
+    s.onclick = () => { currentNote = parseInt(s.dataset.v); renderStars(currentNote); document.getElementById('note-label').textContent = l[currentNote]; };
+  });
+  document.querySelectorAll('#styles-tags .tag').forEach(t => {
+    t.onclick = () => { const sv = t.dataset.s; if (selectedStyles.includes(sv)) { selectedStyles = selectedStyles.filter(x=>x!==sv); t.classList.remove('on'); } else { selectedStyles.push(sv); t.classList.add('on'); }};
+  });
+
+  // Changer le bouton sauvegarder en "Mettre à jour"
+  const saveBtn = document.querySelector('#screen-new .btn-primary:last-of-type');
+  if (saveBtn) {
+    saveBtn.textContent = '💾 Mettre à jour la soirée';
+    saveBtn.onclick = () => saveEditEvent(e.id);
+  }
+
+  document.getElementById('new-limit-warn').innerHTML = '';
+  goTo('new');
+}
+
+async function saveEditEvent(id) {
+  const lieu = document.getElementById('f-lieu').value.trim();
+  if (!lieu) { toast('⚠️ Indique le nom du lieu !'); return; }
+
+  const updated = {
+    uid: currentUser.uid,
+    type: document.getElementById('f-type').value,
+    lieu, date: document.getElementById('f-date').value,
+    ville: document.getElementById('f-ville').value.trim(),
+    maries: document.getElementById('f-maries').value.trim(),
+    email: document.getElementById('f-email').value.trim(),
+    note: currentNote,
+    ambiance: parseInt(document.getElementById('f-ambiance').value),
+    tracks: [...tracks], styles: [...selectedStyles],
+    acoustique: document.getElementById('f-acoustique').value,
+    capacite: document.getElementById('f-capacite').value.trim(),
+    notes: document.getElementById('f-notes').value.trim(),
+    private: document.getElementById('f-private').value.trim(),
+    createdAt: currentEv.createdAt,
+    updatedAt: new Date().toISOString(),
+  };
+
+  try {
+    await db.collection('events').doc(id).update(updated);
+    toast('✅ Soirée mise à jour !');
+    await loadEvents();
+    // Remettre le bouton en mode création
+    const saveBtn = document.querySelector('#screen-new .btn-primary:last-of-type');
+    if (saveBtn) { saveBtn.textContent = '💾 Enregistrer la soirée'; saveBtn.onclick = saveEvent; }
+    goTo('home');
+  } catch(err) { toast('❌ Erreur : ' + err.message); }
+}
+
 async function deleteEv() {
-  if (!currentEv||!confirm('Supprimer cette soirée ?')) return;
+  if (!currentEv || !confirm('⚠️ Supprimer définitivement cette soirée ?')) return;
   try {
     await db.collection('events').doc(currentEv.id).delete();
     toast('🗑️ Soirée supprimée');
@@ -1634,6 +1721,43 @@ function deleteTemplate(i) {
   saveTemplates(templates);
   renderTemplatesList();
   toast('🗑️ Template supprimé');
+}
+
+function searchEvents(q) {
+  const clearBtn = document.getElementById('search-clear');
+  clearBtn.style.display = q ? 'block' : 'none';
+  if (!q.trim()) { renderEvents(); return; }
+  const lower = q.toLowerCase();
+  const filtered = allEvents.filter(e =>
+    (e.lieu||'').toLowerCase().includes(lower) ||
+    (e.ville||'').toLowerCase().includes(lower) ||
+    (e.maries||'').toLowerCase().includes(lower) ||
+    (e.tracks||[]).some(t => t.title.toLowerCase().includes(lower) || (t.artist||'').toLowerCase().includes(lower))
+  );
+  const el = document.getElementById('events-list');
+  if (!filtered.length) {
+    el.innerHTML = `<div class="empty"><div class="empty-icon">🔍</div><div class="empty-title">Aucun résultat</div><div class="empty-sub">Essaie avec un autre mot clé</div></div>`;
+    return;
+  }
+  const typeNames = {mariage:'💒 Mariage',corporate:'🏢 Corporate',club:'🎵 Club',prive:'🏠 Privé',autre:'🎉 Autre'};
+  el.innerHTML = filtered.map(e => {
+    const d = e.date ? new Date(e.date+'T12:00:00').toLocaleDateString('fr-FR',{day:'numeric',month:'short',year:'numeric'}) : '';
+    const stars = e.note ? '★'.repeat(e.note)+'☆'.repeat(5-e.note) : '';
+    return `<div class="ev-card" onclick="openDetail('${e.id}')">
+      <div class="ev-badge b-${e.type||'autre'}">${typeNames[e.type]||'Autre'}</div>
+      <div class="ev-title">${e.lieu}</div>
+      <div class="ev-meta">
+        <span>📅 ${d}</span>${e.ville?`<span>📍 ${e.ville}</span>`:''}
+        ${stars?`<span style="color:var(--gold)">${stars}</span>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function clearSearch() {
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-clear').style.display = 'none';
+  renderEvents();
 }
 
 function toggleSection(id) {
