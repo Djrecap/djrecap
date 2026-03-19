@@ -50,6 +50,11 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
 .screen.active { display: flex; }
 .scroll-area { flex: 1; overflow-y: auto; padding: 0 16px 100px; -webkit-overflow-scrolling: touch; }
 
+.ob-dot { width:8px; height:8px; border-radius:50%; background:var(--bg3); border:1px solid var(--border); transition:all 0.3s; }
+.ob-dot.active { background:var(--accent); border-color:var(--accent); width:24px; border-radius:4px; }
+.ob-slide { animation: fadeIn 0.3s; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+
 /* ── AUTH SCREEN ── */
 #screen-auth {
   background: var(--bg);
@@ -590,6 +595,57 @@ input[type="range"]::-webkit-slider-thumb {
   </div>
 </div>
 
+<!-- ══ ONBOARDING ══ -->
+<div class="screen" id="screen-onboarding" style="background:var(--bg);justify-content:space-between;padding:40px 24px 40px">
+
+  <!-- Slides -->
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
+
+    <!-- Slide 1 -->
+    <div class="ob-slide" id="ob-slide-1">
+      <div style="font-size:64px;text-align:center;margin-bottom:24px">🎧</div>
+      <div style="font-family:var(--font-d);font-size:26px;font-weight:800;text-align:center;margin-bottom:12px">Bienvenue sur<br><span style="color:var(--accent)">DJ Recap</span></div>
+      <div style="font-size:15px;color:var(--text2);text-align:center;line-height:1.6">Ton carnet de bord digital pour ne plus jamais oublier une soirée.</div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="ob-slide" id="ob-slide-2" style="display:none">
+      <div style="font-size:64px;text-align:center;margin-bottom:24px">📝</div>
+      <div style="font-family:var(--font-d);font-size:26px;font-weight:800;text-align:center;margin-bottom:12px">Note tes <span style="color:var(--accent)">soirées</span></div>
+      <div style="font-size:15px;color:var(--text2);text-align:center;line-height:1.6">Mariage, club, corporate, privé... Lieu, ambiance, sons qui ont cartonné — tout en 2 minutes juste après la presta.</div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="ob-slide" id="ob-slide-3" style="display:none">
+      <div style="font-size:64px;text-align:center;margin-bottom:24px">✉️</div>
+      <div style="font-family:var(--font-d);font-size:26px;font-weight:800;text-align:center;margin-bottom:12px">Soigne ta <span style="color:var(--accent)">relation client</span></div>
+      <div style="font-size:15px;color:var(--text2);text-align:center;line-height:1.6">Envoie un mail de remerciement aux mariés directement depuis l'app — depuis ta propre adresse email.</div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="ob-slide" id="ob-slide-4" style="display:none">
+      <div style="font-size:64px;text-align:center;margin-bottom:24px">🚀</div>
+      <div style="font-family:var(--font-d);font-size:26px;font-weight:800;text-align:center;margin-bottom:12px">C'est <span style="color:var(--accent)">gratuit</span> pour commencer</div>
+      <div style="font-size:15px;color:var(--text2);text-align:center;line-height:1.6">Jusqu'à 10 soirées gratuitement. Passe Premium à 9,99€/mois pour des soirées illimitées et bien plus.</div>
+    </div>
+  </div>
+
+  <!-- Dots -->
+  <div style="display:flex;justify-content:center;gap:8px;margin:24px 0">
+    <div class="ob-dot active" id="dot-1"></div>
+    <div class="ob-dot" id="dot-2"></div>
+    <div class="ob-dot" id="dot-3"></div>
+    <div class="ob-dot" id="dot-4"></div>
+  </div>
+
+  <!-- Buttons -->
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <button class="btn btn-primary" id="ob-next-btn" onclick="obNext()">Suivant →</button>
+    <button onclick="obSkip()" style="background:none;border:none;color:var(--text3);font-size:14px;cursor:pointer;padding:8px">Passer</button>
+  </div>
+
+</div>
+
 <!-- ══ AIDE ══ -->
 <div class="screen" id="screen-aide">
   <div class="topbar">
@@ -886,7 +942,14 @@ function showApp() {
       renderEvents();
     };
   });
-  goTo('home');
+
+  const seen = localStorage.getItem('ob_seen_' + currentUser.uid);
+  if (!seen) {
+    document.getElementById('bottom-nav').style.display = 'none';
+    goTo('onboarding');
+  } else {
+    goTo('home');
+  }
 }
 
 function hideApp() {
@@ -1721,6 +1784,34 @@ function deleteTemplate(i) {
   saveTemplates(templates);
   renderTemplatesList();
   toast('🗑️ Template supprimé');
+}
+
+// ══════════════════════════════════════
+// ONBOARDING
+// ══════════════════════════════════════
+let obCurrent = 1;
+const obTotal = 4;
+
+function obNext() {
+  if (obCurrent < obTotal) {
+    document.getElementById('ob-slide-' + obCurrent).style.display = 'none';
+    document.getElementById('dot-' + obCurrent).classList.remove('active');
+    obCurrent++;
+    document.getElementById('ob-slide-' + obCurrent).style.display = 'block';
+    document.getElementById('dot-' + obCurrent).classList.add('active');
+    if (obCurrent === obTotal) {
+      document.getElementById('ob-next-btn').textContent = "C'est parti ! 🎧";
+    }
+  } else {
+    obSkip();
+  }
+}
+
+function obSkip() {
+  localStorage.setItem('ob_seen_' + currentUser.uid, '1');
+  document.getElementById('bottom-nav').style.display = 'flex';
+  obCurrent = 1;
+  goTo('home');
 }
 
 function searchEvents(q) {
