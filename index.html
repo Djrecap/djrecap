@@ -322,6 +322,7 @@ input[type="range"]::-webkit-slider-thumb {
       <div class="stat"><div class="stat-num" id="s-avg">–</div><div class="stat-lbl">Note moy.</div></div>
     </div>
     <div id="limit-banner-home"></div>
+    <div id="recap-reminder"></div>
     <div style="position:relative;margin:10px 0 0">
       <input type="text" id="search-input" placeholder="🔍 Rechercher une soirée, une ville..." oninput="searchEvents(this.value)" style="padding-left:14px;font-size:14px">
       <button id="search-clear" onclick="clearSearch()" style="display:none;position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text3);font-size:18px;cursor:pointer">✕</button>
@@ -1195,6 +1196,7 @@ async function loadEvents() {
     renderEvents();
     refreshStats();
     renderLimitBanner();
+    checkRecapReminder();
   } catch(e) { console.warn(e); }
 }
 
@@ -1228,6 +1230,41 @@ function refreshStats() {
   document.getElementById('s-maries').textContent = allEvents.filter(e=>e.type==='mariage').length;
   const noted = allEvents.filter(e=>e.note>0);
   document.getElementById('s-avg').textContent = noted.length ? (noted.reduce((s,e)=>s+e.note,0)/noted.length).toFixed(1) : '–';
+}
+
+function checkRecapReminder() {
+  const el = document.getElementById('recap-reminder');
+  if (!el) return;
+
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  const yesterdayStr = yesterday.toISOString().split('T')[0];
+
+  const hasYesterdayRecap = allEvents.some(e => e.date === yesterdayStr);
+  const dismissed = localStorage.getItem('reminder_dismissed_' + yesterdayStr + '_' + currentUser.uid);
+
+  if (!hasYesterdayRecap && !dismissed) {
+    const dayName = yesterday.toLocaleDateString('fr-FR', { weekday:'long' });
+    el.innerHTML = `
+      <div style="background:rgba(124,92,252,0.1);border:1px solid rgba(124,92,252,0.25);border-radius:var(--radius-sm);padding:12px 14px;margin:10px 0;display:flex;align-items:center;gap:12px">
+        <div style="font-size:20px">🎧</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:500;color:var(--text)">Tu avais une soirée ${dayName} ?</div>
+          <div style="font-size:12px;color:var(--text2);margin-top:2px">N'oublie pas de faire ton recap !</div>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button onclick="openNew()" style="background:var(--accent);border:none;color:white;font-size:12px;padding:6px 12px;border-radius:6px;cursor:pointer">+ Recap</button>
+          <button onclick="dismissReminder('${yesterdayStr}')" style="background:none;border:none;color:var(--text3);font-size:16px;cursor:pointer">✕</button>
+        </div>
+      </div>`;
+  } else {
+    el.innerHTML = '';
+  }
+}
+
+function dismissReminder(date) {
+  localStorage.setItem('reminder_dismissed_' + date + '_' + currentUser.uid, '1');
+  document.getElementById('recap-reminder').innerHTML = '';
 }
 
 function renderLimitBanner() {
