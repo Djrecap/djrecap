@@ -187,6 +187,10 @@ input[type="range"]::-webkit-slider-thumb {
 .b-corporate { background: var(--cyan-dim); color: var(--cyan); }
 .b-club { background: var(--accent-dim); color: var(--accent); }
 .b-prive { background: rgba(255,183,64,0.12); color: var(--gold); }
+.b-festival { background: rgba(0,229,160,0.12); color: var(--green); }
+.b-discotheque { background: rgba(124,92,252,0.15); color: var(--accent); }
+.b-sportif { background: rgba(0,212,255,0.12); color: var(--cyan); }
+.b-residence { background: rgba(255,107,53,0.12); color: #ff6b35; }
 .b-autre { background: rgba(144,144,176,0.1); color: var(--text2); }
 .ev-title { font-family: var(--font-d); font-size: 15px; font-weight: 700; margin-bottom: 5px; }
 .ev-meta { font-size: 12px; color: var(--text2); display: flex; gap: 12px; flex-wrap: wrap; }
@@ -333,6 +337,10 @@ input[type="range"]::-webkit-slider-thumb {
       <div class="chip" data-f="corporate">Corporate</div>
       <div class="chip" data-f="club">Club</div>
       <div class="chip" data-f="prive">Privé</div>
+      <div class="chip" data-f="festival">Festival</div>
+      <div class="chip" data-f="discotheque">Discothèque</div>
+      <div class="chip" data-f="sportif">Sportif</div>
+      <div class="chip" data-f="residence">Résidence</div>
     </div>
     <div id="events-list"><div class="loading"><div class="spinner"></div>Chargement…</div></div>
   </div>
@@ -355,6 +363,10 @@ input[type="range"]::-webkit-slider-thumb {
           <option value="corporate">🏢 Corporate</option>
           <option value="club">🎵 Club / Bar</option>
           <option value="prive">🏠 Soirée privée</option>
+          <option value="festival">🎪 Festival</option>
+          <option value="discotheque">🪩 Discothèque</option>
+          <option value="sportif">🏟️ Événement sportif</option>
+          <option value="residence">🎧 Résidence DJ</option>
           <option value="autre">🎉 Autre</option>
         </select>
       </div>
@@ -367,6 +379,14 @@ input[type="range"]::-webkit-slider-thumb {
       <div class="stitle">👰 Les mariés</div>
       <div class="field"><label>Prénom(s)</label><input type="text" id="f-maries" placeholder="Sophie & Thomas"></div>
       <div class="field"><label>Email des mariés</label><input type="email" id="f-email" placeholder="sophie.thomas@mail.fr"></div>
+    </div>
+
+    <div id="section-grand-event" class="card" style="display:none">
+      <div class="stitle">🏟️ Infos grand événement</div>
+      <div class="field"><label>Contact organisateur</label><input type="text" id="f-organisateur" placeholder="Nom du contact"></div>
+      <div class="field"><label>Email organisateur</label><input type="email" id="f-email-orga" placeholder="contact@evenement.fr"></div>
+      <div class="field"><label>Nombre de sets joués</label><input type="text" id="f-sets" placeholder="ex: 2 sets de 1h"></div>
+      <div class="field"><label>Cachet (memo privé)</label><input type="text" id="f-cachet" placeholder="ex: 500€" style=""></div>
     </div>
 
     <div class="card">
@@ -1103,7 +1123,7 @@ function openNew() {
 // FORM
 // ══════════════════════════════════
 function resetForm() {
-  ['f-type','f-lieu','f-ville','f-maries','f-email','f-acoustique','f-capacite','f-notes','f-private'].forEach(id => {
+  ['f-type','f-lieu','f-ville','f-maries','f-email','f-acoustique','f-capacite','f-notes','f-private','f-organisateur','f-email-orga','f-sets','f-cachet'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.value = el.tagName === 'SELECT' ? el.options[0].value : '';
   });
@@ -1127,7 +1147,11 @@ function resetForm() {
   });
 }
 
-function toggleMaries(t) { document.getElementById('section-maries').style.display = t==='mariage' ? 'block' : 'none'; }
+function toggleMaries(t) {
+  document.getElementById('section-maries').style.display = t === 'mariage' ? 'block' : 'none';
+  const grandEvents = ['festival','discotheque','sportif','residence'];
+  document.getElementById('section-grand-event').style.display = grandEvents.includes(t) ? 'block' : 'none';
+}
 function renderStars(n) { document.querySelectorAll('.star').forEach(s => s.classList.toggle('lit', parseInt(s.dataset.v) <= n)); }
 function renderStyles() { document.querySelectorAll('#styles-tags .tag').forEach(t => t.classList.toggle('on', selectedStyles.includes(t.dataset.s))); }
 
@@ -1175,6 +1199,10 @@ async function saveEvent() {
     capacite: document.getElementById('f-capacite').value.trim(),
     notes: document.getElementById('f-notes').value.trim(),
     private: document.getElementById('f-private').value.trim(),
+    organisateur: document.getElementById('f-organisateur').value.trim(),
+    emailOrga: document.getElementById('f-email-orga').value.trim(),
+    sets: document.getElementById('f-sets').value.trim(),
+    cachet: document.getElementById('f-cachet').value.trim(),
     createdAt: new Date().toISOString(),
   };
 
@@ -1223,7 +1251,7 @@ function renderEvents() {
 }
 
 function typeName(t) {
-  return {mariage:'💒 Mariage',corporate:'🏢 Corporate',club:'🎵 Club',prive:'🏠 Privé',autre:'🎉 Autre'}[t]||t;
+  return {mariage:'💒 Mariage',corporate:'🏢 Corporate',club:'🎵 Club',prive:'🏠 Privé',festival:'🎪 Festival',discotheque:'🪩 Discothèque',sportif:'🏟️ Sportif',residence:'🎧 Résidence',autre:'🎉 Autre'}[t]||t;
 }
 
 function refreshStats() {
@@ -1303,6 +1331,15 @@ function openDetail(id) {
       ${e.maries?`<div style="font-size:16px;font-weight:500;margin-bottom:6px">${e.maries}</div>`:''}
       ${e.email?`<div style="font-size:13px;color:var(--cyan);margin-bottom:14px">${e.email}</div>
         <button class="btn btn-outline btn-sm" onclick="openEmailModal()">✉️ Envoyer un mail de remerciement</button>`:''}
+    </div>`;
+  }
+
+  const grandEvents = ['festival','discotheque','sportif','residence'];
+  if (grandEvents.includes(e.type) && (e.organisateur||e.sets||e.cachet)) {
+    h += `<div class="card"><div class="stitle">🏟️ Infos événement</div>
+      ${e.organisateur?`<div style="margin-bottom:8px"><span style="color:var(--text2);font-size:12px">Contact : </span><span style="font-size:14px">${e.organisateur}</span>${e.emailOrga?` <span style="color:var(--cyan);font-size:12px">${e.emailOrga}</span>`:''}</div>`:''}
+      ${e.sets?`<div style="margin-bottom:8px"><span style="color:var(--text2);font-size:12px">Sets : </span><span style="font-size:14px">${e.sets}</span></div>`:''}
+      ${e.cachet?`<div style="margin-bottom:8px"><span style="color:var(--text2);font-size:12px">Cachet : </span><span style="font-size:14px;color:var(--gold)">${e.cachet}</span></div>`:''}
     </div>`;
   }
 
