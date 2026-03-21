@@ -1182,8 +1182,10 @@ function toggleMaries(t) {
   document.getElementById('section-grand-event').style.display = grandEvents.includes(t) ? 'block' : 'none';
   document.getElementById('field-residence-type').style.display = t === 'residence' ? 'block' : 'none';
   if (t !== 'residence') {
-    document.getElementById('field-frequence').style.display = 'none';
-    document.getElementById('field-emission').style.display = 'none';
+    ['res-club','res-radio','res-bar'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
   }
 }
 
