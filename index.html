@@ -336,11 +336,11 @@ input[type="range"]::-webkit-slider-thumb {
       <div class="chip active" data-f="tous">Tous</div>
       <div class="chip" data-f="mariage">Mariages</div>
       <div class="chip" data-f="corporate">Corporate</div>
-      <div class="chip" data-f="club">Club / Discothèque</div>
       <div class="chip" data-f="prive">Privé</div>
       <div class="chip" data-f="festival">Festival</div>
       <div class="chip" data-f="sportif">Sportif</div>
       <div class="chip" data-f="residence">Résidence</div>
+      <div class="chip" data-f="autre">Autre</div>
     </div>
     <div id="events-list"><div class="loading"><div class="spinner"></div>Chargement…</div></div>
   </div>
@@ -361,7 +361,6 @@ input[type="range"]::-webkit-slider-thumb {
         <select id="f-type" onchange="toggleMaries(this.value)">
           <option value="mariage">💒 Mariage</option>
           <option value="corporate">🏢 Corporate</option>
-          <option value="club">🪩 Club / Discothèque</option>
           <option value="prive">🏠 Soirée privée</option>
           <option value="festival">🎪 Festival</option>
           <option value="sportif">🏟️ Événement sportif</option>
@@ -369,7 +368,7 @@ input[type="range"]::-webkit-slider-thumb {
           <option value="autre">🎉 Autre</option>
         </select>
       </div>
-      <div class="field"><label>Lieu / Nom de l'événement</label><input type="text" id="f-lieu" placeholder="Château des Lumières, Mariage Dupont…"></div>
+      <div class="field" id="field-lieu"><label>Lieu / Nom de l'événement</label><input type="text" id="f-lieu" placeholder="Château des Lumières, Mariage Dupont…"></div>
       <div class="field"><label>Date</label><input type="date" id="f-date"></div>
       <div class="field"><label>Ville</label><input type="text" id="f-ville" placeholder="Paris, Lyon…"></div>
     </div>
@@ -458,7 +457,7 @@ input[type="range"]::-webkit-slider-thumb {
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" id="section-notes-salle">
       <div class="stitle">📝 Notes salle & événement</div>
       <div class="field"><label>Acoustique</label>
         <select id="f-acoustique">
@@ -1181,6 +1180,15 @@ function toggleMaries(t) {
   const grandEvents = ['festival','sportif','residence'];
   document.getElementById('section-grand-event').style.display = grandEvents.includes(t) ? 'block' : 'none';
   document.getElementById('field-residence-type').style.display = t === 'residence' ? 'block' : 'none';
+
+  // Masquer notes salle pour festival et sportif
+  const notesSalle = document.getElementById('section-notes-salle');
+  if (notesSalle) notesSalle.style.display = ['festival','sportif'].includes(t) ? 'none' : 'block';
+
+  // Masquer lieu pour résidence (on le choisit dans le sous-menu)
+  const fieldLieu = document.getElementById('field-lieu');
+  if (fieldLieu) fieldLieu.style.display = t === 'residence' ? 'none' : 'block';
+
   if (t !== 'residence') {
     ['res-club','res-radio','res-bar'].forEach(id => {
       const el = document.getElementById(id);
@@ -1305,7 +1313,7 @@ function renderEvents() {
 }
 
 function typeName(t) {
-  return {mariage:'💒 Mariage',corporate:'🏢 Corporate',club:'🪩 Club / Discothèque',prive:'🏠 Privé',festival:'🎪 Festival',sportif:'🏟️ Sportif',residence:'🎧 Résidence',autre:'🎉 Autre'}[t]||t;
+  return {mariage:'💒 Mariage',corporate:'🏢 Corporate',prive:'🏠 Privé',festival:'🎪 Festival',sportif:'🏟️ Sportif',residence:'🎧 Résidence',autre:'🎉 Autre'}[t]||t;
 }
 
 function refreshStats() {
