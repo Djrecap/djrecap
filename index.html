@@ -460,13 +460,14 @@ input[type="range"]::-webkit-slider-thumb {
       <div style="font-family:var(--font-d);font-size:16px;font-weight:700;margin-bottom:4px">Gratuit</div>
       <div style="font-family:var(--font-d);font-size:22px;font-weight:700;color:var(--text);margin:8px 0 4px">0€<span style="font-size:13px;font-weight:400;color:var(--text2);margin-left:6px">pour toujours</span></div>
       <div class="divider"></div>
-      <div class="price-feature">Jusqu'à 10 soirées</div>
+      <div class="price-feature">3 soirées pour tester</div>
       <div class="price-feature">Suivi sons & styles</div>
-      <div class="price-feature">Email de remerciement (5/mois)</div>
-      <div class="price-feature no">Soirées illimitées</div>
+      <div class="price-feature no">Emails de remerciement</div>
+      <div class="price-feature no">Modification des soirées</div>
+      <div class="price-feature no">Recherche</div>
       <div class="price-feature no">Statistiques avancées</div>
-      <div class="price-feature no">Export PDF de tes prestations</div>
-      <div class="price-feature no">Templates email personnalisés</div>
+      <div class="price-feature no">Export PDF</div>
+      <div class="price-feature no">Templates email</div>
     </div>
 
     <div class="pricing-card pricing-premium">
@@ -627,7 +628,7 @@ input[type="range"]::-webkit-slider-thumb {
     <div class="ob-slide" id="ob-slide-4" style="display:none">
       <div style="font-size:64px;text-align:center;margin-bottom:24px">🚀</div>
       <div style="font-family:var(--font-d);font-size:26px;font-weight:800;text-align:center;margin-bottom:12px">C'est <span style="color:var(--accent)">gratuit</span> pour commencer</div>
-      <div style="font-size:15px;color:var(--text2);text-align:center;line-height:1.6">Jusqu'à 10 soirées gratuitement. Passe Premium à 9,99€/mois pour des soirées illimitées et bien plus.</div>
+      <div style="font-size:15px;color:var(--text2);text-align:center;line-height:1.6">3 soirées gratuites pour tester. Passe Premium à 9,99€/mois pour tout débloquer.</div>
     </div>
   </div>
 
@@ -906,8 +907,8 @@ const FIREBASE_CONFIG = {
 };
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/7sY6oG55egDr6ihg982Ry02"; // Stripe Payment Link
 const STRIPE_PORTAL_LINK  = "https://billing.stripe.com/VOTRE_PORTAL";
-const FREE_LIMIT = 10;
-const FREE_EMAIL_LIMIT = 5;
+const FREE_LIMIT = 3;
+const FREE_EMAIL_LIMIT = 0;
 
 // ══════════════════════════════════
 // INIT
@@ -1336,6 +1337,8 @@ function openDetail(id) {
 }
 
 function openEditEvent() {
+  const isPrem = userDoc.plan === 'premium';
+  if (!isPrem) { toast('🔒 Modification réservée au Premium !'); goTo('premium'); return; }
   if (!currentEv) return;
   const e = currentEv;
 
@@ -1852,6 +1855,8 @@ function obSkip() {
 }
 
 function searchEvents(q) {
+  const isPrem = userDoc.plan === 'premium';
+  if (!isPrem) { toast('🔒 Recherche réservée au Premium !'); goTo('premium'); return; }
   const clearBtn = document.getElementById('search-clear');
   clearBtn.style.display = q ? 'block' : 'none';
   if (!q.trim()) { renderEvents(); return; }
