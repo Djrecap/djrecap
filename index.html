@@ -1436,7 +1436,7 @@ function openDetail(id) {
     h += `<div class="card"><div class="stitle">👰 Mariés</div>
       ${e.maries?`<div style="font-size:16px;font-weight:500;margin-bottom:6px">${e.maries}</div>`:''}
       ${e.email?`<div style="font-size:13px;color:var(--cyan);margin-bottom:14px">${e.email}</div>
-        <button class="btn btn-outline btn-sm" onclick="openEmailModal()">✉️ Envoyer un mail de remerciement</button>`:''}
+        ${userDoc.plan === 'premium' ? `<button class="btn btn-outline btn-sm" onclick="openEmailModal()">✉️ Envoyer un mail de remerciement</button>` : `<div style="font-size:12px;color:var(--text3);padding:8px;background:var(--bg2);border-radius:6px">🔒 Envoi d'emails réservé au Premium</div>`}`:''}
     </div>`;
   }
 
@@ -1573,6 +1573,20 @@ async function saveEditEvent(id) {
     capacite: document.getElementById('f-capacite').value.trim(),
     notes: document.getElementById('f-notes').value.trim(),
     private: document.getElementById('f-private').value.trim(),
+    organisateur: document.getElementById('f-organisateur').value.trim(),
+    emailOrga: document.getElementById('f-email-orga').value.trim(),
+    sets: document.getElementById('f-sets').value.trim(),
+    cachet: document.getElementById('f-cachet').value.trim(),
+    residenceType: document.getElementById('f-residence-type').value,
+    resLieu: document.getElementById('f-res-lieu') ? document.getElementById('f-res-lieu').value.trim() : '',
+    resFrequenceClub: document.getElementById('f-res-frequence-club') ? document.getElementById('f-res-frequence-club').value.trim() : '',
+    resRadioNom: document.getElementById('f-res-radio-nom') ? document.getElementById('f-res-radio-nom').value.trim() : '',
+    resEmission: document.getElementById('f-res-emission') ? document.getElementById('f-res-emission').value.trim() : '',
+    resFrequenceRadio: document.getElementById('f-res-frequence-radio') ? document.getElementById('f-res-frequence-radio').value.trim() : '',
+    resHeure: document.getElementById('f-res-heure') ? document.getElementById('f-res-heure').value.trim() : '',
+    resBarNom: document.getElementById('f-res-bar-nom') ? document.getElementById('f-res-bar-nom').value.trim() : '',
+    resFrequenceBar: document.getElementById('f-res-frequence-bar') ? document.getElementById('f-res-frequence-bar').value.trim() : '',
+    resStyle: document.getElementById('f-res-style') ? document.getElementById('f-res-style').value.trim() : '',
     createdAt: currentEv.createdAt,
     updatedAt: new Date().toISOString(),
   };
