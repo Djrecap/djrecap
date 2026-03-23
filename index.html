@@ -336,6 +336,7 @@ input[type="range"]::-webkit-slider-thumb {
       <div class="chip active" data-f="tous">Tous</div>
       <div class="chip" data-f="mariage">Mariages</div>
       <div class="chip" data-f="corporate">Corporate</div>
+      <div class="chip" data-f="club">Club</div>
       <div class="chip" data-f="prive">Privé</div>
       <div class="chip" data-f="festival">Festival</div>
       <div class="chip" data-f="sportif">Sportif</div>
@@ -361,6 +362,7 @@ input[type="range"]::-webkit-slider-thumb {
         <select id="f-type" onchange="toggleMaries(this.value)">
           <option value="mariage">💒 Mariage</option>
           <option value="corporate">🏢 Corporate</option>
+          <option value="club">🪩 Club / Discothèque</option>
           <option value="prive">🏠 Soirée privée</option>
           <option value="festival">🎪 Festival</option>
           <option value="sportif">🏟️ Événement sportif</option>
@@ -1237,7 +1239,18 @@ function renderTracks() {
 // SAVE EVENT
 // ══════════════════════════════════
 async function saveEvent() {
-  const lieu = document.getElementById('f-lieu').value.trim();
+  const type = document.getElementById('f-type').value;
+  const residenceTypes = ['festival','sportif','residence'];
+  const lieuEl = document.getElementById('f-lieu').value.trim();
+  const resLieuEl = document.getElementById('f-res-lieu').value.trim();
+  const resBarEl = document.getElementById('f-res-bar-nom').value.trim();
+  const resRadioEl = document.getElementById('f-res-radio-nom').value.trim();
+
+  // Pour résidence, le lieu est le nom du bar/club/radio
+  const lieu = type === 'residence'
+    ? (resLieuEl || resBarEl || resRadioEl || document.getElementById('f-res-frequence-club').value.trim())
+    : lieuEl;
+
   if (!lieu) { toast('⚠️ Indique le nom du lieu !'); return; }
   const isPrem = userDoc.plan === 'premium';
   if (!isPrem && allEvents.length >= FREE_LIMIT) { toast('🔒 Limite atteinte — passe Premium !'); goTo('premium'); return; }
@@ -1319,7 +1332,7 @@ function renderEvents() {
 }
 
 function typeName(t) {
-  return {mariage:'💒 Mariage',corporate:'🏢 Corporate',prive:'🏠 Privé',festival:'🎪 Festival',sportif:'🏟️ Sportif',residence:'🎧 Résidence',autre:'🎉 Autre'}[t]||t;
+  return {mariage:'💒 Mariage',corporate:'🏢 Corporate',club:'🪩 Club / Discothèque',prive:'🏠 Privé',festival:'🎪 Festival',sportif:'🏟️ Sportif',residence:'🎧 Résidence',autre:'🎉 Autre'}[t]||t;
 }
 
 function refreshStats() {
@@ -1543,7 +1556,14 @@ function openEditEvent() {
 }
 
 async function saveEditEvent(id) {
-  const lieu = document.getElementById('f-lieu').value.trim();
+  const type = document.getElementById('f-type').value;
+  const lieuEl = document.getElementById('f-lieu').value.trim();
+  const resLieuEl = document.getElementById('f-res-lieu').value.trim();
+  const resBarEl = document.getElementById('f-res-bar-nom').value.trim();
+  const resRadioEl = document.getElementById('f-res-radio-nom').value.trim();
+  const lieu = type === 'residence'
+    ? (resLieuEl || resBarEl || resRadioEl || document.getElementById('f-res-frequence-club').value.trim())
+    : lieuEl;
   if (!lieu) { toast('⚠️ Indique le nom du lieu !'); return; }
 
   const updated = {
@@ -1745,7 +1765,7 @@ function openStats() {
   const topTracks = Object.entries(trackCount).sort((a,b)=>b[1]-a[1]).slice(0,5);
 
   const maxMonth = Math.max(...months.map(m => byMonth[m]), 1);
-  const typeNames = {mariage:'💒 Mariage', corporate:'🏢 Corporate', club:'🎵 Club', prive:'🏠 Privé', autre:'🎉 Autre'};
+  const typeNames = {mariage:'💒 Mariage', corporate:'🏢 Corporate', club:'🪩 Club', prive:'🏠 Privé', festival:'🎪 Festival', sportif:'🏟️ Sportif', residence:'🎧 Résidence', autre:'🎉 Autre'};
   const typeColors = {mariage:'var(--pink)', corporate:'var(--cyan)', club:'var(--accent)', prive:'var(--gold)', autre:'var(--text2)'};
 
   el.innerHTML = `
@@ -1836,7 +1856,7 @@ async function exportPDF() {
   allEvents.forEach(e => { (e.tracks||[]).forEach(t => { const k=t.title+(t.artist?' — '+t.artist:''); trackCount[k]=(trackCount[k]||0)+1; }); });
   const topTracks = Object.entries(trackCount).sort((a,b)=>b[1]-a[1]).slice(0,5);
 
-  const typeNames = {mariage:'Mariage', corporate:'Corporate', club:'Club', prive:'Privé', autre:'Autre'};
+  const typeNames = {mariage:'Mariage', corporate:'Corporate', club:'Club', prive:'Privé', festival:'Festival', sportif:'Sportif', residence:'Résidence', autre:'Autre'};
   const today = new Date().toLocaleDateString('fr-FR', {day:'numeric', month:'long', year:'numeric'});
 
   const html = `<!DOCTYPE html><html><head><meta charset="UTF-8">
@@ -2029,7 +2049,7 @@ function searchEvents(q) {
     el.innerHTML = `<div class="empty"><div class="empty-icon">🔍</div><div class="empty-title">Aucun résultat</div><div class="empty-sub">Essaie avec un autre mot clé</div></div>`;
     return;
   }
-  const typeNames = {mariage:'💒 Mariage',corporate:'🏢 Corporate',club:'🎵 Club',prive:'🏠 Privé',autre:'🎉 Autre'};
+  const typeNames = {mariage:'💒 Mariage',corporate:'🏢 Corporate',club:'🪩 Club',prive:'🏠 Privé',festival:'🎪 Festival',sportif:'🏟️ Sportif',residence:'🎧 Résidence',autre:'🎉 Autre'};
   el.innerHTML = filtered.map(e => {
     const d = e.date ? new Date(e.date+'T12:00:00').toLocaleDateString('fr-FR',{day:'numeric',month:'short',year:'numeric'}) : '';
     const stars = e.note ? '★'.repeat(e.note)+'☆'.repeat(5-e.note) : '';
