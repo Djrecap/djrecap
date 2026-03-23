@@ -362,7 +362,6 @@ input[type="range"]::-webkit-slider-thumb {
         <select id="f-type" onchange="toggleMaries(this.value)">
           <option value="mariage">💒 Mariage</option>
           <option value="corporate">🏢 Corporate</option>
-          <option value="club">🪩 Club / Discothèque</option>
           <option value="prive">🏠 Soirée privée</option>
           <option value="festival">🎪 Festival</option>
           <option value="sportif">🏟️ Événement sportif</option>
@@ -1240,18 +1239,17 @@ function renderTracks() {
 // ══════════════════════════════════
 async function saveEvent() {
   const type = document.getElementById('f-type').value;
-  const residenceTypes = ['festival','sportif','residence'];
   const lieuEl = document.getElementById('f-lieu').value.trim();
-  const resLieuEl = document.getElementById('f-res-lieu').value.trim();
-  const resBarEl = document.getElementById('f-res-bar-nom').value.trim();
-  const resRadioEl = document.getElementById('f-res-radio-nom').value.trim();
+  const resLieuEl = document.getElementById('f-res-lieu') ? document.getElementById('f-res-lieu').value.trim() : '';
+  const resBarEl = document.getElementById('f-res-bar-nom') ? document.getElementById('f-res-bar-nom').value.trim() : '';
+  const resRadioEl = document.getElementById('f-res-radio-nom') ? document.getElementById('f-res-radio-nom').value.trim() : '';
+  const resFreqClub = document.getElementById('f-res-frequence-club') ? document.getElementById('f-res-frequence-club').value.trim() : '';
 
-  // Pour résidence, le lieu est le nom du bar/club/radio
   const lieu = type === 'residence'
-    ? (resLieuEl || resBarEl || resRadioEl || document.getElementById('f-res-frequence-club').value.trim())
+    ? (resLieuEl || resBarEl || resRadioEl || resFreqClub || 'Résidence DJ')
     : lieuEl;
 
-  if (!lieu) { toast('⚠️ Indique le nom du lieu !'); return; }
+  if (type !== 'residence' && !lieu) { toast('⚠️ Indique le nom du lieu !'); return; }
   const isPrem = userDoc.plan === 'premium';
   if (!isPrem && allEvents.length >= FREE_LIMIT) { toast('🔒 Limite atteinte — passe Premium !'); goTo('premium'); return; }
 
@@ -1558,13 +1556,13 @@ function openEditEvent() {
 async function saveEditEvent(id) {
   const type = document.getElementById('f-type').value;
   const lieuEl = document.getElementById('f-lieu').value.trim();
-  const resLieuEl = document.getElementById('f-res-lieu').value.trim();
-  const resBarEl = document.getElementById('f-res-bar-nom').value.trim();
-  const resRadioEl = document.getElementById('f-res-radio-nom').value.trim();
+  const resLieuEl = document.getElementById('f-res-lieu') ? document.getElementById('f-res-lieu').value.trim() : '';
+  const resBarEl = document.getElementById('f-res-bar-nom') ? document.getElementById('f-res-bar-nom').value.trim() : '';
+  const resRadioEl = document.getElementById('f-res-radio-nom') ? document.getElementById('f-res-radio-nom').value.trim() : '';
   const lieu = type === 'residence'
-    ? (resLieuEl || resBarEl || resRadioEl || document.getElementById('f-res-frequence-club').value.trim())
+    ? (resLieuEl || resBarEl || resRadioEl || 'Résidence DJ')
     : lieuEl;
-  if (!lieu) { toast('⚠️ Indique le nom du lieu !'); return; }
+  if (type !== 'residence' && !lieu) { toast('⚠️ Indique le nom du lieu !'); return; }
 
   const updated = {
     uid: currentUser.uid,
