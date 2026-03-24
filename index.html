@@ -54,6 +54,7 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
 .ob-dot.active { background:var(--accent); border-color:var(--accent); width:24px; border-radius:4px; }
 .ob-slide { animation: fadeIn 0.3s; }
 @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+@keyframes bounce { from { transform:translateY(0); } to { transform:translateY(-10px); } }
 
 /* ── AUTH SCREEN ── */
 #screen-auth {
@@ -880,6 +881,31 @@ input[type="range"]::-webkit-slider-thumb {
     </div>
     <div style="height:20px"></div>
   </div>
+</div>
+
+<!-- ══ TUTORIEL INTERACTIF ══ -->
+<div id="tutorial-overlay" style="display:none;position:fixed;inset:0;z-index:9999">
+  <div id="tutorial-backdrop" style="position:absolute;inset:0;background:rgba(0,0,0,0.75)"></div>
+  <div id="tutorial-box" style="position:absolute;background:var(--bg2);border:1px solid var(--accent);border-radius:16px;padding:20px;width:calc(100% - 48px);max-width:360px;left:50%;transform:translateX(-50%);box-shadow:0 0 30px rgba(124,92,252,0.3)">
+    <div style="text-align:center;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)">
+      <div style="font-size:20px;margin-bottom:6px">🎧</div>
+      <div style="font-family:var(--font-d);font-size:15px;font-weight:700;color:var(--accent)">Bienvenue sur DJ Recap !</div>
+      <div style="font-size:12px;color:var(--text2);margin-top:4px">Voici un guide rapide pour commencer</div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <div style="font-size:12px;color:var(--text3)" id="tut-step-label">Étape 1/4</div>
+      <button onclick="skipTutorial()" style="background:none;border:none;color:var(--text3);font-size:13px;cursor:pointer">Passer ✕</button>
+    </div>
+    <div style="font-size:22px;text-align:center;margin-bottom:10px" id="tut-icon">➕</div>
+    <div style="font-family:var(--font-d);font-size:16px;font-weight:700;text-align:center;margin-bottom:8px;color:var(--text)" id="tut-title">Ajoute ta première soirée</div>
+    <div style="font-size:13px;color:var(--text2);text-align:center;line-height:1.6;margin-bottom:16px" id="tut-desc">Appuie sur le bouton <strong style="color:var(--accent)">+</strong> en bas au centre pour créer ta première prestation.</div>
+    <div style="display:flex;gap:10px">
+      <button id="tut-prev-btn" onclick="tutPrev()" style="flex:1;padding:10px;background:none;border:1px solid var(--border);border-radius:10px;color:var(--text2);font-size:13px;cursor:pointer;display:none">← Précédent</button>
+      <button id="tut-next-btn" onclick="tutNext()" style="flex:1;padding:10px;background:var(--accent);border:none;border-radius:10px;color:white;font-size:13px;font-weight:600;cursor:pointer">Suivant →</button>
+    </div>
+    <div style="display:flex;justify-content:center;gap:6px;margin-top:12px" id="tut-dots"></div>
+  </div>
+  <div id="tut-arrow" style="position:absolute;font-size:32px;animation:bounce 0.8s infinite alternate">👇</div>
 </div>
 
 <!-- ══ BOTTOM NAV ══ -->
@@ -2036,6 +2062,109 @@ function obSkip() {
   document.getElementById('bottom-nav').style.display = 'flex';
   obCurrent = 1;
   goTo('home');
+  // Lance le tutoriel après l'onboarding
+  const tutSeen = localStorage.getItem('tut_seen_' + currentUser.uid);
+  if (!tutSeen) setTimeout(() => startTutorial(), 500);
+}
+
+// ══════════════════════════════════════
+// TUTORIEL INTERACTIF
+// ══════════════════════════════════════
+const TUT_STEPS = [
+  {
+    icon: '➕',
+    title: 'Ajoute ta première soirée',
+    desc: 'Appuie sur le bouton <strong style="color:var(--accent)">+</strong> en bas au centre pour créer ta première prestation.',
+    arrowTarget: 'nav-new',
+    arrowPos: 'bottom'
+  },
+  {
+    icon: '🎧',
+    title: 'Choisis le type de presta',
+    desc: 'Mariage, corporate, festival, résidence... Remplis les infos en 2 minutes juste après ta soirée.',
+    arrowTarget: null,
+    arrowPos: null
+  },
+  {
+    icon: '📊',
+    title: 'Consulte tes stats',
+    desc: 'L\'onglet <strong style="color:var(--accent)">Stats</strong> te donne une vue complète de ta saison — notes, ambiance, top sons.',
+    arrowTarget: 'nav-stats',
+    arrowPos: 'bottom'
+  },
+  {
+    icon: '🚀',
+    title: 'Passe Premium pour tout débloquer',
+    desc: 'Emails, modification, recherche, export PDF... Tout est dans l\'onglet <strong style="color:var(--gold)">Premium</strong>.',
+    arrowTarget: 'nav-premium',
+    arrowPos: 'bottom'
+  }
+];
+
+let tutCurrent = 0;
+
+function startTutorial() {
+  tutCurrent = 0;
+  renderTutStep();
+  document.getElementById('tutorial-overlay').style.display = 'block';
+}
+
+function renderTutStep() {
+  const step = TUT_STEPS[tutCurrent];
+  const total = TUT_STEPS.length;
+
+  document.getElementById('tut-step-label').textContent = `Étape ${tutCurrent+1}/${total}`;
+  document.getElementById('tut-icon').textContent = step.icon;
+  document.getElementById('tut-title').textContent = step.title;
+  document.getElementById('tut-desc').innerHTML = step.desc;
+  document.getElementById('tut-prev-btn').style.display = tutCurrent > 0 ? 'block' : 'none';
+  document.getElementById('tut-next-btn').textContent = tutCurrent === total-1 ? 'Terminer ✓' : 'Suivant →';
+
+  // Dots
+  const dotsEl = document.getElementById('tut-dots');
+  dotsEl.innerHTML = TUT_STEPS.map((_, i) =>
+    `<div style="width:${i===tutCurrent?'20':'8'}px;height:8px;border-radius:4px;background:${i===tutCurrent?'var(--accent)':'var(--bg3)'};transition:all 0.3s"></div>`
+  ).join('');
+
+  // Flèche
+  const arrow = document.getElementById('tut-arrow');
+  if (step.arrowTarget) {
+    const target = document.getElementById(step.arrowTarget);
+    if (target) {
+      const rect = target.getBoundingClientRect();
+      arrow.style.display = 'block';
+      arrow.style.left = (rect.left + rect.width/2 - 16) + 'px';
+      arrow.style.top = (rect.top - 50) + 'px';
+    }
+  } else {
+    arrow.style.display = 'none';
+  }
+
+  // Position de la box
+  const box = document.getElementById('tutorial-box');
+  box.style.top = step.arrowTarget ? '30%' : '35%';
+  box.style.bottom = 'auto';
+}
+
+function tutNext() {
+  if (tutCurrent < TUT_STEPS.length - 1) {
+    tutCurrent++;
+    renderTutStep();
+  } else {
+    skipTutorial();
+  }
+}
+
+function tutPrev() {
+  if (tutCurrent > 0) {
+    tutCurrent--;
+    renderTutStep();
+  }
+}
+
+function skipTutorial() {
+  localStorage.setItem('tut_seen_' + currentUser.uid, '1');
+  document.getElementById('tutorial-overlay').style.display = 'none';
 }
 
 function searchEvents(q) {
