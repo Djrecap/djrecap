@@ -47,41 +47,6 @@ html, body { height: 100%; background: #07051a; color: rgba(255,255,255,0.92); f
   --font-b: 'Raleway', sans-serif;
 }
 
-/* ── LIGHT MODE ── */
-[data-theme="light"] {
-  --bg: #f0f0f8;
-  --bg2: #e4e4f0;
-  --bg3: rgba(0,0,0,0.04);
-  --card: rgba(255,255,255,0.8);
-  --border: rgba(0,0,0,0.08);
-  --border2: rgba(0,0,0,0.14);
-  --accent: #7c5cfc;
-  --accent-dim: rgba(124,92,252,0.12);
-  --cyan: #0ea5e9;
-  --cyan-dim: rgba(14,165,233,0.1);
-  --pink: #ec4899;
-  --pink-dim: rgba(236,72,153,0.1);
-  --gold: #d97706;
-  --green: #059669;
-  --text: rgba(0,0,0,0.88);
-  --text2: rgba(0,0,0,0.45);
-  --text3: rgba(0,0,0,0.22);
-}
-[data-theme="light"] #app { background: linear-gradient(160deg, #e8e6f8 0%, #ede9ff 50%, #e4e0f8 100%); }
-[data-theme="light"] #screen-auth { background: linear-gradient(160deg, #e8e6f8 0%, #ede9ff 50%, #e4e0f8 100%); }
-[data-theme="light"] .topbar { background: rgba(240,240,248,0.9); }
-[data-theme="light"] .bottom-nav { background: rgba(240,240,248,0.95); }
-[data-theme="light"] .modal-sheet { background: rgba(240,240,248,0.98); }
-[data-theme="light"] #toast { background: rgba(240,240,248,0.97); border-color: rgba(124,92,252,0.3); color: rgba(0,0,0,0.85); }
-[data-theme="light"] input[type="text"],
-[data-theme="light"] input[type="date"],
-[data-theme="light"] input[type="email"],
-[data-theme="light"] input[type="password"],
-[data-theme="light"] textarea,
-[data-theme="light"] select { background: rgba(255,255,255,0.7); color: rgba(0,0,0,0.8); }
-[data-theme="light"] .auth-box { background: rgba(255,255,255,0.7); border-color: rgba(124,92,252,0.2); }
-[data-theme="light"] .fab { color: white; }
-[data-theme="light"] .btn-primary { color: white; }
 
 #app { height: 100dvh; display: flex; flex-direction: column; background: linear-gradient(160deg, #0c0a2e 0%, #0f0d35 50%, #080620 100%); }
 .screen { display: none; flex-direction: column; flex: 1; overflow: hidden; }
@@ -546,18 +511,6 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22p
         <span style="color:var(--text3);font-size:16px">›</span>
       </div>
 
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between">
-        <div style="display:flex;align-items:center;gap:10px">
-          <span style="font-size:16px" id="theme-icon">🌙</span>
-          <span style="font-size:13px;color:rgba(255,255,255,0.7);font-weight:500">Apparence</span>
-        </div>
-        <div style="display:flex;gap:4px;background:rgba(255,255,255,0.06);border-radius:20px;padding:3px">
-          <button onclick="setTheme('light')" id="theme-light" style="padding:4px 10px;border-radius:16px;border:none;font-family:var(--font-b);font-size:11px;font-weight:600;cursor:pointer;background:none;color:var(--text2);transition:all 0.2s">☀️ Clair</button>
-          <button onclick="setTheme('dark')" id="theme-dark" style="padding:4px 10px;border-radius:16px;border:none;font-family:var(--font-b);font-size:11px;font-weight:600;cursor:pointer;background:none;color:var(--text2);transition:all 0.2s">🌙 Sombre</button>
-          <button onclick="setTheme('auto')" id="theme-auto" style="padding:4px 10px;border-radius:16px;border:none;font-family:var(--font-b);font-size:11px;font-weight:600;cursor:pointer;background:none;color:var(--text2);transition:all 0.2s">⚙️ Auto</button>
-        </div>
-      </div>
-
       <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="showEmailJSConfig()">
         <div style="display:flex;align-items:center;gap:10px">
           <span style="font-size:16px">🔔</span>
@@ -972,7 +925,6 @@ let allEvents = [], tracks = [], selectedStyles = [], currentNote = 0, currentEv
 firebase.initializeApp(FIREBASE_CONFIG);
 auth = firebase.auth();
 db = firebase.firestore();
-initTheme();
 
 auth.onAuthStateChanged(async user => {
   if (user) {
@@ -2200,51 +2152,6 @@ function tutPrev() {
     tutCurrent--;
     renderTutStep();
   }
-}
-
-// ══════════════════════════════════════
-// THEME MANAGER
-// ══════════════════════════════════════
-function initTheme() {
-  const saved = localStorage.getItem('dj_theme') || 'dark';
-  applyTheme(saved);
-  updateThemeButtons(saved);
-}
-
-function setTheme(mode) {
-  localStorage.setItem('dj_theme', mode);
-  applyTheme(mode);
-  updateThemeButtons(mode);
-}
-
-function applyTheme(mode) {
-  const root = document.documentElement;
-  if (mode === 'light') {
-    root.setAttribute('data-theme', 'light');
-  } else if (mode === 'dark') {
-    root.removeAttribute('data-theme');
-  } else {
-    // Auto — follow system
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (prefersDark) root.removeAttribute('data-theme');
-    else root.setAttribute('data-theme', 'light');
-  }
-}
-
-function updateThemeButtons(mode) {
-  ['light','dark','auto'].forEach(m => {
-    const btn = document.getElementById('theme-' + m);
-    if (!btn) return;
-    if (m === mode) {
-      btn.style.background = 'var(--accent)';
-      btn.style.color = m === 'light' ? '#07051a' : 'white';
-    } else {
-      btn.style.background = 'none';
-      btn.style.color = 'var(--text2)';
-    }
-  });
-  const icon = document.getElementById('theme-icon');
-  if (icon) icon.textContent = mode === 'light' ? '☀️' : mode === 'auto' ? '⚙️' : '🌙';
 }
 
 function showEmailJSConfig() {
