@@ -560,7 +560,11 @@ input[type="range"]::-webkit-slider-thumb {
   </div>
   <div class="scroll-area">
     <div class="card" style="display:flex;align-items:center;gap:16px;margin-top:12px">
-      <div class="avatar" id="profile-avatar">DJ</div>
+      <div style="position:relative;cursor:pointer" onclick="document.getElementById('photo-upload').click()">
+        <div class="avatar" id="profile-avatar" style="overflow:hidden">DJ</div>
+        <div style="position:absolute;bottom:0;right:0;width:20px;height:20px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;border:2px solid var(--bg)">📷</div>
+        <input type="file" id="photo-upload" accept="image/*" style="display:none" onchange="uploadPhoto(this)">
+      </div>
       <div>
         <div style="font-family:var(--font-d);font-size:18px;font-weight:800" id="profile-name">–</div>
         <div style="font-size:13px;color:var(--text2)" id="profile-email">–</div>
@@ -614,7 +618,7 @@ input[type="range"]::-webkit-slider-thumb {
     <div style="text-align:center;padding:24px 0 8px">
       <div style="font-family:var(--font-d);font-size:13px;font-weight:700;color:var(--text3);letter-spacing:1px">DJ RECAP</div>
       <div style="font-size:11px;color:var(--text3);margin-top:6px">© 2026 DJ Recap — Tous droits réservés</div>
-      <div style="font-size:11px;color:var(--text3);margin-top:3px">djrecap.netlify.app</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:3px">djrecap.github.io/djrecap</div>
     </div>
     <div style="height:20px"></div>
   </div>
@@ -723,11 +727,11 @@ input[type="range"]::-webkit-slider-thumb {
       </div>
       <div id="s1" style="display:none;margin-top:12px;font-size:13px;color:var(--text2);line-height:1.7">
         <strong style="color:var(--text)">Sur iPhone (Safari) :</strong><br>
-        1. Ouvre Safari → va sur djrecap.netlify.app<br>
+        1. Ouvre Safari → va sur djrecap.github.io/djrecap<br>
         2. Appuie sur l'icône Partager (carré avec flèche)<br>
         3. "Sur l'écran d'accueil" → Ajouter<br><br>
         <strong style="color:var(--text)">Sur Android (Chrome) :</strong><br>
-        1. Ouvre Chrome → va sur djrecap.netlify.app<br>
+        1. Ouvre Chrome → va sur djrecap.github.io/djrecap<br>
         2. Chrome propose automatiquement "Ajouter à l'écran d'accueil"<br>
         3. Ou menu ⋮ → "Ajouter à l'écran d'accueil"
       </div>
@@ -877,7 +881,7 @@ input[type="range"]::-webkit-slider-thumb {
     <div style="text-align:center;padding:28px 0 8px">
       <div style="font-family:var(--font-d);font-size:13px;font-weight:700;color:var(--text3);letter-spacing:1px">DJ RECAP</div>
       <div style="font-size:11px;color:var(--text3);margin-top:6px">© 2026 DJ Recap — Tous droits réservés</div>
-      <div style="font-size:11px;color:var(--text3);margin-top:3px">djrecap.netlify.app</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:3px">djrecap.github.io/djrecap</div>
     </div>
     <div style="height:20px"></div>
   </div>
@@ -976,9 +980,9 @@ input[type="range"]::-webkit-slider-thumb {
 // CONFIG — À REMPLIR
 // ══════════════════════════════════
 const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyCv6IV1VGb2m1Jfnr_p5Sxl5SfIHZG7bgY",
-  authDomain: "dj-recap.firebaseapp.com",
-  projectId: "dj-recap",
+  apiKey: "VOTRE_API_KEY",
+  authDomain: "VOTRE_PROJECT.firebaseapp.com",
+  projectId: "VOTRE_PROJECT_ID",
 };
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/6oU28q55e72ReON8GG2Ry03";
 const STRIPE_STUDENT_LINK = "https://buy.stripe.com/bJecN4apy0Et3656yy2Ry04";
@@ -1070,7 +1074,15 @@ function updatePlanUI() {
   document.getElementById('home-djname').innerHTML = '<span style="color:var(--accent)">' + name + '</span>';
   document.getElementById('profile-name').textContent = name;
   document.getElementById('profile-email').textContent = currentUser.email;
-  document.getElementById('profile-avatar').textContent = name.slice(0,2).toUpperCase();
+  // Photo de profil
+  const photoKey = 'profile_photo_' + currentUser.uid;
+  const savedPhoto = localStorage.getItem(photoKey);
+  const avatarEl = document.getElementById('profile-avatar');
+  if (savedPhoto) {
+    avatarEl.innerHTML = `<img src="${savedPhoto}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+  } else {
+    avatarEl.textContent = name.slice(0,2).toUpperCase();
+  }
   document.getElementById('profile-plan-badge').innerHTML = isPrem
     ? '<span class="plan-badge plan-premium">⭐ Premium</span>'
     : '<span class="plan-badge plan-free" onclick="goTo(\'premium\')" style="cursor:pointer">Passer Premium →</span>';
@@ -1230,6 +1242,9 @@ function toggleResidenceFields(v) {
   if (v === 'club') document.getElementById('res-club').style.display = 'block';
   if (v === 'radio') document.getElementById('res-radio').style.display = 'block';
   if (v === 'bar') document.getElementById('res-bar').style.display = 'block';
+  // Masquer notes salle pour radio
+  const notesSalle = document.getElementById('section-notes-salle');
+  if (notesSalle) notesSalle.style.display = v === 'radio' ? 'none' : 'block';
 }
 function renderStars(n) { document.querySelectorAll('.star').forEach(s => s.classList.toggle('lit', parseInt(s.dataset.v) <= n)); }
 function renderStyles() { document.querySelectorAll('#styles-tags .tag').forEach(t => t.classList.toggle('on', selectedStyles.includes(t.dataset.s))); }
@@ -1772,6 +1787,7 @@ function openStats() {
   }
 
   const total = allEvents.length;
+  const corporate = allEvents.filter(e => e.type === 'corporate').length;
   const mariages = allEvents.filter(e => e.type === 'mariage').length;
   const noted = allEvents.filter(e => e.note > 0);
   const avgNote = noted.length ? (noted.reduce((s,e) => s+e.note, 0)/noted.length).toFixed(1) : '–';
@@ -1785,6 +1801,7 @@ function openStats() {
     byMonth[m] = (byMonth[m]||0) + 1;
   });
   const months = Object.keys(byMonth).sort().slice(-6);
+  const maxMonth = Math.max(...months.map(m => byMonth[m]), 1);
 
   const byType = {};
   allEvents.forEach(e => { byType[e.type||'autre'] = (byType[e.type||'autre']||0)+1; });
@@ -1792,24 +1809,89 @@ function openStats() {
   const styleCount = {};
   allEvents.forEach(e => { (e.styles||[]).forEach(s => { styleCount[s]=(styleCount[s]||0)+1; }); });
   const topStyles = Object.entries(styleCount).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  const maxStyle = topStyles.length ? topStyles[0][1] : 1;
 
   const trackCount = {};
   allEvents.forEach(e => { (e.tracks||[]).forEach(t => { const k=t.title+(t.artist?' - '+t.artist:''); trackCount[k]=(trackCount[k]||0)+1; }); });
   const topTracks = Object.entries(trackCount).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  const topSon = topTracks.length ? topTracks[0][0] : null;
 
-  const maxMonth = Math.max(...months.map(m => byMonth[m]), 1);
   const typeNames = {mariage:'💒 Mariage', corporate:'🏢 Corporate', club:'🪩 Club', prive:'🏠 Privé', festival:'🎪 Festival', sportif:'🏟️ Sportif', residence:'🎧 Résidence', autre:'🎉 Autre'};
-  const typeColors = {mariage:'var(--pink)', corporate:'var(--cyan)', club:'var(--accent)', prive:'var(--gold)', autre:'var(--text2)'};
+  const typeColors = {mariage:'var(--pink)', corporate:'var(--cyan)', club:'var(--accent)', prive:'var(--gold)', festival:'var(--green)', sportif:'var(--cyan)', residence:'#ff6b35', autre:'var(--text2)'};
+  const styleColors = ['var(--accent)','var(--pink)','var(--cyan)','var(--gold)','var(--green)','#ff6b35'];
 
   el.innerHTML = `
     <div style="padding:8px 0">
-      <div class="stat-row">
-        <div class="stat"><div class="stat-num">${total}</div><div class="stat-lbl">Prestations</div></div>
-        <div class="stat"><div class="stat-num">${mariages}</div><div class="stat-lbl">Mariages</div></div>
-        <div class="stat"><div class="stat-num">${avgNote}★</div><div class="stat-lbl">Note moy.</div></div>
-        <div class="stat"><div class="stat-num">${avgAmb}</div><div class="stat-lbl">Ambiance</div></div>
+
+      <!-- KPI BIG — prestations saison -->
+      <div class="card card-glow" style="text-align:center;padding:20px 16px;margin-top:8px">
+        <div style="font-family:var(--font-d);font-size:48px;font-weight:800;color:var(--accent);line-height:1">${total}</div>
+        <div style="font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-top:6px">Prestations cette saison</div>
       </div>
 
+      <!-- GRILLE 2x2 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0">
+        <div class="card" style="text-align:center;padding:14px 8px">
+          <div style="font-family:var(--font-d);font-size:28px;font-weight:700;color:var(--pink)">${mariages}</div>
+          <div style="font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:0.8px;margin-top:4px">Mariages</div>
+        </div>
+        <div class="card" style="text-align:center;padding:14px 8px">
+          <div style="font-family:var(--font-d);font-size:28px;font-weight:700;color:var(--gold)">${avgNote}★</div>
+          <div style="font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:0.8px;margin-top:4px">Note moy.</div>
+        </div>
+        <div class="card" style="text-align:center;padding:14px 8px">
+          <div style="font-family:var(--font-d);font-size:28px;font-weight:700;color:var(--cyan)">${corporate}</div>
+          <div style="font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:0.8px;margin-top:4px">Corporate</div>
+        </div>
+        <div class="card" style="text-align:center;padding:14px 8px">
+          <div style="font-family:var(--font-d);font-size:28px;font-weight:700;color:var(--green)">${avgAmb}</div>
+          <div style="font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:0.8px;margin-top:4px">Ambiance</div>
+        </div>
+      </div>
+
+      <!-- SON LE PLUS JOUÉ -->
+      ${topSon ? `
+      <div class="card card-glow" style="padding:16px">
+        <div class="stitle" style="margin-bottom:10px">🔥 Son le plus joué</div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:50%;background:var(--accent-dim);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">🎵</div>
+          <div>
+            <div style="font-size:15px;font-weight:600;color:var(--text)">${topSon.split(' - ')[0]}</div>
+            <div style="font-size:12px;color:var(--text2);margin-top:2px">${topSon.includes(' - ') ? topSon.split(' - ').slice(1).join(' - ') : 'Artiste inconnu'} · joué ${topTracks[0][1]}x</div>
+          </div>
+        </div>
+      </div>` : ''}
+
+      <!-- TOP STYLES -->
+      ${topStyles.length ? `
+      <div class="card">
+        <div class="stitle">🎨 Top styles joués</div>
+        ${topStyles.map(([s,v],i) => `
+          <div style="margin-bottom:10px">
+            <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+              <span style="color:var(--text)">${s}</span>
+              <span style="color:var(--text2)">${v}x</span>
+            </div>
+            <div style="background:var(--bg3);border-radius:4px;height:6px;overflow:hidden">
+              <div style="width:${Math.round((v/maxStyle)*100)}%;background:${styleColors[i]||'var(--text2)'};height:100%;border-radius:4px"></div>
+            </div>
+          </div>`).join('')}
+      </div>` : ''}
+
+      <!-- TOP SONS -->
+      ${topTracks.length ? `
+      <div class="card">
+        <div class="stitle">🎶 Top sons tous temps</div>
+        ${topTracks.map(([t,v],i) => `
+          <div class="track-item">
+            <div class="track-rank">${i+1}</div>
+            <div class="track-info"><div class="track-name">${t.split(' - ')[0]}</div><div class="track-sub">${t.includes(' - ') ? t.split(' - ').slice(1).join(' - ') : 'Artiste inconnu'}</div></div>
+            <div style="font-size:12px;color:var(--text2)">${v}x</div>
+          </div>`).join('')}
+      </div>` : ''}
+
+      <!-- SOIRÉES PAR MOIS -->
+      ${months.length ? `
       <div class="card">
         <div class="stitle">📅 Soirées par mois</div>
         <div style="display:flex;align-items:flex-end;gap:8px;height:80px;margin-top:8px">
@@ -1824,8 +1906,9 @@ function openStats() {
             </div>`;
           }).join('')}
         </div>
-      </div>
+      </div>` : ''}
 
+      <!-- RÉPARTITION TYPE -->
       <div class="card">
         <div class="stitle">🎪 Répartition par type</div>
         ${Object.entries(byType).map(([t,v]) => `
@@ -1838,34 +1921,11 @@ function openStats() {
           </div>`).join('')}
       </div>
 
-      ${topStyles.length ? `
-      <div class="card">
-        <div class="stitle">🎨 Top styles joués</div>
-        <div class="tags" style="margin-top:4px">
-          ${topStyles.map(([s,v]) => `<div class="tag on" style="cursor:default">${s} <span style="color:var(--text3);font-size:11px">${v}x</span></div>`).join('')}
-        </div>
-      </div>` : ''}
-
-      ${topTracks.length ? `
-      <div class="card">
-        <div class="stitle">🔥 Top sons tous temps</div>
-        ${topTracks.map(([t,v],i) => `
-          <div class="track-item">
-            <div class="track-rank">${i+1}</div>
-            <div class="track-info"><div class="track-name">${t}</div></div>
-            <div style="font-size:12px;color:var(--text2)">${v}x</div>
-          </div>`).join('')}
-      </div>` : ''}
-
       <button class="btn btn-outline" onclick="exportPDF()" style="margin-bottom:20px">📄 Exporter mon bilan PDF</button>
     </div>`;
 
   goTo('stats');
 }
-
-// ══════════════════════════════════════
-// EXPORT PDF
-// ══════════════════════════════════════
 async function exportPDF() {
   const isPrem = userDoc.plan === 'premium';
   if (!isPrem) { toast('🔒 Fonctionnalité Premium !'); goTo('premium'); return; }
@@ -1920,7 +1980,7 @@ async function exportPDF() {
   </style></head><body>
   <div style="display:flex;justify-content:space-between;align-items:flex-start">
     <div><h1>${djName}</h1><div class="sub">Bilan de saison · Exporté le ${today}</div></div>
-    <div style="text-align:right"><div style="font-size:12px;color:#7c5cfc;font-weight:700;letter-spacing:1px">DJ RECAP</div><div style="font-size:10px;color:#555577;margin-top:2px">djrecap.netlify.app</div></div>
+    <div style="text-align:right"><div style="font-size:12px;color:#7c5cfc;font-weight:700;letter-spacing:1px">DJ RECAP</div><div style="font-size:10px;color:#555577;margin-top:2px">djrecap.github.io/djrecap</div></div>
   </div>
   <div class="divider"></div>
   <div class="kpi-grid">
@@ -1945,7 +2005,7 @@ async function exportPDF() {
   </div>
   ${topStyles.length ? `<div class="section"><div class="section-title">Styles les plus joués</div><div>${topStyles.map(s=>`<span class="tag">${s}</span>`).join('')}</div></div>` : ''}
   ${topTracks.length ? `<div class="section"><div class="section-title">Top sons de la saison</div>${topTracks.map(([t],i)=>`<div class="track-row"><div class="rank">${i+1}</div><div style="font-size:13px">${t}</div></div>`).join('')}</div>` : ''}
-  <div class="footer"><div>Généré par DJ Recap · djrecap.netlify.app</div><div>${today}</div></div>
+  <div class="footer"><div>Généré par DJ Recap · djrecap.github.io/djrecap</div><div>${today}</div></div>
   </body></html>`;
 
   const blob = new Blob([html], {type:'text/html'});
@@ -2160,6 +2220,21 @@ function tutPrev() {
     tutCurrent--;
     renderTutStep();
   }
+}
+
+function uploadPhoto(input) {
+  if (!input.files || !input.files[0]) return;
+  const file = input.files[0];
+  if (file.size > 2 * 1024 * 1024) { toast('⚠️ Photo trop lourde (max 2Mo)'); return; }
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const photoKey = 'profile_photo_' + currentUser.uid;
+    localStorage.setItem(photoKey, e.target.result);
+    const avatarEl = document.getElementById('profile-avatar');
+    avatarEl.innerHTML = `<img src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+    toast('✅ Photo de profil mise à jour !');
+  };
+  reader.readAsDataURL(file);
 }
 
 function skipTutorial() {
