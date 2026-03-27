@@ -47,6 +47,42 @@ html, body { height: 100%; background: #07051a; color: rgba(255,255,255,0.92); f
   --font-b: 'Raleway', sans-serif;
 }
 
+/* ── LIGHT MODE ── */
+[data-theme="light"] {
+  --bg: #f0f0f8;
+  --bg2: #e4e4f0;
+  --bg3: rgba(0,0,0,0.04);
+  --card: rgba(255,255,255,0.8);
+  --border: rgba(0,0,0,0.08);
+  --border2: rgba(0,0,0,0.14);
+  --accent: #7c5cfc;
+  --accent-dim: rgba(124,92,252,0.12);
+  --cyan: #0ea5e9;
+  --cyan-dim: rgba(14,165,233,0.1);
+  --pink: #ec4899;
+  --pink-dim: rgba(236,72,153,0.1);
+  --gold: #d97706;
+  --green: #059669;
+  --text: rgba(0,0,0,0.88);
+  --text2: rgba(0,0,0,0.45);
+  --text3: rgba(0,0,0,0.22);
+}
+[data-theme="light"] #app { background: linear-gradient(160deg, #e8e6f8 0%, #ede9ff 50%, #e4e0f8 100%); }
+[data-theme="light"] #screen-auth { background: linear-gradient(160deg, #e8e6f8 0%, #ede9ff 50%, #e4e0f8 100%); }
+[data-theme="light"] .topbar { background: rgba(240,240,248,0.9); }
+[data-theme="light"] .bottom-nav { background: rgba(240,240,248,0.95); }
+[data-theme="light"] .modal-sheet { background: rgba(240,240,248,0.98); }
+[data-theme="light"] #toast { background: rgba(240,240,248,0.97); border-color: rgba(124,92,252,0.3); color: rgba(0,0,0,0.85); }
+[data-theme="light"] input[type="text"],
+[data-theme="light"] input[type="date"],
+[data-theme="light"] input[type="email"],
+[data-theme="light"] input[type="password"],
+[data-theme="light"] textarea,
+[data-theme="light"] select { background: rgba(255,255,255,0.7); color: rgba(0,0,0,0.8); }
+[data-theme="light"] .auth-box { background: rgba(255,255,255,0.7); border-color: rgba(124,92,252,0.2); }
+[data-theme="light"] .fab { color: white; }
+[data-theme="light"] .btn-primary { color: white; }
+
 #app { height: 100dvh; display: flex; flex-direction: column; background: linear-gradient(160deg, #0c0a2e 0%, #0f0d35 50%, #080620 100%); }
 .screen { display: none; flex-direction: column; flex: 1; overflow: hidden; }
 .screen.active { display: flex; }
@@ -403,57 +439,53 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22p
 <div class="screen" id="screen-premium">
   <div class="topbar">
     <button onclick="goTo('home')" style="background:none;border:none;color:var(--text2);font-size:15px;cursor:pointer">← Retour</button>
-    <div class="topbar-logo">Passer <span>Premium</span></div>
+    <div class="topbar-logo">Mon <span>abonnement</span></div>
     <div style="width:60px"></div>
   </div>
   <div class="scroll-area">
-    <div style="text-align:center;padding:20px 0 14px">
-      <div style="font-size:36px;margin-bottom:10px">🚀</div>
-      <div style="font-family:var(--font-d);font-size:20px;font-weight:700">Passe à la vitesse supérieure</div>
-      <div style="font-size:14px;color:var(--text2);margin-top:6px">Débloque toutes les fonctionnalités</div>
-    </div>
+    <div style="padding:14px 20px 6px;text-align:center;font-size:12px;color:var(--text2)">Débloque toutes les fonctionnalités</div>
 
-    <div class="pricing-card pricing-free">
-      <div style="font-family:var(--font-d);font-size:16px;font-weight:700;margin-bottom:4px">Gratuit</div>
-      <div style="font-family:var(--font-d);font-size:22px;font-weight:700;color:var(--text);margin:8px 0 4px">0€<span style="font-size:13px;font-weight:400;color:var(--text2);margin-left:6px">pour toujours</span></div>
-      <div class="divider"></div>
+    <!-- CARTE GRATUIT -->
+    <div style="margin:8px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:16px">
+      <div style="font-family:var(--font-d);font-size:14px;font-weight:700;color:#fff;margin-bottom:2px">Gratuit</div>
+      <div style="font-family:var(--font-d);font-size:22px;font-weight:800;color:rgba(255,255,255,0.4);margin:6px 0 10px">0€ <span style="font-size:11px;font-weight:400;color:var(--text2)">/pour toujours</span></div>
+      <div style="height:1px;background:rgba(255,255,255,0.06);margin-bottom:10px"></div>
       <div class="price-feature">3 soirées pour tester</div>
       <div class="price-feature">Suivi sons & styles</div>
       <div class="price-feature no">Emails de remerciement</div>
-      <div class="price-feature no">Modification des soirées</div>
-      <div class="price-feature no">Recherche</div>
-      <div class="price-feature no">Statistiques avancées</div>
+      <div class="price-feature no">Modification soirées</div>
+      <div class="price-feature no">Stats avancées</div>
       <div class="price-feature no">Export PDF</div>
-      <div class="price-feature no">Templates email</div>
     </div>
 
-    <div class="pricing-card pricing-premium">
-      <div class="pricing-popular">⭐ RECOMMANDÉ</div>
-      <div style="font-family:var(--font-d);font-size:16px;font-weight:700;margin-bottom:4px;color:var(--gold)">Premium</div>
-      <div style="font-family:var(--font-d);font-size:22px;font-weight:700;color:var(--gold);margin:8px 0 4px">12,99€<span style="font-size:13px;font-weight:400;color:var(--text2);margin-left:6px">/mois</span></div>
-      <div class="divider"></div>
-      <div class="price-feature">Soirées <strong>illimitées</strong></div>
-      <div class="price-feature">Statistiques avancées & tendances</div>
-      <div class="price-feature">Emails illimités aux mariés</div>
-      <div class="price-feature">Export PDF professionnel</div>
-      <div class="price-feature">Templates email personnalisés</div>
-      <div class="price-feature">Support prioritaire</div>
+    <!-- CARTE PREMIUM -->
+    <div style="margin:8px 16px;background:rgba(167,139,250,0.07);border:1px solid rgba(167,139,250,0.22);border-radius:16px;padding:16px;position:relative">
+      <div style="position:absolute;top:12px;right:12px;background:var(--gold);color:#1a0500;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:3px 9px;border-radius:20px">⭐ Recommandé</div>
+      <div style="font-size:9px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:4px">Premium</div>
+      <div style="font-family:var(--font-d);font-size:22px;font-weight:800;color:var(--accent);margin-bottom:10px">12,99€ <span style="font-size:11px;font-weight:400;color:var(--text2)">/mois</span></div>
+      <div style="height:1px;background:rgba(255,255,255,0.06);margin-bottom:10px"></div>
+      <div class="price-feature">Soirées illimitées</div>
+      <div class="price-feature">Stats avancées</div>
+      <div class="price-feature">Emails illimités</div>
+      <div class="price-feature">Export PDF pro</div>
+      <div class="price-feature">Templates email</div>
+      <div class="price-feature">Modification soirées</div>
     </div>
 
-    <div id="stripe-section">
-      <button class="btn btn-gold" onclick="goStripe()" id="stripe-btn">
-        💳 S'abonner pour 12,99€/mois
+    <div id="stripe-section" style="margin:8px 16px">
+      <button style="width:100%;padding:14px;background:var(--accent);border:none;border-radius:12px;font-family:var(--font-d);font-size:13px;font-weight:700;color:#07051a;cursor:pointer" onclick="goStripe()">
+        💳 S'abonner — 12,99€/mois
       </button>
       <div style="text-align:center;font-size:11px;color:var(--text3);margin-top:10px">Paiement sécurisé par Stripe · Annulation en 1 clic</div>
     </div>
 
-    <div id="premium-active-msg" style="display:none">
-      <div style="background:rgba(0,229,160,0.1);border:1px solid rgba(0,229,160,0.25);border-radius:var(--radius-sm);padding:16px;text-align:center;margin:10px 0">
+    <div id="premium-active-msg" style="display:none;margin:8px 16px">
+      <div style="background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.2);border-radius:14px;padding:16px;text-align:center">
         <div style="font-size:28px;margin-bottom:8px">✅</div>
-        <div style="font-weight:600;color:var(--green)">Tu es déjà Premium !</div>
+        <div style="font-weight:700;color:var(--green)">Tu es déjà Premium !</div>
         <div style="font-size:13px;color:var(--text2);margin-top:6px">Merci pour ton soutien 🙏</div>
       </div>
-      <button class="btn btn-ghost btn-sm" onclick="manageStripe()">Gérer mon abonnement</button>
+      <button class="btn btn-ghost btn-sm" style="margin-top:10px" onclick="manageStripe()">Gérer mon abonnement</button>
     </div>
     <div style="height:20px"></div>
   </div>
@@ -462,70 +494,104 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22p
 <!-- ══ PROFILE ══ -->
 <div class="screen" id="screen-profile">
   <div class="topbar">
-    <div class="topbar-logo">Mon <span>profil</span></div>
-    <button onclick="doLogout()" style="background:none;border:none;color:var(--pink);font-size:13px;cursor:pointer">Déconnexion</button>
+    <div class="topbar-logo">DJ <span>Recap</span></div>
+    <div id="plan-btn-profile" class="plan-badge plan-free" onclick="goTo('premium')" style="cursor:pointer">+ Premium</div>
   </div>
   <div class="scroll-area">
-    <div class="card" style="display:flex;align-items:center;gap:16px;margin-top:12px">
-      <div style="position:relative;cursor:pointer" onclick="document.getElementById('photo-upload').click()">
-        <div class="avatar" id="profile-avatar" style="overflow:hidden">DJ</div>
-        <div style="position:absolute;bottom:0;right:0;width:20px;height:20px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;border:2px solid var(--bg)">📷</div>
+
+    <!-- AVATAR + NOM -->
+    <div style="display:flex;flex-direction:column;align-items:center;padding:20px 0 14px">
+      <div style="position:relative;cursor:pointer;margin-bottom:10px" onclick="document.getElementById('photo-upload').click()">
+        <div class="avatar" id="profile-avatar" style="width:64px;height:64px;font-size:24px;overflow:hidden">DJ</div>
+        <div style="position:absolute;bottom:0;right:0;width:22px;height:22px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;border:2px solid #07051a">📷</div>
         <input type="file" id="photo-upload" accept="image/*" style="display:none" onchange="uploadPhoto(this)">
       </div>
-      <div>
-        <div style="font-family:var(--font-d);font-size:18px;font-weight:800" id="profile-name">–</div>
-        <div style="font-size:13px;color:var(--text2)" id="profile-email">–</div>
-        <div id="profile-plan-badge" style="margin-top:6px"></div>
-      </div>
+      <div style="font-family:var(--font-d);font-size:20px;font-weight:700;color:#fff" id="profile-name">–</div>
+      <div id="profile-plan-badge" style="margin-top:6px"></div>
+      <div style="font-size:12px;color:var(--text2);margin-top:4px" id="profile-email">–</div>
     </div>
 
-    <div class="stitle">✉️ Templates email</div>
-    <div class="card" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="openTemplates()">
-      <div>
-        <div style="font-size:14px;font-weight:500">Mes templates personnalisés</div>
-        <div style="font-size:12px;color:var(--text2);margin-top:3px">Crée tes propres modèles de remerciement</div>
-      </div>
-      <div style="color:var(--text3);font-size:18px">›</div>
-    </div>
+    <!-- MENU RANGÉES -->
+    <div style="display:flex;flex-direction:column;gap:6px;padding:0 16px">
 
-    <div class="stitle">⚙️ Configuration EmailJS</div>
-    <div class="card">
-      <div style="font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:12px">
-        Pour envoyer des mails depuis l'app :<br>
-        1. Crée un compte sur <span style="color:var(--cyan)">emailjs.com</span> (gratuit = 200 mails/mois)<br>
-        2. Crée un service + template avec : <code style="color:var(--accent);font-size:11px">to_email, to_name, from_name, message</code>
-      </div>
-      <div class="field"><label>Public Key</label><input type="text" id="ej-key" placeholder="user_XXXX…"></div>
-      <div class="field"><label>Service ID</label><input type="text" id="ej-service" placeholder="service_XXXX"></div>
-      <div class="field"><label>Template ID</label><input type="text" id="ej-template" placeholder="template_XXXX"></div>
-      <button class="btn btn-ghost btn-sm" onclick="saveEmailJS()">💾 Sauvegarder</button>
-    </div>
-
-    <div class="install-hint">
-      <span>📲</span>
-      <div>Pour installer : Safari → Partager → Sur l'écran d'accueil (iOS) · Chrome propose automatiquement sur Android</div>
-    </div>
-
-    <div class="stitle">📚 Aide & Documentation</div>
-    <div class="card" style="display:flex;flex-direction:column;gap:10px">
-      <div style="display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="goTo('aide')">
-        <div>
-          <div style="font-size:14px;font-weight:500;color:var(--text)">📖 Guide d'utilisation & EmailJS</div>
-          <div style="font-size:12px;color:var(--text2);margin-top:2px">Toutes les infos pratiques en ligne</div>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="openTemplates()">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:16px">📧</span>
+          <span style="font-size:13px;color:rgba(255,255,255,0.7);font-weight:500">Configuration EmailJS</span>
         </div>
-        <div style="color:var(--text3);font-size:18px">›</div>
+        <span style="color:var(--text3);font-size:16px">›</span>
       </div>
+
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="goTo('aide')">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:16px">📚</span>
+          <span style="font-size:13px;color:rgba(255,255,255,0.7);font-weight:500">Aide & Documentation</span>
+        </div>
+        <span style="color:var(--text3);font-size:16px">›</span>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="manageStripe()">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:16px">⭐</span>
+          <span style="font-size:13px;color:rgba(255,255,255,0.7);font-weight:500">Gérer mon abonnement</span>
+        </div>
+        <span style="color:var(--text3);font-size:16px">›</span>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="openTemplates()">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:16px">✉️</span>
+          <span style="font-size:13px;color:rgba(255,255,255,0.7);font-weight:500">Mes templates email</span>
+        </div>
+        <span style="color:var(--text3);font-size:16px">›</span>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:16px" id="theme-icon">🌙</span>
+          <span style="font-size:13px;color:rgba(255,255,255,0.7);font-weight:500">Apparence</span>
+        </div>
+        <div style="display:flex;gap:4px;background:rgba(255,255,255,0.06);border-radius:20px;padding:3px">
+          <button onclick="setTheme('light')" id="theme-light" style="padding:4px 10px;border-radius:16px;border:none;font-family:var(--font-b);font-size:11px;font-weight:600;cursor:pointer;background:none;color:var(--text2);transition:all 0.2s">☀️ Clair</button>
+          <button onclick="setTheme('dark')" id="theme-dark" style="padding:4px 10px;border-radius:16px;border:none;font-family:var(--font-b);font-size:11px;font-weight:600;cursor:pointer;background:none;color:var(--text2);transition:all 0.2s">🌙 Sombre</button>
+          <button onclick="setTheme('auto')" id="theme-auto" style="padding:4px 10px;border-radius:16px;border:none;font-family:var(--font-b);font-size:11px;font-weight:600;cursor:pointer;background:none;color:var(--text2);transition:all 0.2s">⚙️ Auto</button>
+        </div>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="showEmailJSConfig()">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:16px">🔔</span>
+          <span style="font-size:13px;color:rgba(255,255,255,0.7);font-weight:500">Notifications</span>
+        </div>
+        <span style="color:var(--text3);font-size:16px">›</span>
+      </div>
+
+      <div style="background:rgba(244,114,182,0.06);border:1px solid rgba(244,114,182,0.15);border-radius:12px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="deleteAccount()">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:16px">🗑️</span>
+          <span style="font-size:13px;color:var(--pink);font-weight:500">Supprimer mon compte</span>
+        </div>
+        <span style="color:rgba(244,114,182,0.4);font-size:16px">›</span>
+      </div>
+
     </div>
 
-    <div class="stitle">🗑️ Zone danger</div>
-    <div class="card">
-      <button class="btn btn-danger btn-sm" onclick="deleteAccount()">Supprimer mon compte et mes données</button>
+    <!-- CONFIG EMAILJS CACHÉE -->
+    <div id="emailjs-config-panel" style="display:none;padding:0 16px;margin-top:10px">
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:16px">
+        <div style="font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:12px">
+          1. Crée un compte sur <span style="color:var(--cyan)">emailjs.com</span><br>
+          2. Crée un service + template avec : <code style="color:var(--accent);font-size:11px">to_email, to_name, from_name, message</code>
+        </div>
+        <div class="field"><label>Public Key</label><input type="text" id="ej-key" placeholder="user_XXXX…"></div>
+        <div class="field"><label>Service ID</label><input type="text" id="ej-service" placeholder="service_XXXX"></div>
+        <div class="field"><label>Template ID</label><input type="text" id="ej-template" placeholder="template_XXXX"></div>
+        <button class="btn btn-ghost btn-sm" onclick="saveEmailJS()">💾 Sauvegarder</button>
+      </div>
     </div>
 
     <div style="text-align:center;padding:24px 0 8px">
-      <div style="font-family:var(--font-d);font-size:13px;font-weight:700;color:var(--text3);letter-spacing:1px">DJ RECAP</div>
-      <div style="font-size:11px;color:var(--text3);margin-top:6px">© 2026 DJ Recap — Tous droits réservés</div>
-      <div style="font-size:11px;color:var(--text3);margin-top:3px">djrecap.github.io/djrecap</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.12);letter-spacing:1px">© 2026 DJ Recap — Tous droits réservés</div>
     </div>
     <div style="height:20px"></div>
   </div>
@@ -835,7 +901,7 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22p
   </button>
   <button class="nav-btn" id="nav-premium" onclick="goTo('premium')">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-    Premium
+    Abonnement
   </button>
   <button class="nav-btn" id="nav-profile" onclick="goTo('profile')">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -906,6 +972,7 @@ let allEvents = [], tracks = [], selectedStyles = [], currentNote = 0, currentEv
 firebase.initializeApp(FIREBASE_CONFIG);
 auth = firebase.auth();
 db = firebase.firestore();
+initTheme();
 
 auth.onAuthStateChanged(async user => {
   if (user) {
@@ -989,6 +1056,12 @@ function updatePlanUI() {
     avatarEl.innerHTML = `<img src="${savedPhoto}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
   } else {
     avatarEl.textContent = name.slice(0,2).toUpperCase();
+  }
+  // Update profile top badge
+  const profileTopBtn = document.getElementById('plan-btn-profile');
+  if (profileTopBtn) {
+    profileTopBtn.textContent = isPrem ? '⭐ Premium' : '+ Premium';
+    profileTopBtn.className = 'plan-badge ' + (isPrem ? 'plan-premium' : 'plan-free');
   }
   document.getElementById('profile-plan-badge').innerHTML = isPrem
     ? '<span class="plan-badge plan-premium">⭐ Premium</span>'
@@ -2127,6 +2200,56 @@ function tutPrev() {
     tutCurrent--;
     renderTutStep();
   }
+}
+
+// ══════════════════════════════════════
+// THEME MANAGER
+// ══════════════════════════════════════
+function initTheme() {
+  const saved = localStorage.getItem('dj_theme') || 'dark';
+  applyTheme(saved);
+  updateThemeButtons(saved);
+}
+
+function setTheme(mode) {
+  localStorage.setItem('dj_theme', mode);
+  applyTheme(mode);
+  updateThemeButtons(mode);
+}
+
+function applyTheme(mode) {
+  const root = document.documentElement;
+  if (mode === 'light') {
+    root.setAttribute('data-theme', 'light');
+  } else if (mode === 'dark') {
+    root.removeAttribute('data-theme');
+  } else {
+    // Auto — follow system
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (prefersDark) root.removeAttribute('data-theme');
+    else root.setAttribute('data-theme', 'light');
+  }
+}
+
+function updateThemeButtons(mode) {
+  ['light','dark','auto'].forEach(m => {
+    const btn = document.getElementById('theme-' + m);
+    if (!btn) return;
+    if (m === mode) {
+      btn.style.background = 'var(--accent)';
+      btn.style.color = m === 'light' ? '#07051a' : 'white';
+    } else {
+      btn.style.background = 'none';
+      btn.style.color = 'var(--text2)';
+    }
+  });
+  const icon = document.getElementById('theme-icon');
+  if (icon) icon.textContent = mode === 'light' ? '☀️' : mode === 'auto' ? '⚙️' : '🌙';
+}
+
+function showEmailJSConfig() {
+  const panel = document.getElementById('emailjs-config-panel');
+  if (panel) panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
 }
 
 function uploadPhoto(input) {
