@@ -460,7 +460,7 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22p
 <div class="screen" id="screen-profile">
   <div class="topbar">
     <div class="topbar-logo">DJ <span>Recap</span></div>
-    <div id="plan-btn-profile" class="plan-badge plan-free" onclick="goTo('premium')" style="cursor:pointer">+ Premium</div>
+    <button onclick="doLogout()" style="background:none;border:none;color:var(--pink);font-size:13px;cursor:pointer;font-family:var(--font-b);font-weight:600">Déconnexion</button>
   </div>
   <div class="scroll-area">
 
@@ -479,14 +479,28 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22p
     <!-- MENU RANGÉES -->
     <div style="display:flex;flex-direction:column;gap:6px;padding:0 16px">
 
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="openTemplates()">
-        <div style="display:flex;align-items:center;gap:10px">
-          <span style="font-size:16px">📧</span>
-          <span style="font-size:13px;color:rgba(255,255,255,0.7);font-weight:500">Configuration EmailJS</span>
+      <!-- Configuration EmailJS -->
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;overflow:hidden">
+        <div style="padding:13px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="showEmailJSConfig()">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:16px">📧</span>
+            <span style="font-size:13px;color:rgba(255,255,255,0.7);font-weight:500">Configuration EmailJS</span>
+          </div>
+          <span id="emailjs-arrow" style="color:var(--text3);font-size:16px;transition:transform 0.2s">›</span>
         </div>
-        <span style="color:var(--text3);font-size:16px">›</span>
+        <div id="emailjs-config-panel" style="display:none;padding:0 16px 16px">
+          <div style="font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:12px">
+            1. Crée un compte sur <span style="color:var(--cyan)">emailjs.com</span><br>
+            2. Crée un service + template avec : <code style="color:var(--accent);font-size:11px">to_email, to_name, from_name, message</code>
+          </div>
+          <div class="field"><label>Public Key</label><input type="text" id="ej-key" placeholder="user_XXXX…"></div>
+          <div class="field"><label>Service ID</label><input type="text" id="ej-service" placeholder="service_XXXX"></div>
+          <div class="field"><label>Template ID</label><input type="text" id="ej-template" placeholder="template_XXXX"></div>
+          <button class="btn btn-ghost btn-sm" onclick="saveEmailJS()">💾 Sauvegarder</button>
+        </div>
       </div>
 
+      <!-- Aide -->
       <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="goTo('aide')">
         <div style="display:flex;align-items:center;gap:10px">
           <span style="font-size:16px">📚</span>
@@ -495,6 +509,7 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22p
         <span style="color:var(--text3);font-size:16px">›</span>
       </div>
 
+      <!-- Abonnement -->
       <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="manageStripe()">
         <div style="display:flex;align-items:center;gap:10px">
           <span style="font-size:16px">⭐</span>
@@ -503,6 +518,7 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22p
         <span style="color:var(--text3);font-size:16px">›</span>
       </div>
 
+      <!-- Templates -->
       <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="openTemplates()">
         <div style="display:flex;align-items:center;gap:10px">
           <span style="font-size:16px">✉️</span>
@@ -511,14 +527,7 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22p
         <span style="color:var(--text3);font-size:16px">›</span>
       </div>
 
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="showEmailJSConfig()">
-        <div style="display:flex;align-items:center;gap:10px">
-          <span style="font-size:16px">🔔</span>
-          <span style="font-size:13px;color:rgba(255,255,255,0.7);font-weight:500">Notifications</span>
-        </div>
-        <span style="color:var(--text3);font-size:16px">›</span>
-      </div>
-
+      <!-- Supprimer -->
       <div style="background:rgba(244,114,182,0.06);border:1px solid rgba(244,114,182,0.15);border-radius:12px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="deleteAccount()">
         <div style="display:flex;align-items:center;gap:10px">
           <span style="font-size:16px">🗑️</span>
@@ -527,20 +536,6 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22p
         <span style="color:rgba(244,114,182,0.4);font-size:16px">›</span>
       </div>
 
-    </div>
-
-    <!-- CONFIG EMAILJS CACHÉE -->
-    <div id="emailjs-config-panel" style="display:none;padding:0 16px;margin-top:10px">
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:16px">
-        <div style="font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:12px">
-          1. Crée un compte sur <span style="color:var(--cyan)">emailjs.com</span><br>
-          2. Crée un service + template avec : <code style="color:var(--accent);font-size:11px">to_email, to_name, from_name, message</code>
-        </div>
-        <div class="field"><label>Public Key</label><input type="text" id="ej-key" placeholder="user_XXXX…"></div>
-        <div class="field"><label>Service ID</label><input type="text" id="ej-service" placeholder="service_XXXX"></div>
-        <div class="field"><label>Template ID</label><input type="text" id="ej-template" placeholder="template_XXXX"></div>
-        <button class="btn btn-ghost btn-sm" onclick="saveEmailJS()">💾 Sauvegarder</button>
-      </div>
     </div>
 
     <div style="text-align:center;padding:24px 0 8px">
@@ -2156,7 +2151,11 @@ function tutPrev() {
 
 function showEmailJSConfig() {
   const panel = document.getElementById('emailjs-config-panel');
-  if (panel) panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+  const arrow = document.getElementById('emailjs-arrow');
+  if (!panel) return;
+  const open = panel.style.display === 'block';
+  panel.style.display = open ? 'none' : 'block';
+  if (arrow) arrow.style.transform = open ? '' : 'rotate(90deg)';
 }
 
 function uploadPhoto(input) {
