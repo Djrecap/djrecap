@@ -4,209 +4,2252 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#080810">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="DJ Recap">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
 <title>DJ Recap</title>
-
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230d0d1a'/%3E%3Ccircle cx='50' cy='50' r='32' fill='none' stroke='%237c5cfc' stroke-width='3'/%3E%3Ccircle cx='50' cy='50' r='18' fill='%237c5cfc'/%3E%3Ccircle cx='50' cy='50' r='6' fill='%230d0d1a'/%3E%3Ccircle cx='50' cy='50' r='2.5' fill='%2300d4ff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&display=swap');
 
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; background: #07051a; color: rgba(255,255,255,0.92); font-family: 'Raleway', sans-serif; font-size: 15px; overflow: hidden; }
+
 :root {
   --bg: #07051a;
+  --bg2: #0d0b30;
+  --bg3: rgba(255,255,255,0.05);
+  --card: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.14);
   --accent: #a78bfa;
+  --accent-dim: rgba(167,139,250,0.12);
   --cyan: #38bdf8;
+  --cyan-dim: rgba(56,189,248,0.1);
   --pink: #f472b6;
+  --pink-dim: rgba(244,114,182,0.1);
   --gold: #fbbf24;
+  --green: #34d399;
   --text: rgba(255,255,255,0.92);
-  --text2: rgba(255,255,255,0.45);
-  --radius: 16px;
+  --text2: rgba(255,255,255,0.35);
+  --text3: rgba(255,255,255,0.18);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --font-d: 'Raleway', sans-serif;
+  --font-b: 'Raleway', sans-serif;
 }
 
-* { box-sizing: border-box; margin:0; padding:0; }
-body { background:var(--bg); color:var(--text); font-family:'Raleway',sans-serif; height:100vh; overflow:hidden; }
 
-.screen { display:none; flex-direction:column; flex:1; overflow:hidden; }
-.screen.active { display:flex; }
+#app { height: 100dvh; display: flex; flex-direction: column; background: linear-gradient(160deg, #0c0a2e 0%, #0f0d35 50%, #080620 100%); }
+.screen { display: none; flex-direction: column; flex: 1; overflow: hidden; }
+.screen.active { display: flex; }
+.scroll-area { flex: 1; overflow-y: auto; padding: 0 0 100px; -webkit-overflow-scrolling: touch; }
 
-.scroll-area { flex:1; overflow-y:auto; padding:0 16px 80px; }
+.ob-dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.07); transition:all 0.3s; }
+.ob-dot.active { background:var(--accent); border-color:var(--accent); width:24px; border-radius:4px; }
+.ob-slide { animation: fadeIn 0.3s; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+@keyframes bounce { from { transform:translateY(0); } to { transform:translateY(-10px); } }
 
-.topbar { padding:14px 18px; display:flex; align-items:center; justify-content:space-between; background:rgba(7,5,26,0.9); border-bottom:1px solid rgba(255,255,255,0.1); }
-.btn { padding:14px; border-radius:12px; border:none; font-weight:600; width:100%; cursor:pointer; margin:10px 0; }
-.btn-primary { background:var(--accent); color:#000; }
-.btn-gold { background:var(--gold); color:#000; }
+#screen-auth { background: linear-gradient(160deg, #0c0a2e 0%, #0f0d35 50%, #080620 100%); align-items: center; justify-content: center; padding: 32px 24px; }
+.auth-logo { font-family: 'Raleway', sans-serif; font-size: 42px; font-weight: 800; letter-spacing: -2px; margin-bottom: 6px; }
+.auth-logo span { color: var(--accent); }
+.auth-tagline { font-size: 14px; color: var(--text2); margin-bottom: 40px; text-align: center; }
+.auth-box { width: 100%; max-width: 380px; background: rgba(255,255,255,0.05); border: 1px solid rgba(167,139,250,0.2); border-radius: 20px; padding: 28px 24px; backdrop-filter: blur(20px); }
+.auth-tabs { display: flex; gap: 0; margin-bottom: 24px; background: rgba(255,255,255,0.05); border-radius: var(--radius-sm); padding: 4px; border: 1px solid rgba(255,255,255,0.07); }
+.auth-tab { flex: 1; padding: 9px; border-radius: 7px; border: none; background: none; color: var(--text2); font-family: 'Raleway', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.auth-tab.active { background: var(--accent); color: #07051a; }
 
-.limit-banner { 
-  background:rgba(251,191,36,0.1); 
-  border:1px solid var(--gold); 
-  border-radius:var(--radius); 
-  padding:14px; 
-  margin:12px 0; 
-}
+.topbar { padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; background: rgba(7,5,26,0.85); border-bottom: 1px solid rgba(255,255,255,0.05); flex-shrink: 0; backdrop-filter: blur(20px); }
+.topbar-logo { font-family: 'Raleway', sans-serif; font-size: 16px; font-weight: 800; letter-spacing: -0.5px; color: #fff; }
+.topbar-logo span { color: var(--accent); }
+
+.plan-badge { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 4px 10px; border-radius: 20px; cursor: pointer; }
+.plan-free { background: rgba(255,255,255,0.06); color: var(--text2); border: 1px solid rgba(255,255,255,0.07); }
+.plan-premium { background: rgba(167,139,250,0.1); color: var(--accent); border: 1px solid rgba(167,139,250,0.25); }
+
+.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(7,5,26,0.92); border-top: 1px solid rgba(255,255,255,0.05); display: flex; padding-bottom: env(safe-area-inset-bottom, 0px); z-index: 100; backdrop-filter: blur(24px); }
+.nav-btn { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 10px 0 12px; background: none; border: none; color: rgba(255,255,255,0.2); font-family: 'Raleway', sans-serif; font-size: 10px; font-weight: 600; cursor: pointer; transition: color 0.2s; }
+.nav-btn.active { color: var(--accent); }
+.nav-btn svg { width: 20px; height: 20px; }
+
+.card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 14px 16px; margin: 8px 16px; }
+.card-glow { border-color: rgba(167,139,250,0.25); background: rgba(167,139,250,0.07); }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 20px; border-radius: var(--radius-sm); border: none; font-family: 'Raleway', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; width: 100%; }
+.btn:active { transform: scale(0.97); }
+.btn-primary { background: var(--accent); color: #07051a; }
+.btn-primary:hover { background: #c4b5fd; }
+.btn-gold { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #1a0500; font-weight: 700; }
+.btn-outline { background: rgba(167,139,250,0.08); color: var(--accent); border: 1px solid rgba(167,139,250,0.25); }
+.btn-ghost { background: rgba(255,255,255,0.04); color: var(--text); border: 1px solid rgba(255,255,255,0.07); }
+.btn-danger { background: transparent; color: var(--pink); border: 1px solid rgba(244,114,182,0.3); }
+.btn-sm { padding: 9px 16px; font-size: 13px; }
+
+label { display: block; font-size: 9px; font-weight: 600; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 7px; }
+input[type="text"], input[type="date"], input[type="email"], input[type="password"], textarea, select { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-sm); padding: 12px 14px; color: rgba(255,255,255,0.7); font-family: 'Raleway', sans-serif; font-size: 13px; outline: none; transition: border-color 0.2s; -webkit-appearance: none; appearance: none; }
+input:focus, textarea:focus, select:focus { border-color: var(--accent); color: rgba(255,255,255,0.9); background: rgba(167,139,250,0.05); }
+textarea { resize: none; min-height: 80px; line-height: 1.5; }
+.field { margin-bottom: 14px; }
+input[type="range"] { width: 100%; height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; outline: none; -webkit-appearance: none; border: none; padding: 0; margin: 8px 0; }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 3px solid #07051a; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 8px; }
+.tag { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 20px; padding: 6px 13px; font-size: 13px; color: var(--text2); cursor: pointer; transition: all 0.2s; }
+.tag.on { background: rgba(167,139,250,0.12); border-color: rgba(167,139,250,0.35); color: var(--accent); }
+
+.stars { display: flex; gap: 6px; }
+.star { font-size: 26px; cursor: pointer; opacity: 0.2; transition: opacity 0.15s, transform 0.15s; color: var(--gold); }
+.star.lit { opacity: 1; }
+.star:active { transform: scale(1.3); }
+
+.ev-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 13px 16px; margin: 0 16px 8px; cursor: pointer; transition: border-color 0.2s, transform 0.15s; }
+.ev-card:active { transform: scale(0.98); border-color: var(--accent); }
+.ev-badge { display: inline-block; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 2px 8px; border-radius: 4px; margin-bottom: 6px; }
+.b-mariage { background: rgba(244,114,182,0.1); color: #f472b6; border: 1px solid rgba(244,114,182,0.2); }
+.b-corporate { background: rgba(56,189,248,0.1); color: #38bdf8; border: 1px solid rgba(56,189,248,0.15); }
+.b-club { background: rgba(167,139,250,0.1); color: #a78bfa; border: 1px solid rgba(167,139,250,0.2); }
+.b-prive { background: rgba(251,191,36,0.1); color: #fbbf24; border: 1px solid rgba(251,191,36,0.2); }
+.b-festival { background: rgba(52,211,153,0.1); color: #34d399; border: 1px solid rgba(52,211,153,0.15); }
+.b-discotheque { background: rgba(167,139,250,0.1); color: #a78bfa; border: 1px solid rgba(167,139,250,0.2); }
+.b-sportif { background: rgba(56,189,248,0.1); color: #38bdf8; border: 1px solid rgba(56,189,248,0.15); }
+.b-residence { background: rgba(251,146,60,0.1); color: #fb923c; border: 1px solid rgba(251,146,60,0.2); }
+.b-autre { background: rgba(255,255,255,0.06); color: var(--text2); border: 1px solid rgba(255,255,255,0.07); }
+.ev-title { font-family: 'Raleway', sans-serif; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.9); margin-bottom: 4px; }
+.ev-meta { font-size: 10px; color: rgba(255,255,255,0.25); display: flex; gap: 10px; flex-wrap: wrap; }
+
+.track-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.track-item:last-child { border-bottom: none; }
+.track-rank { width: 28px; height: 28px; border-radius: 50%; background: var(--accent-dim); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--accent); flex-shrink: 0; }
+.track-info { flex: 1; min-width: 0; }
+.track-name { font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: rgba(255,255,255,0.9); }
+.track-sub { font-size: 12px; color: var(--text2); }
+
+.stat-row { display: flex; justify-content: space-around; padding: 16px 20px 14px; border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 8px; }
+.stat { text-align: center; }
+.stat-num { font-family: 'Raleway', sans-serif; font-size: 22px; font-weight: 700; color: var(--accent); }
+.stat-lbl { font-size: 9px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+
+.stitle { font-family: 'Raleway', sans-serif; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(167,139,250,0.5); margin: 14px 0 8px; }
+
+.limit-banner { background: rgba(251,191,36,0.07); border: 1px solid rgba(251,191,36,0.2); border-radius: var(--radius-sm); padding: 14px 16px; margin: 8px 16px; display: flex; gap: 12px; align-items: center; }
+.limit-icon { font-size: 22px; flex-shrink: 0; }
+.limit-text { flex: 1; font-size: 13px; color: var(--text2); line-height: 1.5; }
+.limit-text strong { color: var(--gold); }
+
+.chips { display: flex; gap: 6px; overflow-x: auto; padding: 8px 16px 12px; scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
+.chip { flex-shrink: 0; padding: 5px 12px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.07); background: rgba(255,255,255,0.04); color: var(--text2); font-size: 11px; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+.chip.active { background: rgba(167,139,250,0.12); border-color: rgba(167,139,250,0.35); color: var(--accent); }
+
+.modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.82); z-index: 200; align-items: flex-end; justify-content: center; backdrop-filter: blur(8px); }
+.modal-bg.open { display: flex; animation: fadein 0.2s; }
+.modal-sheet { background: rgba(13,11,46,0.97); border-top: 1px solid rgba(167,139,250,0.2); border-radius: 24px 24px 0 0; padding: 20px 20px 44px; width: 100%; max-height: 88vh; overflow-y: auto; animation: slideup 0.3s; }
+.modal-handle { width: 40px; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.12); margin: 0 auto 20px; }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideup { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+#toast { position: fixed; bottom: 88px; left: 50%; transform: translateX(-50%) translateY(16px); background: rgba(13,11,46,0.97); border: 1px solid rgba(167,139,250,0.3); border-radius: var(--radius-sm); padding: 11px 20px; font-size: 14px; opacity: 0; transition: all 0.3s; z-index: 999; white-space: nowrap; pointer-events: none; }
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+.detail-hero { padding: 22px 20px 18px; background: linear-gradient(180deg, rgba(167,139,250,0.1), transparent); }
+
+.pricing-card { border-radius: 16px; border: 1px solid rgba(255,255,255,0.07); padding: 16px 20px; margin: 0 16px 10px; position: relative; overflow: hidden; }
+.pricing-free { background: rgba(255,255,255,0.04); }
+.pricing-premium { background: rgba(167,139,250,0.07); border-color: rgba(167,139,250,0.22); }
+.pricing-popular { position: absolute; top: 12px; right: 12px; background: var(--gold); color: #1a0500; font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; padding: 3px 9px; border-radius: 20px; }
+.price-amount { font-family: 'Raleway', sans-serif; font-size: 28px; font-weight: 800; margin: 6px 0 4px; }
+.price-period { font-size: 13px; color: var(--text2); }
+.price-feature { font-size: 12px; color: rgba(255,255,255,0.5); padding: 4px 0; display: flex; gap: 8px; align-items: flex-start; }
+.price-feature::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+.price-feature.no { color: rgba(255,255,255,0.2); }
+.price-feature.no::before { content: '✗'; color: rgba(255,255,255,0.15); }
+
+.avatar { width: 56px; height: 56px; border-radius: 50%; background: rgba(167,139,250,0.12); border: 2px solid rgba(167,139,250,0.3); display: flex; align-items: center; justify-content: center; font-family: 'Raleway', sans-serif; font-size: 20px; font-weight: 700; color: var(--accent); flex-shrink: 0; overflow: hidden; }
+
+.empty { text-align: center; padding: 50px 20px; color: var(--text3); }
+.empty-icon { font-size: 44px; margin-bottom: 14px; opacity: 0.2; }
+.empty-title { font-family: 'Raleway', sans-serif; font-size: 18px; font-weight: 700; color: var(--text2); margin-bottom: 6px; }
+.empty-sub { font-size: 13px; line-height: 1.5; color: var(--text2); }
+.divider { height: 1px; background: rgba(255,255,255,0.06); margin: 14px 0; }
+.loading { display: flex; align-items: center; justify-content: center; padding: 40px; color: var(--text3); gap: 10px; font-size: 14px; }
+.spinner { width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.08); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; flex-shrink: 0; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.fab { position: fixed; bottom: 78px; right: 18px; width: 52px; height: 52px; border-radius: 50%; background: var(--accent); border: none; color: #07051a; font-size: 24px; font-weight: 700; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 24px rgba(167,139,250,0.4); z-index: 50; transition: transform 0.2s; }
+.fab:active { transform: scale(0.88); }
+.email-preview { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius-sm); padding: 14px; font-size: 13px; line-height: 1.7; color: var(--text2); white-space: pre-line; max-height: 180px; overflow-y: auto; }
+.install-hint { background: rgba(56,189,248,0.06); border: 1px solid rgba(56,189,248,0.1); border-radius: var(--radius-sm); padding: 12px 14px; font-size: 12px; color: var(--text2); display: flex; gap: 10px; margin: 8px 16px; line-height: 1.5; }
 </style>
 </head>
 <body>
 <div id="app">
 
-<!-- AUTH -->
+<!-- ══ AUTH ══ -->
 <div class="screen active" id="screen-auth">
-  <div style="padding:40px 20px;text-align:center">
-    <h1 style="font-size:42px;color:var(--accent)">DJ RECAP</h1>
-    <p style="color:var(--text2)">Ton carnet de bord de DJ</p>
-  </div>
-  <div style="padding:0 20px">
-    <div style="background:rgba(255,255,255,0.05);border-radius:20px;padding:25px">
-      <div style="display:flex;gap:8px;margin-bottom:20px">
-        <button id="tab-login" onclick="switchAuth('login')" style="flex:1;padding:12px;border-radius:10px;border:none;background:var(--accent);color:#000;font-weight:600">Connexion</button>
-        <button id="tab-signup" onclick="switchAuth('signup')" style="flex:1;padding:12px;border-radius:10px;border:none;background:rgba(255,255,255,0.1);color:white">Inscription</button>
-      </div>
-
-      <div id="auth-form-login">
-        <input type="email" id="login-email" placeholder="Email" style="width:100%;padding:14px;margin-bottom:12px;background:rgba(255,255,255,0.1);border:none;border-radius:10px;color:white">
-        <input type="password" id="login-pw" placeholder="Mot de passe" style="width:100%;padding:14px;margin-bottom:20px;background:rgba(255,255,255,0.1);border:none;border-radius:10px;color:white">
-        <button onclick="doLogin()" class="btn btn-primary">Se connecter</button>
-      </div>
-
-      <div id="auth-form-signup" style="display:none">
-        <input type="text" id="signup-name" placeholder="Nom de DJ" style="width:100%;padding:14px;margin-bottom:12px;background:rgba(255,255,255,0.1);border:none;border-radius:10px;color:white">
-        <input type="email" id="signup-email" placeholder="Email" style="width:100%;padding:14px;margin-bottom:12px;background:rgba(255,255,255,0.1);border:none;border-radius:10px;color:white">
-        <input type="password" id="signup-pw" placeholder="Mot de passe" style="width:100%;padding:14px;margin-bottom:20px;background:rgba(255,255,255,0.1);border:none;border-radius:10px;color:white">
-        <button onclick="doSignup()" class="btn btn-primary">Créer mon compte</button>
-      </div>
-
-      <div id="auth-error" style="color:#ff6b6b;text-align:center;margin-top:15px;display:none"></div>
+  <div class="auth-logo"><svg width="180" height="72" viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="160" rx="20" fill="#0d0d1a"/><circle cx="80" cy="80" r="52" fill="none" stroke="#7c5cfc" stroke-width="1.5"/><circle cx="80" cy="80" r="38" fill="none" stroke="#00d4ff" stroke-width="0.8" stroke-dasharray="4 4"/><circle cx="80" cy="80" r="18" fill="#7c5cfc"/><circle cx="80" cy="80" r="6" fill="#0d0d1a"/><circle cx="80" cy="80" r="2.5" fill="#00d4ff"/><line x1="48" y1="46" x2="58" y2="56" stroke="#7c5cfc" stroke-width="1" stroke-linecap="round"/><line x1="42" y1="54" x2="55" y2="60" stroke="#7c5cfc" stroke-width="0.8" stroke-linecap="round"/><line x1="112" y1="46" x2="102" y2="56" stroke="#00d4ff" stroke-width="1" stroke-linecap="round"/><line x1="118" y1="54" x2="105" y2="60" stroke="#00d4ff" stroke-width="0.8" stroke-linecap="round"/><rect x="148" y="34" width="3" height="92" rx="1.5" fill="#7c5cfc" opacity="0.4"/><text x="165" y="82" font-family="Arial Black,sans-serif" font-weight="900" font-size="48" fill="#ffffff" letter-spacing="-1">DJ</text><text x="165" y="118" font-family="Arial Black,sans-serif" font-weight="900" font-size="32" fill="#7c5cfc" letter-spacing="5">RECAP</text><line x1="165" y1="130" x2="355" y2="130" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round"/><circle cx="360" cy="130" r="3" fill="#00d4ff"/></svg></div>
+  <div class="auth-tagline">Ton carnet de bord de DJ</div>
+  <div class="auth-box">
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-login" onclick="switchAuth('login')">Connexion</button>
+      <button class="auth-tab" id="tab-signup" onclick="switchAuth('signup')">Inscription</button>
     </div>
+    <div id="auth-form-login">
+      <div class="field"><label>Email</label><input type="email" id="login-email" placeholder="dj@exemple.fr"></div>
+      <div class="field"><label>Mot de passe</label><input type="password" id="login-pw" placeholder="••••••••"></div>
+      <button class="btn btn-primary" onclick="doLogin()">Se connecter</button>
+      <div style="text-align:center;margin-top:12px"><button onclick="doReset()" style="background:none;border:none;color:var(--text2);font-size:13px;cursor:pointer">Mot de passe oublié ?</button></div>
+    </div>
+    <div id="auth-form-signup" style="display:none">
+      <div class="field"><label>Nom de DJ</label><input type="text" id="signup-name" placeholder="DJ Nova"></div>
+      <div class="field"><label>Email</label><input type="email" id="signup-email" placeholder="dj@exemple.fr"></div>
+      <div class="field"><label>Mot de passe</label><input type="password" id="signup-pw" placeholder="Min. 6 caractères"></div>
+      <button class="btn btn-primary" onclick="doSignup()">Créer mon compte</button>
+    </div>
+    <div id="auth-error" style="color:var(--pink);font-size:13px;text-align:center;margin-top:12px;display:none"></div>
   </div>
+  <div style="font-size:11px;color:var(--text3);margin-top:24px;text-align:center">En t'inscrivant, tu acceptes les CGU · Gratuit jusqu'à 10 soirées</div>
 </div>
 
-<!-- HOME -->
+<!-- ══ HOME ══ -->
 <div class="screen" id="screen-home">
   <div class="topbar">
-    <div style="font-weight:800">DJ RECAP</div>
-    <div id="plan-btn" onclick="goTo('premium')">FREE</div>
+    <div class="topbar-logo"><svg width="150" height="52" viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="160" rx="20" fill="#0d0d1a"/><circle cx="80" cy="80" r="52" fill="none" stroke="#7c5cfc" stroke-width="1.5"/><circle cx="80" cy="80" r="38" fill="none" stroke="#00d4ff" stroke-width="0.8" stroke-dasharray="4 4"/><circle cx="80" cy="80" r="18" fill="#7c5cfc"/><circle cx="80" cy="80" r="6" fill="#0d0d1a"/><circle cx="80" cy="80" r="2.5" fill="#00d4ff"/><rect x="148" y="34" width="3" height="92" rx="1.5" fill="#7c5cfc" opacity="0.4"/><text x="165" y="82" font-family="Arial Black,sans-serif" font-weight="900" font-size="48" fill="#ffffff" letter-spacing="-1">DJ</text><text x="165" y="118" font-family="Arial Black,sans-serif" font-weight="900" font-size="32" fill="#7c5cfc" letter-spacing="5">RECAP</text><line x1="165" y1="130" x2="355" y2="130" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round"/><circle cx="360" cy="130" r="3" fill="#00d4ff"/></svg></div>
+    <div id="plan-btn" class="plan-badge plan-free" onclick="goTo('premium')">FREE</div>
   </div>
   <div class="scroll-area">
-    <div style="padding:20px">
-      <h2 id="home-djname" style="margin:0 0 20px 0">DJ</h2>
-      <div id="limit-banner-home"></div>
-      <div id="events-list">Chargement des soirées...</div>
+    <div style="padding:18px 2px 4px">
+      <div style="font-size:12px;color:var(--text2);margin-bottom:6px;letter-spacing:1px;text-transform:uppercase">Bonjour,</div>
+      <div style="font-family:var(--font-d);font-size:22px;font-weight:700;letter-spacing:-0.5px;color:var(--text)" id="home-djname">–</div>
     </div>
+    <div class="stat-row" id="home-stats">
+      <div class="stat"><div class="stat-num" id="s-total">0</div><div class="stat-lbl">Prestations</div></div>
+      <div class="stat"><div class="stat-num" id="s-maries">0</div><div class="stat-lbl">Mariages</div></div>
+      <div class="stat"><div class="stat-num" id="s-avg">–</div><div class="stat-lbl">Note moy.</div></div>
+    </div>
+    <div id="limit-banner-home"></div>
+    <div id="whatsnew-banner"></div>
+    <div id="recap-reminder"></div>
+    <div style="position:relative;margin:10px 0 0">
+      <input type="text" id="search-input" placeholder="🔍 Rechercher une soirée, une ville..." oninput="searchEvents(this.value)" style="padding-left:14px;font-size:14px">
+      <button id="search-clear" onclick="clearSearch()" style="display:none;position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text3);font-size:18px;cursor:pointer">✕</button>
+    </div>
+    <div class="chips" id="filter-chips">
+      <div class="chip active" data-f="tous">Tous</div>
+      <div class="chip" data-f="mariage">Mariages</div>
+      <div class="chip" data-f="corporate">Corporate</div>
+      <div class="chip" data-f="club">Club</div>
+      <div class="chip" data-f="prive">Privé</div>
+      <div class="chip" data-f="festival">Festival</div>
+      <div class="chip" data-f="sportif">Sportif</div>
+      <div class="chip" data-f="residence">Résidence</div>
+      <div class="chip" data-f="autre">Autre</div>
+    </div>
+    <div id="events-list"><div class="loading"><div class="spinner"></div>Chargement…</div></div>
   </div>
-  <button onclick="openNew()" style="position:fixed;bottom:90px;right:20px;width:60px;height:60px;background:var(--accent);color:black;border:none;border-radius:50%;font-size:30px;box-shadow:0 4px 15px rgba(0,0,0,0.3)">+</button>
+  <button class="fab" onclick="openNew()">+</button>
 </div>
 
-<script>
-// ====================== CONFIG ======================
-const FREE_LIMIT = 7;
-const FREE_EMAIL_LIMIT = 5;
+<!-- ══ NEW EVENT ══ -->
+<div class="screen" id="screen-new">
+  <div class="topbar">
+    <button onclick="goTo('home')" style="background:none;border:none;color:var(--text2);font-size:15px;cursor:pointer">← Retour</button>
+    <div class="topbar-logo">Nouvelle <span>soirée</span></div>
+    <div style="width:70px"></div>
+  </div>
+  <div class="scroll-area">
+    <div id="new-limit-warn"></div>
+    <div class="card">
+      <div class="field"><label>Type d'événement</label>
+        <select id="f-type" onchange="toggleMaries(this.value)">
+          <option value="mariage">💒 Mariage</option>
+          <option value="corporate">🏢 Corporate</option>
+          <option value="prive">🏠 Soirée privée</option>
+          <option value="festival">🎪 Festival</option>
+          <option value="sportif">🏟️ Événement sportif</option>
+          <option value="residence">🎧 Résidence DJ</option>
+          <option value="autre">🎉 Autre</option>
+        </select>
+      </div>
+      <div class="field" id="field-lieu"><label>Lieu / Nom de l'événement</label><input type="text" id="f-lieu" placeholder="Château des Lumières, Mariage Dupont…"></div>
+      <div class="field"><label>Date</label><input type="date" id="f-date"></div>
+      <div class="field"><label>Ville</label><input type="text" id="f-ville" placeholder="Paris, Lyon…"></div>
+    </div>
 
+    <div id="section-maries" class="card">
+      <div class="stitle">👰 Les mariés</div>
+      <div class="field"><label>Prénom(s)</label><input type="text" id="f-maries" placeholder="Sophie & Thomas"></div>
+      <div class="field"><label>Email des mariés</label><input type="email" id="f-email" placeholder="sophie.thomas@mail.fr"></div>
+    </div>
+
+    <div id="section-grand-event" class="card" style="display:none">
+      <div class="stitle">🏟️ Infos grand événement</div>
+      <div class="field" id="field-residence-type" style="display:none">
+        <label>Type de résidence</label>
+        <select id="f-residence-type" onchange="toggleResidenceFields(this.value)">
+          <option value="">— Choisir —</option>
+          <option value="club">🪩 Club / Discothèque</option>
+          <option value="radio">📻 Radio</option>
+          <option value="bar">🍸 Bar / Lounge</option>
+        </select>
+      </div>
+
+      <!-- Club / Discothèque -->
+      <div id="res-club" style="display:none">
+        <div class="field"><label>Nom du lieu</label><input type="text" id="f-res-lieu" placeholder="ex: Club Showcase, Le Rex..."></div>
+        <div class="field"><label>Fréquence</label><input type="text" id="f-res-frequence-club" placeholder="ex: Tous les vendredis"></div>
+      </div>
+
+      <!-- Radio -->
+      <div id="res-radio" style="display:none">
+        <div class="field"><label>Nom de la radio</label><input type="text" id="f-res-radio-nom" placeholder="ex: NRJ, Fun Radio..."></div>
+        <div class="field"><label>Nom de l'émission</label><input type="text" id="f-res-emission" placeholder="ex: Morning Mix, Club Night..."></div>
+        <div class="field"><label>Fréquence d'émission</label><input type="text" id="f-res-frequence-radio" placeholder="ex: Tous les lundis"></div>
+        <div class="field"><label>Heure de passage</label><input type="text" id="f-res-heure" placeholder="ex: 22h - 00h"></div>
+      </div>
+
+      <!-- Bar / Lounge -->
+      <div id="res-bar" style="display:none">
+        <div class="field"><label>Nom du bar</label><input type="text" id="f-res-bar-nom" placeholder="ex: Le Perchoir, Silencio..."></div>
+        <div class="field"><label>Fréquence</label><input type="text" id="f-res-frequence-bar" placeholder="ex: Tous les samedis"></div>
+        <div class="field"><label>Style musical imposé</label><input type="text" id="f-res-style" placeholder="ex: Jazz, Deep House, Afrobeat..."></div>
+      </div>
+      <div class="field"><label>Contact organisateur</label><input type="text" id="f-organisateur" placeholder="Nom du contact"></div>
+      <div class="field"><label>Email organisateur</label><input type="email" id="f-email-orga" placeholder="contact@evenement.fr"></div>
+      <div class="field"><label>Nombre de sets joués</label><input type="text" id="f-sets" placeholder="ex: 2 sets de 1h"></div>
+      <div class="field"><label>Cachet (memo privé)</label><input type="text" id="f-cachet" placeholder="ex: 500€"></div>
+    </div>
+
+    <div class="card">
+      <div class="stitle">⭐ Note de la soirée</div>
+      <div class="stars" id="stars-input">
+        <span class="star" data-v="1">★</span><span class="star" data-v="2">★</span>
+        <span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span>
+      </div>
+      <div style="font-size:12px;color:var(--text3);margin-top:8px" id="note-label">Appuie sur une étoile</div>
+    </div>
+
+    <div class="card">
+      <div class="stitle">🔥 Ambiance piste</div>
+      <input type="range" id="f-ambiance" min="1" max="10" value="5" oninput="document.getElementById('amb-val').textContent=this.value+'/10'">
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text3);margin-top:2px">
+        <span>😴 Calme</span><span id="amb-val" style="color:var(--accent);font-weight:600">5/10</span><span>🔥 Torride</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="stitle">🎶 Sons qui ont cartonné</div>
+      <div id="tracks-list"></div>
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <input type="text" id="t-artist" placeholder="Artiste" style="flex:1">
+        <input type="text" id="t-title" placeholder="Titre" style="flex:1.5">
+      </div>
+      <button class="btn btn-ghost btn-sm" style="margin-top:8px" onclick="addTrack()">+ Ajouter un son</button>
+    </div>
+
+    <div class="card">
+      <div class="stitle">🎨 Styles joués</div>
+      <div class="tags" id="styles-tags">
+        <div class="tag" data-s="Funk">Funk</div><div class="tag" data-s="House">House</div>
+        <div class="tag" data-s="Deep House">Deep House</div><div class="tag" data-s="Hip-Hop">Hip-Hop</div>
+        <div class="tag" data-s="R&B">R&B</div><div class="tag" data-s="Pop">Pop</div>
+        <div class="tag" data-s="Électro">Électro</div><div class="tag" data-s="Disco">Disco</div>
+        <div class="tag" data-s="Afrobeats">Afrobeats</div><div class="tag" data-s="Reggaeton">Reggaeton</div>
+        <div class="tag" data-s="Techno">Techno</div><div class="tag" data-s="Variété FR">Variété FR</div>
+        <div class="tag" data-s="Rock">Rock</div><div class="tag" data-s="Latino">Latino</div>
+      </div>
+    </div>
+
+    <div class="card" id="section-notes-salle">
+      <div class="stitle">📝 Notes salle & événement</div>
+      <div class="field"><label>Acoustique</label>
+        <select id="f-acoustique">
+          <option value="">– Non renseigné –</option>
+          <option value="Excellente 🔊">Excellente 🔊</option>
+          <option value="Bonne 👍">Bonne 👍</option>
+          <option value="Moyenne 😐">Moyenne 😐</option>
+          <option value="Mauvaise 👎">Mauvaise 👎</option>
+        </select>
+      </div>
+      <div class="field"><label>Capacité estimée</label><input type="text" id="f-capacite" placeholder="~200 personnes"></div>
+      <div class="field"><label>Notes libres</label><textarea id="f-notes" rows="4" placeholder="Retour sur l'ambiance, remarques client, matériel…"></textarea></div>
+      <div class="field"><label>Memo privé</label><textarea id="f-private" rows="2" placeholder="Infos confidentielles, tarif…"></textarea></div>
+    </div>
+
+    <button class="btn btn-primary" style="margin-bottom:20px" onclick="saveEvent()">💾 Enregistrer la soirée</button>
+  </div>
+</div>
+
+<!-- ══ DETAIL ══ -->
+<div class="screen" id="screen-detail">
+  <div class="topbar">
+    <button onclick="goTo('home')" style="background:none;border:none;color:var(--text2);font-size:15px;cursor:pointer">← Retour</button>
+    <div class="topbar-logo" id="d-title">Détail</div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button onclick="openEditEvent()" style="background:none;border:none;color:var(--cyan);font-size:13px;cursor:pointer">Modifier</button>
+      <button onclick="deleteEv()" style="background:none;border:none;color:var(--pink);font-size:13px;cursor:pointer">Suppr.</button>
+    </div>
+  </div>
+  <div class="scroll-area" id="detail-content"></div>
+</div>
+
+<!-- ══ PREMIUM ══ -->
+<div class="screen" id="screen-premium">
+  <div class="topbar">
+    <button onclick="goTo('home')" style="background:none;border:none;color:var(--text2);font-size:15px;cursor:pointer">← Retour</button>
+    <div class="topbar-logo">Mon <span>abonnement</span></div>
+    <div style="width:60px"></div>
+  </div>
+  <div class="scroll-area">
+    <div style="padding:14px 20px 6px;text-align:center;font-size:12px;color:var(--text2)">Débloque toutes les fonctionnalités</div>
+
+    <!-- CARTE GRATUIT -->
+    <div style="margin:8px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:16px">
+      <div style="font-family:var(--font-d);font-size:14px;font-weight:700;color:#fff;margin-bottom:2px">Gratuit</div>
+      <div style="font-family:var(--font-d);font-size:22px;font-weight:800;color:rgba(255,255,255,0.4);margin:6px 0 10px">0€ <span style="font-size:11px;font-weight:400;color:var(--text2)">/pour toujours</span></div>
+      <div style="height:1px;background:rgba(255,255,255,0.06);margin-bottom:10px"></div>
+      <div class="price-feature">3 soirées pour tester</div>
+      <div class="price-feature">Suivi sons & styles</div>
+      <div class="price-feature no">Emails de remerciement</div>
+      <div class="price-feature no">Modification soirées</div>
+      <div class="price-feature no">Stats avancées</div>
+      <div class="price-feature no">Export PDF</div>
+    </div>
+
+    <!-- CARTE PREMIUM -->
+    <div style="margin:8px 16px;background:rgba(167,139,250,0.07);border:1px solid rgba(167,139,250,0.22);border-radius:16px;padding:16px;position:relative">
+      <div style="position:absolute;top:12px;right:12px;background:var(--gold);color:#1a0500;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:3px 9px;border-radius:20px">⭐ Recommandé</div>
+      <div style="font-size:9px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:4px">Premium</div>
+      <div style="font-family:var(--font-d);font-size:22px;font-weight:800;color:var(--accent);margin-bottom:10px">12,99€ <span style="font-size:11px;font-weight:400;color:var(--text2)">/mois</span></div>
+      <div style="height:1px;background:rgba(255,255,255,0.06);margin-bottom:10px"></div>
+      <div class="price-feature">Soirées illimitées</div>
+      <div class="price-feature">Stats avancées</div>
+      <div class="price-feature">Emails illimités</div>
+      <div class="price-feature">Export PDF pro</div>
+      <div class="price-feature">Templates email</div>
+      <div class="price-feature">Modification soirées</div>
+    </div>
+
+    <div id="stripe-section" style="margin:8px 16px">
+      <button style="width:100%;padding:14px;background:var(--accent);border:none;border-radius:12px;font-family:var(--font-d);font-size:13px;font-weight:700;color:#07051a;cursor:pointer" onclick="goStripe()">
+        💳 S'abonner — 12,99€/mois
+      </button>
+      <div style="text-align:center;font-size:11px;color:var(--text3);margin-top:10px">Paiement sécurisé par Stripe · Annulation en 1 clic</div>
+    </div>
+
+    <div id="premium-active-msg" style="display:none;margin:8px 16px">
+      <div style="background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.2);border-radius:14px;padding:16px;text-align:center">
+        <div style="font-size:28px;margin-bottom:8px">✅</div>
+        <div style="font-weight:700;color:var(--green)">Tu es déjà Premium !</div>
+        <div style="font-size:13px;color:var(--text2);margin-top:6px">Merci pour ton soutien 🙏</div>
+      </div>
+      <button class="btn btn-ghost btn-sm" style="margin-top:10px" onclick="manageStripe()">Gérer mon abonnement</button>
+    </div>
+    <div style="height:20px"></div>
+  </div>
+</div>
+
+<!-- ══ PROFILE ══ -->
+<div class="screen" id="screen-profile">
+  <div class="topbar">
+    <div class="topbar-logo">DJ <span>Recap</span></div>
+    <button onclick="doLogout()" style="background:none;border:none;color:var(--pink);font-size:13px;cursor:pointer;font-family:var(--font-b);font-weight:600">Déconnexion</button>
+  </div>
+  <div class="scroll-area">
+
+    <!-- AVATAR + NOM -->
+    <div style="display:flex;flex-direction:column;align-items:center;padding:20px 0 14px">
+      <div style="position:relative;cursor:pointer;margin-bottom:10px" onclick="document.getElementById('photo-upload').click()">
+        <div class="avatar" id="profile-avatar" style="width:64px;height:64px;font-size:24px;overflow:hidden">DJ</div>
+        <div style="position:absolute;bottom:0;right:0;width:22px;height:22px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;border:2px solid #07051a">📷</div>
+        <input type="file" id="photo-upload" accept="image/*" style="display:none" onchange="uploadPhoto(this)">
+      </div>
+      <div style="font-family:var(--font-d);font-size:20px;font-weight:700;color:#fff" id="profile-name">–</div>
+      <div id="profile-plan-badge" style="margin-top:6px"></div>
+      <div style="font-size:12px;color:var(--text2);margin-top:4px" id="profile-email">–</div>
+    </div>
+
+    <!-- MENU RANGÉES -->
+    <div style="display:flex;flex-direction:column;gap:6px;padding:0 16px">
+
+      <!-- Configuration EmailJS -->
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;overflow:hidden">
+        <div style="padding:13px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="showEmailJSConfig()">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:16px">📧</span>
+            <span style="font-size:13px;color:rgba(255,255,255,0.7);font-weight:500">Configuration EmailJS</span>
+          </div>
+          <span id="emailjs-arrow" style="color:var(--text3);font-size:16px;transition:transform 0.2s">›</span>
+        </div>
+        <div id="emailjs-config-panel" style="display:none;padding:0 16px 16px">
+          <div style="font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:12px">
+            1. Crée un compte sur <span style="color:var(--cyan)">emailjs.com</span><br>
+            2. Crée un service + template avec : <code style="color:var(--accent);font-size:11px">to_email, to_name, from_name, message</code>
+          </div>
+          <div class="field"><label>Public Key</label><input type="text" id="ej-key" placeholder="user_XXXX…"></div>
+          <div class="field"><label>Service ID</label><input type="text" id="ej-service" placeholder="service_XXXX"></div>
+          <div class="field"><label>Template ID</label><input type="text" id="ej-template" placeholder="template_XXXX"></div>
+          <button class="btn btn-ghost btn-sm" onclick="saveEmailJS()">💾 Sauvegarder</button>
+        </div>
+      </div>
+
+      <!-- Aide -->
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="goTo('aide')">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:16px">📚</span>
+          <span style="font-size:13px;color:rgba(255,255,255,0.7);font-weight:500">Aide & Documentation</span>
+        </div>
+        <span style="color:var(--text3);font-size:16px">›</span>
+      </div>
+
+      <!-- Abonnement -->
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="manageStripe()">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:16px">⭐</span>
+          <span style="font-size:13px;color:rgba(255,255,255,0.7);font-weight:500">Gérer mon abonnement</span>
+        </div>
+        <span style="color:var(--text3);font-size:16px">›</span>
+      </div>
+
+      <!-- Templates -->
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="openTemplates()">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:16px">✉️</span>
+          <span style="font-size:13px;color:rgba(255,255,255,0.7);font-weight:500">Mes templates email</span>
+        </div>
+        <span style="color:var(--text3);font-size:16px">›</span>
+      </div>
+
+      <!-- Supprimer -->
+      <div style="background:rgba(244,114,182,0.06);border:1px solid rgba(244,114,182,0.15);border-radius:12px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="deleteAccount()">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:16px">🗑️</span>
+          <span style="font-size:13px;color:var(--pink);font-weight:500">Supprimer mon compte</span>
+        </div>
+        <span style="color:rgba(244,114,182,0.4);font-size:16px">›</span>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;padding:24px 0 8px">
+      <div style="font-size:9px;color:rgba(255,255,255,0.12);letter-spacing:1px">© 2026 DJ Recap — Tous droits réservés</div>
+    </div>
+    <div style="height:20px"></div>
+  </div>
+</div>
+
+<!-- ══ STATS ══ -->
+<div class="screen" id="screen-stats">
+  <div class="topbar">
+    <button onclick="goTo('home')" style="background:none;border:none;color:var(--text2);font-size:15px;cursor:pointer">← Retour</button>
+    <div class="topbar-logo">Mes <span>stats</span></div>
+    <div style="width:70px"></div>
+  </div>
+  <div class="scroll-area" id="stats-content">
+    <div class="loading"><div class="spinner"></div>Chargement…</div>
+  </div>
+</div>
+
+<!-- ══ TEMPLATES ══ -->
+<div class="screen" id="screen-templates">
+  <div class="topbar">
+    <button onclick="goTo('profile')" style="background:none;border:none;color:var(--text2);font-size:15px;cursor:pointer">← Retour</button>
+    <div class="topbar-logo">Mes <span>templates</span></div>
+    <div style="width:70px"></div>
+  </div>
+  <div class="scroll-area">
+    <div class="stitle">✉️ Mes templates de remerciement</div>
+    <div id="templates-list"></div>
+    <button class="btn btn-primary" style="margin-top:8px" onclick="openNewTemplate()">+ Créer un template</button>
+    <div style="height:20px"></div>
+  </div>
+</div>
+
+<!-- ══ ONBOARDING ══ -->
+<div class="screen" id="screen-onboarding" style="background:var(--bg);justify-content:space-between;padding:40px 24px 40px">
+
+  <!-- Slides -->
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
+
+    <!-- Slide 1 -->
+    <div class="ob-slide" id="ob-slide-1">
+      <div style="font-size:64px;text-align:center;margin-bottom:24px">🎧</div>
+      <div style="font-family:var(--font-d);font-size:26px;font-weight:800;text-align:center;margin-bottom:12px">Bienvenue sur<br><span style="color:var(--accent)">DJ Recap</span></div>
+      <div style="font-size:15px;color:var(--text2);text-align:center;line-height:1.6">Ton carnet de bord digital pour ne plus jamais oublier une soirée.</div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="ob-slide" id="ob-slide-2" style="display:none">
+      <div style="font-size:64px;text-align:center;margin-bottom:24px">📝</div>
+      <div style="font-family:var(--font-d);font-size:26px;font-weight:800;text-align:center;margin-bottom:12px">Note tes <span style="color:var(--accent)">soirées</span></div>
+      <div style="font-size:15px;color:var(--text2);text-align:center;line-height:1.6">Mariage, club, corporate, privé... Lieu, ambiance, sons qui ont cartonné — tout en 2 minutes juste après la presta.</div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="ob-slide" id="ob-slide-3" style="display:none">
+      <div style="font-size:64px;text-align:center;margin-bottom:24px">✉️</div>
+      <div style="font-family:var(--font-d);font-size:26px;font-weight:800;text-align:center;margin-bottom:12px">Soigne ta <span style="color:var(--accent)">relation client</span></div>
+      <div style="font-size:15px;color:var(--text2);text-align:center;line-height:1.6">Envoie un mail de remerciement aux mariés directement depuis l'app — depuis ta propre adresse email.</div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="ob-slide" id="ob-slide-4" style="display:none">
+      <div style="font-size:64px;text-align:center;margin-bottom:24px">🚀</div>
+      <div style="font-family:var(--font-d);font-size:26px;font-weight:800;text-align:center;margin-bottom:12px">C'est <span style="color:var(--accent)">gratuit</span> pour commencer</div>
+      <div style="font-size:15px;color:var(--text2);text-align:center;line-height:1.6">3 soirées gratuites pour tester. Passe Premium à 12,99€/mois pour tout débloquer.</div>
+    </div>
+  </div>
+
+  <!-- Dots -->
+  <div style="display:flex;justify-content:center;gap:8px;margin:24px 0">
+    <div class="ob-dot active" id="dot-1"></div>
+    <div class="ob-dot" id="dot-2"></div>
+    <div class="ob-dot" id="dot-3"></div>
+    <div class="ob-dot" id="dot-4"></div>
+  </div>
+
+  <!-- Buttons -->
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <button class="btn btn-primary" id="ob-next-btn" onclick="obNext()">Suivant →</button>
+    <button onclick="obSkip()" style="background:none;border:none;color:var(--text3);font-size:14px;cursor:pointer;padding:8px">Passer</button>
+  </div>
+
+</div>
+
+<!-- ══ AIDE ══ -->
+<div class="screen" id="screen-aide">
+  <div class="topbar">
+    <button onclick="goTo('profile')" style="background:none;border:none;color:var(--text2);font-size:15px;cursor:pointer">← Retour</button>
+    <div class="topbar-logo">Aide & <span>Info</span></div>
+    <div style="width:70px"></div>
+  </div>
+  <div class="scroll-area">
+
+    <div style="text-align:center;padding:20px 0 16px">
+      <div style="font-size:32px;margin-bottom:8px">🎧</div>
+      <div style="font-family:var(--font-d);font-size:18px;font-weight:700">Centre d'aide DJ Recap</div>
+      <div style="font-size:13px;color:var(--text2);margin-top:4px">Tout ce qu'il faut savoir pour utiliser l'app</div>
+    </div>
+
+    <!-- GUIDE UTILISATION -->
+    <div class="stitle">📱 Guide d'utilisation</div>
+
+    <div class="card" style="cursor:pointer" onclick="toggleSection('s1')">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font-size:14px;font-weight:500">🔧 Installation sur ton téléphone</div>
+        <div id="s1-icon" style="color:var(--text3);font-size:18px;transition:transform 0.2s">›</div>
+      </div>
+      <div id="s1" style="display:none;margin-top:12px;font-size:13px;color:var(--text2);line-height:1.7">
+        <strong style="color:var(--text)">Sur iPhone (Safari) :</strong><br>
+        1. Ouvre Safari → va sur djrecap.github.io/djrecap<br>
+        2. Appuie sur l'icône Partager (carré avec flèche)<br>
+        3. "Sur l'écran d'accueil" → Ajouter<br><br>
+        <strong style="color:var(--text)">Sur Android (Chrome) :</strong><br>
+        1. Ouvre Chrome → va sur djrecap.github.io/djrecap<br>
+        2. Chrome propose automatiquement "Ajouter à l'écran d'accueil"<br>
+        3. Ou menu ⋮ → "Ajouter à l'écran d'accueil"
+      </div>
+    </div>
+
+    <div class="card" style="cursor:pointer" onclick="toggleSection('s2')">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font-size:14px;font-weight:500">➕ Ajouter une soirée</div>
+        <div id="s2-icon" style="color:var(--text3);font-size:18px;transition:transform 0.2s">›</div>
+      </div>
+      <div id="s2" style="display:none;margin-top:12px;font-size:13px;color:var(--text2);line-height:1.7">
+        1. Appuie sur le bouton <strong style="color:var(--accent)">+</strong> en bas à droite<br>
+        2. Remplis le type, lieu, date et ville<br>
+        3. Pour un mariage : renseigne les prénoms et email des mariés<br>
+        4. Note la soirée (1 à 5 étoiles) et l'ambiance piste (1 à 10)<br>
+        5. Ajoute les sons qui ont cartonné<br>
+        6. Sélectionne les styles joués<br>
+        7. Ajoute tes notes sur la salle<br>
+        8. Appuie sur <strong style="color:var(--accent)">Enregistrer</strong>
+      </div>
+    </div>
+
+    <div class="card" style="cursor:pointer" onclick="toggleSection('s3')">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font-size:14px;font-weight:500">✉️ Envoyer un mail aux mariés</div>
+        <div id="s3-icon" style="color:var(--text3);font-size:18px;transition:transform 0.2s">›</div>
+      </div>
+      <div id="s3" style="display:none;margin-top:12px;font-size:13px;color:var(--text2);line-height:1.7">
+        1. Ouvre une soirée de type Mariage<br>
+        2. Appuie sur <strong style="color:var(--cyan)">"Envoyer un mail de remerciement"</strong><br>
+        3. Vérifie l'email et les prénoms des mariés<br>
+        4. Ajoute un message personnel si tu veux<br>
+        5. Appuie sur <strong style="color:var(--accent)">Envoyer</strong><br><br>
+        ⚠️ EmailJS doit être configuré dans ton profil pour que l'envoi fonctionne.
+      </div>
+    </div>
+
+    <div class="card" style="cursor:pointer" onclick="toggleSection('s4')">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font-size:14px;font-weight:500">📊 Stats & Export PDF</div>
+        <div id="s4-icon" style="color:var(--text3);font-size:18px;transition:transform 0.2s">›</div>
+      </div>
+      <div id="s4" style="display:none;margin-top:12px;font-size:13px;color:var(--text2);line-height:1.7">
+        <strong style="color:var(--text)">Stats avancées (Premium) :</strong><br>
+        Accède à tes stats via l'onglet <strong style="color:var(--accent)">Stats</strong> en bas — soirées par mois, répartition par type, top sons, top styles.<br><br>
+        <strong style="color:var(--text)">Export PDF (Premium) :</strong><br>
+        Depuis l'onglet Stats → appuie sur "Exporter mon bilan PDF" → un fichier HTML est généré → ouvre-le dans ton navigateur → Fichier → Imprimer → Enregistrer en PDF.
+      </div>
+    </div>
+
+    <!-- GUIDE EMAILJS -->
+    <div class="stitle">📧 Configuration EmailJS</div>
+
+    <div class="card" style="cursor:pointer" onclick="toggleSection('e1')">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font-size:14px;font-weight:500">① Créer un compte EmailJS</div>
+        <div id="e1-icon" style="color:var(--text3);font-size:18px">›</div>
+      </div>
+      <div id="e1" style="display:none;margin-top:12px;font-size:13px;color:var(--text2);line-height:1.7">
+        1. Va sur <span style="color:var(--cyan)">emailjs.com</span><br>
+        2. Clique sur "Sign Up" → crée un compte avec ton Gmail<br>
+        3. Confirme ton adresse email<br><br>
+        💡 Le plan gratuit inclut 200 emails/mois — largement suffisant pour commencer.
+      </div>
+    </div>
+
+    <div class="card" style="cursor:pointer" onclick="toggleSection('e2')">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font-size:14px;font-weight:500">② Connecter ton Gmail</div>
+        <div id="e2-icon" style="color:var(--text3);font-size:18px">›</div>
+      </div>
+      <div id="e2" style="display:none;margin-top:12px;font-size:13px;color:var(--text2);line-height:1.7">
+        1. Dans EmailJS → "Email Services" → "Add New Service"<br>
+        2. Choisis Gmail<br>
+        3. Clique "Connect Account" → connecte ton Google<br>
+        4. Donne-lui un nom ex: "Mon Gmail DJ"<br>
+        5. Clique "Create Service"<br><br>
+        💡 Note le <strong style="color:var(--accent)">Service ID</strong> — il ressemble à : service_abc123
+      </div>
+    </div>
+
+    <div class="card" style="cursor:pointer" onclick="toggleSection('e3')">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font-size:14px;font-weight:500">③ Créer un template email</div>
+        <div id="e3-icon" style="color:var(--text3);font-size:18px">›</div>
+      </div>
+      <div id="e3" style="display:none;margin-top:12px;font-size:13px;color:var(--text2);line-height:1.7">
+        1. EmailJS → "Email Templates" → "Create New Template"<br>
+        2. To Email : <span style="color:var(--accent)">{{to_email}}</span><br>
+        3. Subject : <span style="color:var(--accent)">Merci pour votre confiance — {{from_name}}</span><br>
+        4. Body : <span style="color:var(--accent)">{{message}}</span><br>
+        5. Clique "Save"<br><br>
+        💡 Note le <strong style="color:var(--accent)">Template ID</strong> — il ressemble à : template_xyz789
+      </div>
+    </div>
+
+    <div class="card" style="cursor:pointer" onclick="toggleSection('e4')">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font-size:14px;font-weight:500">④ Configurer dans DJ Recap</div>
+        <div id="e4-icon" style="color:var(--text3);font-size:18px">›</div>
+      </div>
+      <div id="e4" style="display:none;margin-top:12px;font-size:13px;color:var(--text2);line-height:1.7">
+        1. Ton nom → "Account" → copie ta <strong style="color:var(--accent)">Public Key</strong><br>
+        2. Dans DJ Recap → Profil → Configuration EmailJS<br>
+        3. Remplis les 3 champs :<br>
+        &nbsp;&nbsp;• Public Key : user_XXXX<br>
+        &nbsp;&nbsp;• Service ID : service_XXXX<br>
+        &nbsp;&nbsp;• Template ID : template_XXXX<br>
+        4. Clique <strong style="color:var(--accent)">Sauvegarder</strong>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="stitle">❓ Questions fréquentes</div>
+
+    <div class="card" style="cursor:pointer" onclick="toggleSection('f1')">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font-size:14px;font-weight:500">Je change de téléphone, je perds mes données ?</div>
+        <div id="f1-icon" style="color:var(--text3);font-size:18px">›</div>
+      </div>
+      <div id="f1" style="display:none;margin-top:12px;font-size:13px;color:var(--text2);line-height:1.7">
+        Non ! Toutes tes données sont dans le cloud. Reconnecte-toi avec ton email sur le nouveau téléphone et tout est là. ✅
+      </div>
+    </div>
+
+    <div class="card" style="cursor:pointer" onclick="toggleSection('f2')">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font-size:14px;font-weight:500">D'autres DJs peuvent voir mes soirées ?</div>
+        <div id="f2-icon" style="color:var(--text3);font-size:18px">›</div>
+      </div>
+      <div id="f2" style="display:none;margin-top:12px;font-size:13px;color:var(--text2);line-height:1.7">
+        Non, impossible. Chaque DJ a un compte totalement isolé. Tes données sont strictement privées et sécurisées. 🔒
+      </div>
+    </div>
+
+    <div class="card" style="cursor:pointer" onclick="toggleSection('f3')">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font-size:14px;font-weight:500">L'app fonctionne sans internet ?</div>
+        <div id="f3-icon" style="color:var(--text3);font-size:18px">›</div>
+      </div>
+      <div id="f3" style="display:none;margin-top:12px;font-size:13px;color:var(--text2);line-height:1.7">
+        La consultation des soirées déjà chargées fonctionne en offline. Pour ajouter une soirée ou envoyer un mail, une connexion internet est nécessaire.
+      </div>
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div style="text-align:center;padding:28px 0 8px">
+      <div style="font-family:var(--font-d);font-size:13px;font-weight:700;color:var(--text3);letter-spacing:1px">DJ RECAP</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:6px">© 2026 DJ Recap — Tous droits réservés</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:3px">djrecap.github.io/djrecap</div>
+    </div>
+    <div style="height:20px"></div>
+  </div>
+</div>
+
+<!-- ══ TUTORIEL INTERACTIF ══ -->
+<div id="tutorial-overlay" style="display:none;position:fixed;inset:0;z-index:9999">
+  <div id="tutorial-backdrop" style="position:absolute;inset:0;background:rgba(0,0,0,0.75)"></div>
+  <div id="tutorial-box" style="position:absolute;background:var(--bg2);border:1px solid var(--accent);border-radius:16px;padding:20px;width:calc(100% - 48px);max-width:360px;left:50%;transform:translateX(-50%);box-shadow:0 0 30px rgba(124,92,252,0.3)">
+    <div style="text-align:center;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)">
+      <div style="font-size:20px;margin-bottom:6px">🎧</div>
+      <div style="font-family:var(--font-d);font-size:15px;font-weight:700;color:var(--accent)">Bienvenue sur DJ Recap !</div>
+      <div style="font-size:12px;color:var(--text2);margin-top:4px">Voici un guide rapide pour commencer</div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <div style="font-size:12px;color:var(--text3)" id="tut-step-label">Étape 1/4</div>
+      <button onclick="skipTutorial()" style="background:none;border:none;color:var(--text3);font-size:13px;cursor:pointer">Passer ✕</button>
+    </div>
+    <div style="font-size:22px;text-align:center;margin-bottom:10px" id="tut-icon">➕</div>
+    <div style="font-family:var(--font-d);font-size:16px;font-weight:700;text-align:center;margin-bottom:8px;color:var(--text)" id="tut-title">Ajoute ta première soirée</div>
+    <div style="font-size:13px;color:var(--text2);text-align:center;line-height:1.6;margin-bottom:16px" id="tut-desc">Appuie sur le bouton <strong style="color:var(--accent)">+</strong> en bas au centre pour créer ta première prestation.</div>
+    <div style="display:flex;gap:10px">
+      <button id="tut-prev-btn" onclick="tutPrev()" style="flex:1;padding:10px;background:none;border:1px solid var(--border);border-radius:10px;color:var(--text2);font-size:13px;cursor:pointer;display:none">← Précédent</button>
+      <button id="tut-next-btn" onclick="tutNext()" style="flex:1;padding:10px;background:var(--accent);border:none;border-radius:10px;color:white;font-size:13px;font-weight:600;cursor:pointer">Suivant →</button>
+    </div>
+    <div style="display:flex;justify-content:center;gap:6px;margin-top:12px" id="tut-dots"></div>
+  </div>
+  <div id="tut-arrow" style="position:absolute;font-size:32px;animation:bounce 0.8s infinite alternate">👇</div>
+</div>
+
+<!-- ══ BOTTOM NAV ══ -->
+<nav class="bottom-nav" id="bottom-nav" style="display:none">
+  <button class="nav-btn active" id="nav-home" onclick="goTo('home')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+    Accueil
+  </button>
+  <button class="nav-btn" id="nav-new" onclick="openNew()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+    Nouvelle
+  </button>
+  <button class="nav-btn" id="nav-stats" onclick="openStats()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+    Stats
+  </button>
+  <button class="nav-btn" id="nav-premium" onclick="goTo('premium')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+    Abonnement
+  </button>
+  <button class="nav-btn" id="nav-profile" onclick="goTo('profile')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    Profil
+  </button>
+</nav>
+</div>
+
+<!-- ══ TEMPLATE MODAL ══ -->
+<div class="modal-bg" id="modal-template">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div style="font-family:var(--font-d);font-size:20px;font-weight:800;margin-bottom:16px">✉️ Template email</div>
+    <input type="hidden" id="tpl-edit-index">
+    <div class="field"><label>Nom du template</label><input type="text" id="tpl-name" placeholder="ex: Mariage classique, Style fun…"></div>
+    <div class="field">
+      <label>Corps du message</label>
+      <div style="font-size:11px;color:var(--text3);margin-bottom:6px">Variables dispo : {prénoms}, {lieu}, {date}</div>
+      <textarea id="tpl-body" rows="8" placeholder="Ton message personnalisé…"></textarea>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:14px">
+      <button class="btn btn-ghost" style="flex:1" onclick="closeModal('modal-template')">Annuler</button>
+      <button class="btn btn-primary" style="flex:2" onclick="saveTemplate()">💾 Sauvegarder</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ EMAIL MODAL ══ -->
+<div class="modal-bg" id="modal-email">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div style="font-family:var(--font-d);font-size:20px;font-weight:800;margin-bottom:16px">✉️ Remerciement</div>
+    <div class="field"><label>Email des mariés</label><input type="email" id="m-email"></div>
+    <div class="field"><label>Prénom(s)</label><input type="text" id="m-names" oninput="updatePreview()"></div>
+    <div class="field" id="tpl-selector-field" style="display:none"><label>Utiliser un template</label><select id="m-tpl-select" onchange="applyTemplate(this.value)"><option value="">— Message par défaut —</option></select></div>
+    <div class="field"><label>Aperçu du message</label><div class="email-preview" id="m-preview"></div></div>
+    <div class="field"><label>Ajout personnalisé</label><textarea id="m-custom" rows="3" placeholder="Un mot personnel…" oninput="updatePreview()"></textarea></div>
+    <div style="display:flex;gap:10px;margin-top:14px">
+      <button class="btn btn-ghost" style="flex:1" onclick="closeModal('modal-email')">Annuler</button>
+      <button class="btn btn-primary" style="flex:2" onclick="sendEmail()">📨 Envoyer</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+// ══════════════════════════════════
+// CONFIG — À REMPLIR
+// ══════════════════════════════════
 const FIREBASE_CONFIG = {
   apiKey: "AIzaSyCv6IV1VGb2m1Jfnr_p5Sxl5SfIHZG7bgY",
   authDomain: "dj-recap.firebaseapp.com",
   projectId: "dj-recap",
 };
+const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/6oU28q55e72ReON8GG2Ry03";
+const STRIPE_STUDENT_LINK = "https://buy.stripe.com/bJecN4apy0Et3656yy2Ry04";
+const STRIPE_PORTAL_LINK = "https://billing.stripe.com/p/login/5kQdR855e1Ix6ih8GG2Ry00";
+const FREE_LIMIT = 3;
+const FREE_EMAIL_LIMIT = 0;
+
+// ══════════════════════════════════
+// INIT
+// ══════════════════════════════════
+let auth, db, currentUser, userDoc = {};
+let allEvents = [], tracks = [], selectedStyles = [], currentNote = 0, currentEv = null, filterType = 'tous';
 
 firebase.initializeApp(FIREBASE_CONFIG);
-const auth = firebase.auth();
-const db = firebase.firestore();
+auth = firebase.auth();
+db = firebase.firestore();
 
-let currentUser = null;
-let userDoc = {};
-let allEvents = [];
-
-// ====================== AUTH ======================
-function switchAuth(tab) {
-  document.getElementById('auth-form-login').style.display = tab === 'login' ? 'block' : 'none';
-  document.getElementById('auth-form-signup').style.display = tab === 'signup' ? 'block' : 'none';
-}
-
-async function doLogin() {
-  const email = document.getElementById('login-email').value.trim();
-  const pw = document.getElementById('login-pw').value;
-  const errorEl = document.getElementById('auth-error');
-
-  try {
-    await auth.signInWithEmailAndPassword(email, pw);
-  } catch (e) {
-    errorEl.textContent = "Email ou mot de passe incorrect";
-    errorEl.style.display = 'block';
-  }
-}
-
-async function doSignup() {
-  const name = document.getElementById('signup-name').value.trim();
-  const email = document.getElementById('signup-email').value.trim();
-  const pw = document.getElementById('signup-pw').value;
-  const errorEl = document.getElementById('auth-error');
-
-  if (!name) {
-    errorEl.textContent = "Veuillez entrer un nom de DJ";
-    errorEl.style.display = 'block';
-    return;
-  }
-
-  try {
-    const cred = await auth.createUserWithEmailAndPassword(email, pw);
-    await cred.user.updateProfile({ displayName: name });
-  } catch (e) {
-    errorEl.textContent = "Erreur lors de la création du compte";
-    errorEl.style.display = 'block';
-  }
-}
-
-// ====================== APP ======================
-auth.onAuthStateChanged(async (user) => {
+auth.onAuthStateChanged(async user => {
   if (user) {
     currentUser = user;
     await loadUserDoc();
-    document.getElementById('screen-auth').classList.remove('active');
-    document.getElementById('screen-home').classList.add('active');
+    showApp();
     loadEvents();
+    loadEmailJSConfig();
+  } else {
+    currentUser = null;
+    hideApp();
   }
 });
+
+function showApp() {
+  document.getElementById('screen-auth').classList.remove('active');
+  document.getElementById('bottom-nav').style.display = 'flex';
+  document.querySelectorAll('#filter-chips .chip').forEach(c => {
+    c.onclick = () => {
+      document.querySelectorAll('#filter-chips .chip').forEach(x => x.classList.remove('active'));
+      c.classList.add('active');
+      filterType = c.dataset.f;
+      renderEvents();
+    };
+  });
+
+  const seen = localStorage.getItem('ob_seen_' + currentUser.uid);
+  if (!seen) {
+    document.getElementById('bottom-nav').style.display = 'none';
+    goTo('onboarding');
+  } else {
+    goTo('home');
+  }
+}
+
+function hideApp() {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-auth').classList.add('active');
+  document.getElementById('bottom-nav').style.display = 'none';
+}
 
 async function loadUserDoc() {
   const ref = db.collection('users').doc(currentUser.uid);
   const snap = await ref.get();
   if (snap.exists) {
     userDoc = snap.data();
+    const realName = currentUser.displayName || '';
+    if (realName && (!userDoc.djName || userDoc.djName === 'DJ')) {
+      userDoc.djName = realName;
+      await ref.update({ djName: realName });
+    }
   } else {
-    userDoc = { djName: currentUser.displayName || "DJ", plan: "free" };
+    userDoc = {
+      djName: currentUser.displayName || 'DJ',
+      email: currentUser.email,
+      plan: 'free',
+      emailsSentThisMonth: 0,
+      emailMonthReset: new Date().toISOString().slice(0,7),
+      createdAt: new Date().toISOString(),
+    };
     await ref.set(userDoc);
   }
-  document.getElementById('home-djname').textContent = userDoc.djName || "DJ";
+  updatePlanUI();
 }
 
-async function loadEvents() {
-  const snap = await db.collection('events').where('uid','==', currentUser.uid).get();
-  allEvents = snap.docs.map(d => ({id: d.id, ...d.data()}));
-  allEvents.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
+function updatePlanUI() {
+  const isPrem = userDoc.plan === 'premium';
+  const planBtn = document.getElementById('plan-btn');
+  planBtn.textContent = isPrem ? '⭐ PREMIUM' : 'FREE';
+  planBtn.className = 'plan-badge ' + (isPrem ? 'plan-premium' : 'plan-free');
 
-  let html = '';
-  allEvents.forEach(ev => {
-    html += `<div style="background:rgba(255,255,255,0.06);padding:15px;border-radius:12px;margin-bottom:10px" onclick="alert('Soirée : ${ev.lieu || "Sans nom"}')">
-      <strong>${ev.lieu || "Événement"}</strong><br>
-      <small>${ev.date || ""} - ${ev.type || ""}</small>
-    </div>`;
-  });
+  const name = userDoc.djName || 'DJ';
+  document.getElementById('home-djname').innerHTML = '<span style="color:var(--accent)">' + name + '</span>';
+  document.getElementById('profile-name').textContent = name;
+  document.getElementById('profile-email').textContent = currentUser.email;
+  // Photo de profil
+  const photoKey = 'profile_photo_' + currentUser.uid;
+  const savedPhoto = localStorage.getItem(photoKey);
+  const avatarEl = document.getElementById('profile-avatar');
+  if (savedPhoto) {
+    avatarEl.innerHTML = `<img src="${savedPhoto}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+  } else {
+    avatarEl.textContent = name.slice(0,2).toUpperCase();
+  }
+  // Update profile top badge
+  const profileTopBtn = document.getElementById('plan-btn-profile');
+  if (profileTopBtn) {
+    profileTopBtn.textContent = isPrem ? '⭐ Premium' : '+ Premium';
+    profileTopBtn.className = 'plan-badge ' + (isPrem ? 'plan-premium' : 'plan-free');
+  }
+  document.getElementById('profile-plan-badge').innerHTML = isPrem
+    ? '<span class="plan-badge plan-premium">⭐ Premium</span>'
+    : '<span class="plan-badge plan-free" onclick="goTo(\'premium\')" style="cursor:pointer">Passer Premium →</span>';
 
-  document.getElementById('events-list').innerHTML = html || "<p style='text-align:center;color:#666'>Aucune soirée enregistrée</p>";
+  document.getElementById('stripe-section').style.display = isPrem ? 'none' : 'block';
+  document.getElementById('premium-active-msg').style.display = isPrem ? 'block' : 'none';
+}
+
+// ══════════════════════════════════
+// AUTH
+// ══════════════════════════════════
+function switchAuth(tab) {
+  document.getElementById('auth-form-login').style.display = tab === 'login' ? 'block' : 'none';
+  document.getElementById('auth-form-signup').style.display = tab === 'signup' ? 'block' : 'none';
+  document.getElementById('tab-login').classList.toggle('active', tab === 'login');
+  document.getElementById('tab-signup').classList.toggle('active', tab === 'signup');
+  authError('');
+}
+
+function authError(msg) {
+  const el = document.getElementById('auth-error');
+  el.textContent = msg; el.style.display = msg ? 'block' : 'none';
+}
+
+async function doLogin() {
+  const em = document.getElementById('login-email').value.trim();
+  const pw = document.getElementById('login-pw').value;
+  try { await auth.signInWithEmailAndPassword(em, pw); }
+  catch(e) { authError(firebaseErr(e.code)); }
+}
+
+async function doSignup() {
+  const name = document.getElementById('signup-name').value.trim();
+  const em = document.getElementById('signup-email').value.trim();
+  const pw = document.getElementById('signup-pw').value;
+  if (!name) { authError('Renseigne ton nom de DJ'); return; }
+  try {
+    const cred = await auth.createUserWithEmailAndPassword(em, pw);
+    await cred.user.updateProfile({ displayName: name });
+    userDoc.djName = name;
+  } catch(e) { authError(firebaseErr(e.code)); }
+}
+
+async function doReset() {
+  const em = document.getElementById('login-email').value.trim();
+  if (!em) { authError('Entre ton email pour réinitialiser'); return; }
+  try { await auth.sendPasswordResetEmail(em); authError(''); toast('📧 Email de réinitialisation envoyé !'); }
+  catch(e) { authError(firebaseErr(e.code)); }
+}
+
+async function doLogout() {
+  await auth.signOut();
+  toast('À bientôt 👋');
+}
+
+async function deleteAccount() {
+  if (!confirm('Supprimer définitivement ton compte et toutes tes données ?')) return;
+  try {
+    const batch = db.batch();
+    const snaps = await db.collection('events').where('uid','==',currentUser.uid).get();
+    snaps.forEach(d => batch.delete(d.ref));
+    batch.delete(db.collection('users').doc(currentUser.uid));
+    await batch.commit();
+    await currentUser.delete();
+    toast('Compte supprimé');
+  } catch(e) { toast('❌ Reconnecte-toi d\'abord pour supprimer'); }
+}
+
+function firebaseErr(code) {
+  const map = {
+    'auth/user-not-found': 'Aucun compte avec cet email',
+    'auth/wrong-password': 'Mot de passe incorrect',
+    'auth/email-already-in-use': 'Email déjà utilisé',
+    'auth/weak-password': 'Mot de passe trop court (6 min)',
+    'auth/invalid-email': 'Email invalide',
+    'auth/too-many-requests': 'Trop de tentatives, attends un peu',
+  };
+  return map[code] || 'Erreur : ' + code;
+}
+
+// ══════════════════════════════════
+// NAVIGATION
+// ══════════════════════════════════
+function goTo(s) {
+  document.querySelectorAll('.screen').forEach(x => x.classList.remove('active'));
+  document.getElementById('screen-' + s).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(x => x.classList.remove('active'));
+  const nb = document.getElementById('nav-' + s);
+  if (nb) nb.classList.add('active');
 }
 
 function openNew() {
-  if (allEvents.length >= FREE_LIMIT && userDoc.plan !== 'premium') {
-    alert("Vous avez atteint la limite de 7 soirées gratuites.\n\nPassez en Premium pour continuer.");
+  const isPrem = userDoc.plan === 'premium';
+  const warn = document.getElementById('new-limit-warn');
+  if (!isPrem && allEvents.length >= FREE_LIMIT) {
+    warn.innerHTML = `<div class="limit-banner"><div class="limit-icon">🔒</div><div class="limit-text"><strong>Limite atteinte (${FREE_LIMIT} soirées)</strong><br>Passe en Premium pour ajouter des soirées illimitées.</div></div><button class="btn btn-gold btn-sm" style="margin-bottom:12px" onclick="goTo('premium')">🚀 Passer Premium</button>`;
+    goTo('new');
     return;
   }
-  alert("Formulaire nouvelle soirée - À développer");
+  warn.innerHTML = '';
+  resetForm();
+  goTo('new');
 }
 
-function goTo(screen) {
-  // Pour l'instant on ne fait rien de plus
-  console.log("Aller vers :", screen);
+// ══════════════════════════════════
+// FORM
+// ══════════════════════════════════
+function resetForm() {
+  ['f-type','f-lieu','f-ville','f-maries','f-email','f-acoustique','f-capacite','f-notes','f-private','f-organisateur','f-email-orga','f-sets','f-cachet','f-residence-type','f-res-lieu','f-res-frequence-club','f-res-radio-nom','f-res-emission','f-res-frequence-radio','f-res-heure','f-res-bar-nom','f-res-frequence-bar','f-res-style'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = el.tagName === 'SELECT' ? el.options[0].value : '';
+  });
+  document.getElementById('f-date').value = new Date().toISOString().split('T')[0];
+  document.getElementById('f-ambiance').value = 5;
+  document.getElementById('amb-val').textContent = '5/10';
+  currentNote = 0; tracks = []; selectedStyles = [];
+  renderStars(0);
+  document.getElementById('note-label').textContent = 'Appuie sur une étoile';
+  renderTracks(); renderStyles();
+  toggleMaries('mariage');
+
+  document.querySelectorAll('#stars-input .star').forEach(s => {
+    s.onclick = () => { currentNote = parseInt(s.dataset.v); renderStars(currentNote); const l=['','Bof…','Pas top','Correct','Bien !','🔥 Parfaite !']; document.getElementById('note-label').textContent = l[currentNote]; };
+  });
+  document.querySelectorAll('#styles-tags .tag').forEach(t => {
+    t.onclick = () => { const s = t.dataset.s; if (selectedStyles.includes(s)) { selectedStyles = selectedStyles.filter(x=>x!==s); t.classList.remove('on'); } else { selectedStyles.push(s); t.classList.add('on'); }};
+  });
+  document.querySelectorAll('#filter-chips .chip').forEach(c => {
+    c.onclick = () => { document.querySelectorAll('#filter-chips .chip').forEach(x=>x.classList.remove('active')); c.classList.add('active'); filterType = c.dataset.f; renderEvents(); };
+  });
 }
+
+function toggleMaries(t) {
+  document.getElementById('section-maries').style.display = t === 'mariage' ? 'block' : 'none';
+  const grandEvents = ['festival','sportif','residence'];
+  document.getElementById('section-grand-event').style.display = grandEvents.includes(t) ? 'block' : 'none';
+  document.getElementById('field-residence-type').style.display = t === 'residence' ? 'block' : 'none';
+
+  // Masquer notes salle pour festival et sportif
+  const notesSalle = document.getElementById('section-notes-salle');
+  if (notesSalle) notesSalle.style.display = ['festival','sportif'].includes(t) ? 'none' : 'block';
+
+  // Masquer lieu pour résidence (on le choisit dans le sous-menu)
+  const fieldLieu = document.getElementById('field-lieu');
+  if (fieldLieu) fieldLieu.style.display = t === 'residence' ? 'none' : 'block';
+
+  if (t !== 'residence') {
+    ['res-club','res-radio','res-bar'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
+  }
+}
+
+function toggleResidenceFields(v) {
+  ['res-club','res-radio','res-bar'].forEach(id => document.getElementById(id).style.display = 'none');
+  if (v === 'club') document.getElementById('res-club').style.display = 'block';
+  if (v === 'radio') document.getElementById('res-radio').style.display = 'block';
+  if (v === 'bar') document.getElementById('res-bar').style.display = 'block';
+  // Masquer notes salle pour radio
+  const notesSalle = document.getElementById('section-notes-salle');
+  if (notesSalle) notesSalle.style.display = v === 'radio' ? 'none' : 'block';
+}
+function renderStars(n) { document.querySelectorAll('.star').forEach(s => s.classList.toggle('lit', parseInt(s.dataset.v) <= n)); }
+function renderStyles() { document.querySelectorAll('#styles-tags .tag').forEach(t => t.classList.toggle('on', selectedStyles.includes(t.dataset.s))); }
+
+function addTrack() {
+  const a = document.getElementById('t-artist').value.trim();
+  const t = document.getElementById('t-title').value.trim();
+  if (!t) { toast('⚠️ Renseigne le titre !'); return; }
+  tracks.push({ artist:a, title:t });
+  document.getElementById('t-artist').value = '';
+  document.getElementById('t-title').value = '';
+  renderTracks();
+}
+
+function renderTracks() {
+  const el = document.getElementById('tracks-list');
+  if (!tracks.length) { el.innerHTML = '<div style="color:var(--text3);font-size:13px;padding:6px 0">Aucun son ajouté</div>'; return; }
+  el.innerHTML = tracks.map((t,i) => `
+    <div class="track-item">
+      <div class="track-rank">${i+1}</div>
+      <div class="track-info"><div class="track-name">${t.title}</div><div class="track-sub">${t.artist||'Artiste inconnu'}</div></div>
+      <button onclick="tracks.splice(${i},1);renderTracks()" style="background:none;border:none;color:var(--pink);font-size:18px;cursor:pointer;padding:4px">✕</button>
+    </div>`).join('');
+}
+
+// ══════════════════════════════════
+// SAVE EVENT
+// ══════════════════════════════════
+async function saveEvent() {
+  const type = document.getElementById('f-type').value;
+  const lieuEl = document.getElementById('f-lieu').value.trim();
+  const resLieuEl = document.getElementById('f-res-lieu') ? document.getElementById('f-res-lieu').value.trim() : '';
+  const resBarEl = document.getElementById('f-res-bar-nom') ? document.getElementById('f-res-bar-nom').value.trim() : '';
+  const resRadioEl = document.getElementById('f-res-radio-nom') ? document.getElementById('f-res-radio-nom').value.trim() : '';
+  const resFreqClub = document.getElementById('f-res-frequence-club') ? document.getElementById('f-res-frequence-club').value.trim() : '';
+
+  const lieu = type === 'residence'
+    ? (resLieuEl || resBarEl || resRadioEl || resFreqClub || 'Résidence DJ')
+    : lieuEl;
+
+  if (type !== 'residence' && !lieu) { toast('⚠️ Indique le nom du lieu !'); return; }
+  const isPrem = userDoc.plan === 'premium';
+  if (!isPrem && allEvents.length >= FREE_LIMIT) { toast('🔒 Limite atteinte — passe Premium !'); goTo('premium'); return; }
+
+  const ev = {
+    uid: currentUser.uid,
+    type: document.getElementById('f-type').value,
+    lieu, date: document.getElementById('f-date').value,
+    ville: document.getElementById('f-ville').value.trim(),
+    maries: document.getElementById('f-maries').value.trim(),
+    email: document.getElementById('f-email').value.trim(),
+    note: currentNote,
+    ambiance: parseInt(document.getElementById('f-ambiance').value),
+    tracks: [...tracks], styles: [...selectedStyles],
+    acoustique: document.getElementById('f-acoustique').value,
+    capacite: document.getElementById('f-capacite').value.trim(),
+    notes: document.getElementById('f-notes').value.trim(),
+    private: document.getElementById('f-private').value.trim(),
+    organisateur: document.getElementById('f-organisateur').value.trim(),
+    emailOrga: document.getElementById('f-email-orga').value.trim(),
+    sets: document.getElementById('f-sets').value.trim(),
+    cachet: document.getElementById('f-cachet').value.trim(),
+    residenceType: document.getElementById('f-residence-type').value,
+    resLieu: document.getElementById('f-res-lieu').value.trim(),
+    resFrequenceClub: document.getElementById('f-res-frequence-club').value.trim(),
+    resRadioNom: document.getElementById('f-res-radio-nom').value.trim(),
+    resEmission: document.getElementById('f-res-emission').value.trim(),
+    resFrequenceRadio: document.getElementById('f-res-frequence-radio').value.trim(),
+    resHeure: document.getElementById('f-res-heure').value.trim(),
+    resBarNom: document.getElementById('f-res-bar-nom').value.trim(),
+    resFrequenceBar: document.getElementById('f-res-frequence-bar').value.trim(),
+    resStyle: document.getElementById('f-res-style').value.trim(),
+    createdAt: new Date().toISOString(),
+  };
+
+  try {
+    await db.collection('events').add(ev);
+    toast('✅ Soirée enregistrée !');
+    await loadEvents();
+    goTo('home');
+  } catch(e) { toast('❌ Erreur Firebase : ' + e.message); }
+}
+
+// ══════════════════════════════════
+// LOAD & RENDER
+// ══════════════════════════════════
+async function loadEvents() {
+  try {
+    const snap = await db.collection('events').where('uid','==',currentUser.uid).get();
+    allEvents = snap.docs.map(d => ({ id:d.id, ...d.data() }));
+    allEvents.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
+    renderEvents();
+    refreshStats();
+    renderLimitBanner();
+    checkWhatsNew();
+    checkRecapReminder();
+  } catch(e) { console.warn(e); }
+}
+
+function renderEvents() {
+  const list = filterType === 'tous' ? allEvents : allEvents.filter(e => e.type === filterType);
+  const el = document.getElementById('events-list');
+  if (!list.length) {
+    el.innerHTML = `<div class="empty"><div class="empty-icon">🎧</div><div class="empty-title">Aucune soirée</div><div class="empty-sub">Appuie sur + pour commencer</div></div>`;
+    return;
+  }
+  el.innerHTML = list.map(e => {
+    const d = e.date ? new Date(e.date+'T12:00:00').toLocaleDateString('fr-FR',{day:'numeric',month:'short',year:'numeric'}) : '';
+    const stars = e.note ? '★'.repeat(e.note)+'☆'.repeat(5-e.note) : '';
+    const top = e.tracks&&e.tracks.length ? `<div style="font-size:12px;color:var(--text3);margin-top:5px">🎶 ${e.tracks[0].title}${e.tracks[0].artist?' — '+e.tracks[0].artist:''}</div>` : '';
+    return `<div class="ev-card" onclick="openDetail('${e.id}')">
+      <div class="ev-badge b-${e.type}">${typeName(e.type)}</div>
+      <div class="ev-title">${e.lieu}</div>
+      <div class="ev-meta">
+        <span>📅 ${d}</span>${e.ville?`<span>📍 ${e.ville}</span>`:''}
+        ${stars?`<span style="color:var(--gold)">${stars}</span>`:''}
+      </div>${top}</div>`;
+  }).join('');
+}
+
+function typeName(t) {
+  return {mariage:'💒 Mariage',corporate:'🏢 Corporate',club:'🪩 Club / Discothèque',prive:'🏠 Privé',festival:'🎪 Festival',sportif:'🏟️ Sportif',residence:'🎧 Résidence',autre:'🎉 Autre'}[t]||t;
+}
+
+function refreshStats() {
+  document.getElementById('s-total').textContent = allEvents.length;
+  document.getElementById('s-maries').textContent = allEvents.filter(e=>e.type==='mariage').length;
+  const noted = allEvents.filter(e=>e.note>0);
+  document.getElementById('s-avg').textContent = noted.length ? (noted.reduce((s,e)=>s+e.note,0)/noted.length).toFixed(1) : '–';
+}
+
+// ══════════════════════════════════════
+// QUOI DE NEUF
+// ══════════════════════════════════════
+const WHATS_NEW_VERSION = '1.3';
+const WHATS_NEW_CONTENT = [
+  '🎧 Résidence DJ : sous-types Club, Radio, Bar',
+  '🏟️ Nouveaux types : Festival, Sportif, Résidence',
+  '🔍 Barre de recherche (Premium)',
+  '✏️ Modification des soirées (Premium)',
+];
+
+function checkWhatsNew() {
+  const el = document.getElementById('whatsnew-banner');
+  if (!el) return;
+  const seen = localStorage.getItem('whatsnew_v' + WHATS_NEW_VERSION + '_' + currentUser.uid);
+  if (seen) { el.innerHTML = ''; return; }
+
+  el.innerHTML = `
+    <div style="background:linear-gradient(135deg,rgba(124,92,252,0.15),rgba(0,212,255,0.1));border:1px solid rgba(124,92,252,0.3);border-radius:var(--radius-sm);padding:14px;margin:10px 0">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div style="font-size:13px;font-weight:600;color:var(--accent)">🚀 Nouveautés v${WHATS_NEW_VERSION}</div>
+        <button onclick="dismissWhatsNew()" style="background:none;border:none;color:var(--text3);font-size:16px;cursor:pointer">✕</button>
+      </div>
+      ${WHATS_NEW_CONTENT.map(item => `<div style="font-size:12px;color:var(--text2);padding:3px 0">${item}</div>`).join('')}
+    </div>`;
+}
+
+function dismissWhatsNew() {
+  localStorage.setItem('whatsnew_v' + WHATS_NEW_VERSION + '_' + currentUser.uid, '1');
+  document.getElementById('whatsnew-banner').innerHTML = '';
+}
+
+function checkRecapReminder() {
+  const el = document.getElementById('recap-reminder');
+  if (!el) return;
+
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  const yesterdayStr = yesterday.toISOString().split('T')[0];
+
+  const hasYesterdayRecap = allEvents.some(e => e.date === yesterdayStr);
+  const dismissed = localStorage.getItem('reminder_dismissed_' + yesterdayStr + '_' + currentUser.uid);
+
+  if (!hasYesterdayRecap && !dismissed) {
+    const dayName = yesterday.toLocaleDateString('fr-FR', { weekday:'long' });
+    el.innerHTML = `
+      <div style="background:rgba(124,92,252,0.1);border:1px solid rgba(124,92,252,0.25);border-radius:var(--radius-sm);padding:12px 14px;margin:10px 0;display:flex;align-items:center;gap:12px">
+        <div style="font-size:20px">🎧</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:500;color:var(--text)">Tu avais une soirée ${dayName} ?</div>
+          <div style="font-size:12px;color:var(--text2);margin-top:2px">N'oublie pas de faire ton recap !</div>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button onclick="openNew()" style="background:var(--accent);border:none;color:white;font-size:12px;padding:6px 12px;border-radius:6px;cursor:pointer">+ Recap</button>
+          <button onclick="dismissReminder('${yesterdayStr}')" style="background:none;border:none;color:var(--text3);font-size:16px;cursor:pointer">✕</button>
+        </div>
+      </div>`;
+  } else {
+    el.innerHTML = '';
+  }
+}
+
+function dismissReminder(date) {
+  localStorage.setItem('reminder_dismissed_' + date + '_' + currentUser.uid, '1');
+  document.getElementById('recap-reminder').innerHTML = '';
+}
+
+function renderLimitBanner() {
+  const isPrem = userDoc.plan === 'premium';
+  const el = document.getElementById('limit-banner-home');
+  if (isPrem) { el.innerHTML = ''; return; }
+  const n = allEvents.length;
+  const pct = Math.round((n/FREE_LIMIT)*100);
+  if (n >= FREE_LIMIT) {
+    el.innerHTML = `<div class="limit-banner"><div class="limit-icon">🔒</div><div class="limit-text"><strong>Limite atteinte (${FREE_LIMIT}/${FREE_LIMIT})</strong><br>Passe Premium pour des soirées illimitées.</div></div><button class="btn btn-gold btn-sm" style="margin-bottom:4px" onclick="goTo('premium')">🚀 Passer Premium</button>`;
+  } else if (n >= 7) {
+    el.innerHTML = `<div class="limit-banner"><div class="limit-icon">⚠️</div><div class="limit-text"><strong>${n}/${FREE_LIMIT} soirées utilisées</strong><br>Plus que ${FREE_LIMIT-n} soirée(s) gratuites.</div></div>`;
+  } else { el.innerHTML = ''; }
+}
+
+// ══════════════════════════════════
+// DETAIL
+// ══════════════════════════════════
+function openDetail(id) {
+  currentEv = allEvents.find(e=>e.id===id);
+  if (!currentEv) return;
+  const e = currentEv;
+  const d = e.date ? new Date(e.date+'T12:00:00').toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'}) : '';
+  const stars = Array.from({length:5},(_,i)=>`<span class="star ${i<(e.note||0)?'lit':''}" style="cursor:default;font-size:22px">★</span>`).join('');
+
+  let h = `<div class="detail-hero">
+    <div class="ev-badge b-${e.type}" style="margin-bottom:10px">${typeName(e.type)}</div>
+    <div style="font-family:var(--font-d);font-size:22px;font-weight:700;margin-bottom:6px">${e.lieu}</div>
+    <div style="font-size:13px;color:var(--text2)">${d}${e.ville?' · '+e.ville:''}</div>
+    ${e.note?`<div class="stars" style="margin-top:12px;pointer-events:none">${stars}</div>`:''}
+  </div><div style="padding:0 0 8px">`;
+
+  if (e.maries||e.email) {
+    h += `<div class="card"><div class="stitle">👰 Mariés</div>
+      ${e.maries?`<div style="font-size:16px;font-weight:500;margin-bottom:6px">${e.maries}</div>`:''}
+      ${e.email?`<div style="font-size:13px;color:var(--cyan);margin-bottom:14px">${e.email}</div>
+        ${userDoc.plan === 'premium' ? `<button class="btn btn-outline btn-sm" onclick="openEmailModal()">✉️ Envoyer un mail de remerciement</button>` : `<div style="font-size:12px;color:var(--text3);padding:8px;background:var(--bg2);border-radius:6px">🔒 Envoi d'emails réservé au Premium</div>`}`:''}
+    </div>`;
+  }
+
+  const grandEvents = ['festival','sportif','residence'];
+  if (grandEvents.includes(e.type) && (e.organisateur||e.sets||e.cachet||e.residenceType)) {
+    const residenceLabels = {club:'🪩 Club / Discothèque', radio:'📻 Radio', bar:'🍸 Bar / Lounge'};
+    let resDetails = '';
+    if (e.residenceType === 'club') {
+      resDetails = `
+        ${e.resLieu?`<div style="margin-bottom:6px"><span style="color:var(--text2);font-size:12px">Lieu : </span><span style="font-size:14px">${e.resLieu}</span></div>`:''}
+        ${e.resFrequenceClub?`<div style="margin-bottom:6px"><span style="color:var(--text2);font-size:12px">Fréquence : </span><span style="font-size:14px">${e.resFrequenceClub}</span></div>`:''}`;
+    } else if (e.residenceType === 'radio') {
+      resDetails = `
+        ${e.resRadioNom?`<div style="margin-bottom:6px"><span style="color:var(--text2);font-size:12px">Radio : </span><span style="font-size:14px">${e.resRadioNom}</span></div>`:''}
+        ${e.resEmission?`<div style="margin-bottom:6px"><span style="color:var(--text2);font-size:12px">Émission : </span><span style="font-size:14px">${e.resEmission}</span></div>`:''}
+        ${e.resFrequenceRadio?`<div style="margin-bottom:6px"><span style="color:var(--text2);font-size:12px">Fréquence : </span><span style="font-size:14px">${e.resFrequenceRadio}</span></div>`:''}
+        ${e.resHeure?`<div style="margin-bottom:6px"><span style="color:var(--text2);font-size:12px">Heure : </span><span style="font-size:14px">${e.resHeure}</span></div>`:''}`;
+    } else if (e.residenceType === 'bar') {
+      resDetails = `
+        ${e.resBarNom?`<div style="margin-bottom:6px"><span style="color:var(--text2);font-size:12px">Bar : </span><span style="font-size:14px">${e.resBarNom}</span></div>`:''}
+        ${e.resFrequenceBar?`<div style="margin-bottom:6px"><span style="color:var(--text2);font-size:12px">Fréquence : </span><span style="font-size:14px">${e.resFrequenceBar}</span></div>`:''}
+        ${e.resStyle?`<div style="margin-bottom:6px"><span style="color:var(--text2);font-size:12px">Style : </span><span style="font-size:14px">${e.resStyle}</span></div>`:''}`;
+    }
+    h += `<div class="card"><div class="stitle">🏟️ Infos résidence</div>
+      ${e.residenceType?`<div style="margin-bottom:10px;font-size:13px;font-weight:500;color:var(--accent)">${residenceLabels[e.residenceType]||e.residenceType}</div>`:''}
+      ${resDetails}
+      ${e.organisateur?`<div style="margin-bottom:6px"><span style="color:var(--text2);font-size:12px">Contact : </span><span style="font-size:14px">${e.organisateur}</span>${e.emailOrga?` <span style="color:var(--cyan);font-size:12px">${e.emailOrga}</span>`:''}</div>`:''}
+      ${e.sets?`<div style="margin-bottom:6px"><span style="color:var(--text2);font-size:12px">Sets : </span><span style="font-size:14px">${e.sets}</span></div>`:''}
+      ${e.cachet?`<div style="margin-bottom:6px"><span style="color:var(--text2);font-size:12px">Cachet : </span><span style="font-size:14px;color:var(--gold)">${e.cachet}</span></div>`:''}
+    </div>`;
+  }
+
+  if (e.ambiance) {
+    const ac = e.ambiance>=8?'var(--pink)':e.ambiance>=5?'var(--gold)':'var(--text2)';
+    h += `<div class="card"><div class="stitle">🔥 Ambiance piste</div>
+      <div style="font-family:var(--font-d);font-size:22px;font-weight:700;color:${ac}">${e.ambiance}<span style="font-size:13px;font-weight:400;color:var(--text2);margin-left:4px">/10</span></div></div>`;
+  }
+
+  if (e.tracks&&e.tracks.length) {
+    h += `<div class="card"><div class="stitle">🎶 Sons qui ont cartonné</div>
+      ${e.tracks.map((t,i)=>`<div class="track-item"><div class="track-rank">${i+1}</div><div class="track-info"><div class="track-name">${t.title}</div><div class="track-sub">${t.artist||'Artiste inconnu'}</div></div><div style="font-size:18px">🔥</div></div>`).join('')}
+    </div>`;
+  }
+
+  if (e.styles&&e.styles.length) {
+    h += `<div class="card"><div class="stitle">🎨 Styles</div><div class="tags">${e.styles.map(s=>`<div class="tag on" style="cursor:default">${s}</div>`).join('')}</div></div>`;
+  }
+
+  if (e.acoustique||e.capacite||e.notes) {
+    h += `<div class="card"><div class="stitle">📝 Notes salle</div>
+      ${e.acoustique?`<div style="margin-bottom:8px"><span style="color:var(--text2);font-size:12px">Acoustique : </span>${e.acoustique}</div>`:''}
+      ${e.capacite?`<div style="margin-bottom:8px"><span style="color:var(--text2);font-size:12px">Capacité : </span>${e.capacite}</div>`:''}
+      ${e.notes?`<div style="font-size:14px;line-height:1.6;color:var(--text2)">${e.notes}</div>`:''}
+    </div>`;
+  }
+
+  h += '</div>';
+  document.getElementById('detail-content').innerHTML = h;
+  document.getElementById('d-title').textContent = e.lieu.length > 15 ? e.lieu.slice(0,15)+'…' : e.lieu;
+  goTo('detail');
+}
+
+function openEditEvent() {
+  const isPrem = userDoc.plan === 'premium';
+  if (!isPrem) { toast('🔒 Modification réservée au Premium !'); goTo('premium'); return; }
+  if (!currentEv) return;
+  const e = currentEv;
+
+  // Pré-remplir le formulaire avec les données existantes
+  document.getElementById('f-type').value = e.type || 'mariage';
+  document.getElementById('f-lieu').value = e.lieu || '';
+  document.getElementById('f-date').value = e.date || '';
+  document.getElementById('f-ville').value = e.ville || '';
+  document.getElementById('f-maries').value = e.maries || '';
+  document.getElementById('f-email').value = e.email || '';
+  document.getElementById('f-acoustique').value = e.acoustique || '';
+  document.getElementById('f-capacite').value = e.capacite || '';
+  document.getElementById('f-notes').value = e.notes || '';
+  document.getElementById('f-private').value = e.private || '';
+  document.getElementById('f-ambiance').value = e.ambiance || 5;
+  document.getElementById('amb-val').textContent = (e.ambiance || 5) + '/10';
+
+  currentNote = e.note || 0;
+  tracks = e.tracks ? [...e.tracks] : [];
+  selectedStyles = e.styles ? [...e.styles] : [];
+
+  renderStars(currentNote);
+  const l = ['','Bof…','Pas top','Correct','Bien !','🔥 Parfaite !'];
+  document.getElementById('note-label').textContent = currentNote ? l[currentNote] : 'Appuie sur une étoile';
+  renderTracks();
+  renderStyles();
+  toggleMaries(e.type || 'mariage');
+
+  document.querySelectorAll('#stars-input .star').forEach(s => {
+    s.onclick = () => { currentNote = parseInt(s.dataset.v); renderStars(currentNote); document.getElementById('note-label').textContent = l[currentNote]; };
+  });
+  document.querySelectorAll('#styles-tags .tag').forEach(t => {
+    t.onclick = () => { const sv = t.dataset.s; if (selectedStyles.includes(sv)) { selectedStyles = selectedStyles.filter(x=>x!==sv); t.classList.remove('on'); } else { selectedStyles.push(sv); t.classList.add('on'); }};
+  });
+
+  // Changer le bouton sauvegarder en "Mettre à jour"
+  const saveBtn = document.querySelector('#screen-new .btn-primary:last-of-type');
+  if (saveBtn) {
+    saveBtn.textContent = '💾 Mettre à jour la soirée';
+    saveBtn.onclick = () => saveEditEvent(e.id);
+  }
+
+  document.getElementById('new-limit-warn').innerHTML = '';
+  goTo('new');
+}
+
+async function saveEditEvent(id) {
+  const type = document.getElementById('f-type').value;
+  const lieuEl = document.getElementById('f-lieu').value.trim();
+  const resLieuEl = document.getElementById('f-res-lieu') ? document.getElementById('f-res-lieu').value.trim() : '';
+  const resBarEl = document.getElementById('f-res-bar-nom') ? document.getElementById('f-res-bar-nom').value.trim() : '';
+  const resRadioEl = document.getElementById('f-res-radio-nom') ? document.getElementById('f-res-radio-nom').value.trim() : '';
+  const lieu = type === 'residence'
+    ? (resLieuEl || resBarEl || resRadioEl || 'Résidence DJ')
+    : lieuEl;
+  if (type !== 'residence' && !lieu) { toast('⚠️ Indique le nom du lieu !'); return; }
+
+  const updated = {
+    uid: currentUser.uid,
+    type: document.getElementById('f-type').value,
+    lieu, date: document.getElementById('f-date').value,
+    ville: document.getElementById('f-ville').value.trim(),
+    maries: document.getElementById('f-maries').value.trim(),
+    email: document.getElementById('f-email').value.trim(),
+    note: currentNote,
+    ambiance: parseInt(document.getElementById('f-ambiance').value),
+    tracks: [...tracks], styles: [...selectedStyles],
+    acoustique: document.getElementById('f-acoustique').value,
+    capacite: document.getElementById('f-capacite').value.trim(),
+    notes: document.getElementById('f-notes').value.trim(),
+    private: document.getElementById('f-private').value.trim(),
+    organisateur: document.getElementById('f-organisateur').value.trim(),
+    emailOrga: document.getElementById('f-email-orga').value.trim(),
+    sets: document.getElementById('f-sets').value.trim(),
+    cachet: document.getElementById('f-cachet').value.trim(),
+    residenceType: document.getElementById('f-residence-type').value,
+    resLieu: document.getElementById('f-res-lieu') ? document.getElementById('f-res-lieu').value.trim() : '',
+    resFrequenceClub: document.getElementById('f-res-frequence-club') ? document.getElementById('f-res-frequence-club').value.trim() : '',
+    resRadioNom: document.getElementById('f-res-radio-nom') ? document.getElementById('f-res-radio-nom').value.trim() : '',
+    resEmission: document.getElementById('f-res-emission') ? document.getElementById('f-res-emission').value.trim() : '',
+    resFrequenceRadio: document.getElementById('f-res-frequence-radio') ? document.getElementById('f-res-frequence-radio').value.trim() : '',
+    resHeure: document.getElementById('f-res-heure') ? document.getElementById('f-res-heure').value.trim() : '',
+    resBarNom: document.getElementById('f-res-bar-nom') ? document.getElementById('f-res-bar-nom').value.trim() : '',
+    resFrequenceBar: document.getElementById('f-res-frequence-bar') ? document.getElementById('f-res-frequence-bar').value.trim() : '',
+    resStyle: document.getElementById('f-res-style') ? document.getElementById('f-res-style').value.trim() : '',
+    createdAt: currentEv.createdAt,
+    updatedAt: new Date().toISOString(),
+  };
+
+  try {
+    await db.collection('events').doc(id).update(updated);
+    toast('✅ Soirée mise à jour !');
+    await loadEvents();
+    // Remettre le bouton en mode création
+    const saveBtn = document.querySelector('#screen-new .btn-primary:last-of-type');
+    if (saveBtn) { saveBtn.textContent = '💾 Enregistrer la soirée'; saveBtn.onclick = saveEvent; }
+    goTo('home');
+  } catch(err) { toast('❌ Erreur : ' + err.message); }
+}
+
+async function deleteEv() {
+  if (!currentEv || !confirm('⚠️ Supprimer définitivement cette soirée ?')) return;
+  try {
+    await db.collection('events').doc(currentEv.id).delete();
+    toast('🗑️ Soirée supprimée');
+    await loadEvents();
+    goTo('home');
+  } catch(e) { toast('❌ Erreur : ' + e.message); }
+}
+
+// ══════════════════════════════════
+// EMAIL
+// ══════════════════════════════════
+function loadEmailJSConfig() {
+  const cfg = JSON.parse(localStorage.getItem('ejs_cfg_'+currentUser.uid)||'{}');
+  if (cfg.key) { document.getElementById('ej-key').value=cfg.key; emailjs.init(cfg.key); }
+  if (cfg.service) document.getElementById('ej-service').value=cfg.service;
+  if (cfg.template) document.getElementById('ej-template').value=cfg.template;
+}
+
+function saveEmailJS() {
+  const cfg = {
+    key: document.getElementById('ej-key').value.trim(),
+    service: document.getElementById('ej-service').value.trim(),
+    template: document.getElementById('ej-template').value.trim(),
+  };
+  localStorage.setItem('ejs_cfg_'+currentUser.uid, JSON.stringify(cfg));
+  if (cfg.key) emailjs.init(cfg.key);
+  toast('✅ Config EmailJS sauvegardée !');
+}
+
+function openEmailModal() {
+  const e = currentEv;
+  document.getElementById('m-email').value = e.email||'';
+  document.getElementById('m-names').value = e.maries||'';
+  document.getElementById('m-custom').value = '';
+
+  const isPrem = userDoc.plan === 'premium';
+  const templates = isPrem ? getTemplates() : [];
+  const sel = document.getElementById('m-tpl-select');
+  const field = document.getElementById('tpl-selector-field');
+
+  if (isPrem && templates.length) {
+    sel.innerHTML = '<option value="">— Message par défaut —</option>' + templates.map((t,i) => `<option value="${i}">${t.name}</option>`).join('');
+    sel.value = '';
+    field.style.display = 'block';
+  } else {
+    field.style.display = 'none';
+  }
+
+  updatePreview();
+  document.getElementById('modal-email').classList.add('open');
+}
+
+function updatePreview() {
+  const names = document.getElementById('m-names').value||'chers mariés';
+  const djName = userDoc.djName||'votre DJ';
+  const e = currentEv||{};
+  const custom = document.getElementById('m-custom').value;
+  const tops = e.tracks&&e.tracks.length ? e.tracks.slice(0,3).map(t=>`• ${t.title}${t.artist?' ('+t.artist+')':''}`).join('\n') : '';
+  document.getElementById('m-preview').textContent =
+`Bonjour ${names},
+
+Je tenais à vous remercier sincèrement de m'avoir fait confiance pour animer votre soirée${e.lieu?' à '+e.lieu:''}.
+
+Ce fut un immense plaisir de mettre l'ambiance pour vous et vos invités.${tops?'\n\nQuelques sons qui ont enflammé la piste :\n'+tops:''}${custom?'\n\n'+custom:''}
+
+Encore tous mes vœux,
+
+${djName}`;
+}
+
+async function sendEmail() {
+  const to = document.getElementById('m-email').value.trim();
+  if (!to) { toast('⚠️ Renseigne l\'email !'); return; }
+
+  const isPrem = userDoc.plan === 'premium';
+  const month = new Date().toISOString().slice(0,7);
+  if (userDoc.emailMonthReset !== month) { userDoc.emailsSentThisMonth = 0; userDoc.emailMonthReset = month; }
+
+  if (!isPrem && userDoc.emailsSentThisMonth >= FREE_EMAIL_LIMIT) {
+    toast('🔒 Limite emails atteinte — passe Premium !'); closeModal('modal-email'); goTo('premium'); return;
+  }
+
+  const cfg = JSON.parse(localStorage.getItem('ejs_cfg_'+currentUser.uid)||'{}');
+  if (!cfg.key||!cfg.service||!cfg.template) { toast('⚠️ Configure EmailJS dans ton profil !'); return; }
+
+  try {
+    await emailjs.send(cfg.service, cfg.template, {
+      to_email: to,
+      to_name: document.getElementById('m-names').value||'Chers mariés',
+      from_name: userDoc.djName||'Votre DJ',
+      message: document.getElementById('m-preview').textContent,
+    });
+    userDoc.emailsSentThisMonth = (userDoc.emailsSentThisMonth||0) + 1;
+    await db.collection('users').doc(currentUser.uid).update({
+      emailsSentThisMonth: userDoc.emailsSentThisMonth,
+      emailMonthReset: month,
+    });
+    closeModal('modal-email');
+    toast('✅ Email envoyé !');
+  } catch(e) { toast('❌ Erreur EmailJS : ' + (e.text||e.message)); }
+}
+
+// ══════════════════════════════════
+// STRIPE
+// ══════════════════════════════════
+function goStripe() {
+  const url = STRIPE_PAYMENT_LINK + (currentUser ? '?client_reference_id='+currentUser.uid+'&prefilled_email='+encodeURIComponent(currentUser.email) : '');
+  window.open(url, '_blank');
+  toast('💳 Redirection vers Stripe…');
+}
+
+function manageStripe() { window.open(STRIPE_PORTAL_LINK, '_blank'); }
+
+// ══════════════════════════════════
+// UTILS
+// ══════════════════════════════════
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+// ══════════════════════════════════════
+// STATS AVANCÉES
+// ══════════════════════════════════════
+function openStats() {
+  const isPrem = userDoc.plan === 'premium';
+  const el = document.getElementById('stats-content');
+
+  if (!isPrem) {
+    el.innerHTML = `
+      <div class="limit-banner" style="margin-top:16px">
+        <div class="limit-icon">⭐</div>
+        <div class="limit-text"><strong>Fonctionnalité Premium</strong><br>Accède à tes statistiques avancées en passant Premium.</div>
+      </div>
+      <button class="btn btn-gold" style="margin-top:12px" onclick="goTo('premium')">🚀 Passer Premium</button>`;
+    goTo('stats');
+    return;
+  }
+
+  if (!allEvents.length) {
+    el.innerHTML = '<div class="empty"><div class="empty-icon">📊</div><div class="empty-title">Pas encore de données</div><div class="empty-sub">Ajoute des soirées pour voir tes stats</div></div>';
+    goTo('stats');
+    return;
+  }
+
+  const total = allEvents.length;
+  const corporate = allEvents.filter(e => e.type === 'corporate').length;
+  const mariages = allEvents.filter(e => e.type === 'mariage').length;
+  const noted = allEvents.filter(e => e.note > 0);
+  const avgNote = noted.length ? (noted.reduce((s,e) => s+e.note, 0)/noted.length).toFixed(1) : '–';
+  const ambianced = allEvents.filter(e => e.ambiance > 0);
+  const avgAmb = ambianced.length ? (ambianced.reduce((s,e) => s+e.ambiance, 0)/ambianced.length).toFixed(1) : '–';
+
+  const byMonth = {};
+  allEvents.forEach(e => {
+    if (!e.date) return;
+    const m = e.date.slice(0,7);
+    byMonth[m] = (byMonth[m]||0) + 1;
+  });
+  const months = Object.keys(byMonth).sort().slice(-6);
+  const maxMonth = Math.max(...months.map(m => byMonth[m]), 1);
+
+  const byType = {};
+  allEvents.forEach(e => { byType[e.type||'autre'] = (byType[e.type||'autre']||0)+1; });
+
+  const styleCount = {};
+  allEvents.forEach(e => { (e.styles||[]).forEach(s => { styleCount[s]=(styleCount[s]||0)+1; }); });
+  const topStyles = Object.entries(styleCount).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  const maxStyle = topStyles.length ? topStyles[0][1] : 1;
+
+  const trackCount = {};
+  allEvents.forEach(e => { (e.tracks||[]).forEach(t => { const k=t.title+(t.artist?' - '+t.artist:''); trackCount[k]=(trackCount[k]||0)+1; }); });
+  const topTracks = Object.entries(trackCount).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  const topSon = topTracks.length ? topTracks[0][0] : null;
+
+  const typeNames = {mariage:'💒 Mariage', corporate:'🏢 Corporate', club:'🪩 Club', prive:'🏠 Privé', festival:'🎪 Festival', sportif:'🏟️ Sportif', residence:'🎧 Résidence', autre:'🎉 Autre'};
+  const typeColors = {mariage:'var(--pink)', corporate:'var(--cyan)', club:'var(--accent)', prive:'var(--gold)', festival:'var(--green)', sportif:'var(--cyan)', residence:'#ff6b35', autre:'var(--text2)'};
+  const styleColors = ['var(--accent)','var(--pink)','var(--cyan)','var(--gold)','var(--green)','#ff6b35'];
+
+  el.innerHTML = `
+    <div style="padding:8px 0">
+
+      <!-- KPI BIG — prestations saison -->
+      <div class="card card-glow" style="text-align:center;padding:20px 16px;margin-top:8px">
+        <div style="font-family:var(--font-d);font-size:48px;font-weight:800;color:var(--accent);line-height:1">${total}</div>
+        <div style="font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-top:6px">Prestations cette saison</div>
+      </div>
+
+      <!-- GRILLE 2x2 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0">
+        <div class="card" style="text-align:center;padding:14px 8px">
+          <div style="font-family:var(--font-d);font-size:28px;font-weight:700;color:var(--pink)">${mariages}</div>
+          <div style="font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:0.8px;margin-top:4px">Mariages</div>
+        </div>
+        <div class="card" style="text-align:center;padding:14px 8px">
+          <div style="font-family:var(--font-d);font-size:28px;font-weight:700;color:var(--gold)">${avgNote}★</div>
+          <div style="font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:0.8px;margin-top:4px">Note moy.</div>
+        </div>
+        <div class="card" style="text-align:center;padding:14px 8px">
+          <div style="font-family:var(--font-d);font-size:28px;font-weight:700;color:var(--cyan)">${corporate}</div>
+          <div style="font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:0.8px;margin-top:4px">Corporate</div>
+        </div>
+        <div class="card" style="text-align:center;padding:14px 8px">
+          <div style="font-family:var(--font-d);font-size:28px;font-weight:700;color:var(--green)">${avgAmb}</div>
+          <div style="font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:0.8px;margin-top:4px">Ambiance</div>
+        </div>
+      </div>
+
+      <!-- SON LE PLUS JOUÉ -->
+      ${topSon ? `
+      <div class="card card-glow" style="padding:16px">
+        <div class="stitle" style="margin-bottom:10px">🔥 Son le plus joué</div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:50%;background:var(--accent-dim);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">🎵</div>
+          <div>
+            <div style="font-size:15px;font-weight:600;color:var(--text)">${topSon.split(' - ')[0]}</div>
+            <div style="font-size:12px;color:var(--text2);margin-top:2px">${topSon.includes(' - ') ? topSon.split(' - ').slice(1).join(' - ') : 'Artiste inconnu'} · joué ${topTracks[0][1]}x</div>
+          </div>
+        </div>
+      </div>` : ''}
+
+      <!-- TOP STYLES -->
+      ${topStyles.length ? `
+      <div class="card">
+        <div class="stitle">🎨 Top styles joués</div>
+        ${topStyles.map(([s,v],i) => `
+          <div style="margin-bottom:10px">
+            <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+              <span style="color:var(--text)">${s}</span>
+              <span style="color:var(--text2)">${v}x</span>
+            </div>
+            <div style="background:var(--bg3);border-radius:4px;height:6px;overflow:hidden">
+              <div style="width:${Math.round((v/maxStyle)*100)}%;background:${styleColors[i]||'var(--text2)'};height:100%;border-radius:4px"></div>
+            </div>
+          </div>`).join('')}
+      </div>` : ''}
+
+      <!-- TOP SONS -->
+      ${topTracks.length ? `
+      <div class="card">
+        <div class="stitle">🎶 Top sons tous temps</div>
+        ${topTracks.map(([t,v],i) => `
+          <div class="track-item">
+            <div class="track-rank">${i+1}</div>
+            <div class="track-info"><div class="track-name">${t.split(' - ')[0]}</div><div class="track-sub">${t.includes(' - ') ? t.split(' - ').slice(1).join(' - ') : 'Artiste inconnu'}</div></div>
+            <div style="font-size:12px;color:var(--text2)">${v}x</div>
+          </div>`).join('')}
+      </div>` : ''}
+
+      <!-- SOIRÉES PAR MOIS -->
+      ${months.length ? `
+      <div class="card">
+        <div class="stitle">📅 Soirées par mois</div>
+        <div style="display:flex;align-items:flex-end;gap:8px;height:80px;margin-top:8px">
+          ${months.map(m => {
+            const v = byMonth[m];
+            const h = Math.round((v/maxMonth)*70);
+            const mo = ['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'][parseInt(m.split('-')[1])-1];
+            return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+              <div style="font-size:11px;color:var(--accent)">${v}</div>
+              <div style="width:100%;background:var(--accent);border-radius:4px 4px 0 0;height:${h}px;min-height:4px"></div>
+              <div style="font-size:10px;color:var(--text3)">${mo}</div>
+            </div>`;
+          }).join('')}
+        </div>
+      </div>` : ''}
+
+      <!-- RÉPARTITION TYPE -->
+      <div class="card">
+        <div class="stitle">🎪 Répartition par type</div>
+        ${Object.entries(byType).map(([t,v]) => `
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div style="font-size:13px;flex:1;color:var(--text)">${typeNames[t]||t}</div>
+            <div style="flex:2;background:var(--bg3);border-radius:4px;height:8px;overflow:hidden">
+              <div style="width:${Math.round((v/total)*100)}%;background:${typeColors[t]||'var(--text2)'};height:100%;border-radius:4px"></div>
+            </div>
+            <div style="font-size:12px;color:var(--text2);min-width:24px;text-align:right">${v}</div>
+          </div>`).join('')}
+      </div>
+
+      <button class="btn btn-outline" onclick="exportPDF()" style="margin-bottom:20px">📄 Exporter mon bilan PDF</button>
+    </div>`;
+
+  goTo('stats');
+}
+async function exportPDF() {
+  const isPrem = userDoc.plan === 'premium';
+  if (!isPrem) { toast('🔒 Fonctionnalité Premium !'); goTo('premium'); return; }
+  if (!allEvents.length) { toast('⚠️ Aucune soirée à exporter !'); return; }
+
+  toast('📄 Génération du PDF…');
+
+  const djName = userDoc.djName || 'DJ';
+  const total = allEvents.length;
+  const mariages = allEvents.filter(e => e.type==='mariage').length;
+  const noted = allEvents.filter(e => e.note>0);
+  const avgNote = noted.length ? (noted.reduce((s,e)=>s+e.note,0)/noted.length).toFixed(1) : '–';
+  const ambianced = allEvents.filter(e => e.ambiance>0);
+  const avgAmb = ambianced.length ? (ambianced.reduce((s,e)=>s+e.ambiance,0)/ambianced.length).toFixed(1) : '–';
+
+  const styleCount = {};
+  allEvents.forEach(e => { (e.styles||[]).forEach(s => { styleCount[s]=(styleCount[s]||0)+1; }); });
+  const topStyles = Object.entries(styleCount).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([s])=>s);
+
+  const trackCount = {};
+  allEvents.forEach(e => { (e.tracks||[]).forEach(t => { const k=t.title+(t.artist?' — '+t.artist:''); trackCount[k]=(trackCount[k]||0)+1; }); });
+  const topTracks = Object.entries(trackCount).sort((a,b)=>b[1]-a[1]).slice(0,5);
+
+  const typeNames = {mariage:'Mariage', corporate:'Corporate', club:'Club', prive:'Privé', festival:'Festival', sportif:'Sportif', residence:'Résidence', autre:'Autre'};
+  const today = new Date().toLocaleDateString('fr-FR', {day:'numeric', month:'long', year:'numeric'});
+
+  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: Arial, sans-serif; background:#080810; color:#eeeeff; padding:40px; }
+    h1 { font-size:32px; font-weight:800; letter-spacing:-1px; }
+    h1 span { color:#7c5cfc; }
+    .sub { font-size:14px; color:#8888aa; margin-top:4px; }
+    .divider { height:1px; background:rgba(255,255,255,0.08); margin:24px 0; }
+    .kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:20px 0; }
+    .kpi { background:#13131f; border-radius:10px; padding:16px; text-align:center; }
+    .kpi-val { font-size:28px; font-weight:800; color:#7c5cfc; }
+    .kpi-lbl { font-size:10px; color:#555577; text-transform:uppercase; letter-spacing:0.8px; margin-top:4px; }
+    .section { margin:24px 0; }
+    .section-title { font-size:11px; color:#555577; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:12px; }
+    .ev-row { display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.06); font-size:13px; }
+    .badge { font-size:9px; font-weight:700; text-transform:uppercase; padding:3px 8px; border-radius:20px; flex-shrink:0; }
+    .badge-mariage { background:rgba(255,77,141,0.15); color:#ff4d8d; }
+    .badge-corporate { background:rgba(0,212,255,0.12); color:#00d4ff; }
+    .badge-club { background:rgba(124,92,252,0.15); color:#7c5cfc; }
+    .badge-prive { background:rgba(255,183,64,0.12); color:#ffb740; }
+    .badge-autre { background:rgba(144,144,176,0.1); color:#8888aa; }
+    .tag { display:inline-block; background:rgba(124,92,252,0.15); color:#7c5cfc; font-size:11px; padding:4px 10px; border-radius:20px; margin:3px; }
+    .track-row { display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+    .rank { width:24px; height:24px; border-radius:50%; background:rgba(124,92,252,0.2); color:#7c5cfc; font-size:10px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .footer { margin-top:40px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.06); display:flex; justify-content:space-between; font-size:10px; color:#333355; }
+  </style></head><body>
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+    <div><h1>${djName}</h1><div class="sub">Bilan de saison · Exporté le ${today}</div></div>
+    <div style="text-align:right"><div style="font-size:12px;color:#7c5cfc;font-weight:700;letter-spacing:1px">DJ RECAP</div><div style="font-size:10px;color:#555577;margin-top:2px">djrecap.github.io/djrecap</div></div>
+  </div>
+  <div class="divider"></div>
+  <div class="kpi-grid">
+    <div class="kpi"><div class="kpi-val">${total}</div><div class="kpi-lbl">Prestations</div></div>
+    <div class="kpi"><div class="kpi-val">${mariages}</div><div class="kpi-lbl">Mariages</div></div>
+    <div class="kpi"><div class="kpi-val">${avgNote}★</div><div class="kpi-lbl">Note moy.</div></div>
+    <div class="kpi"><div class="kpi-val">${avgAmb}/10</div><div class="kpi-lbl">Ambiance</div></div>
+  </div>
+  <div class="section">
+    <div class="section-title">Toutes mes prestations</div>
+    ${allEvents.map(e => {
+      const d = e.date ? new Date(e.date+'T12:00:00').toLocaleDateString('fr-FR',{day:'numeric',month:'short',year:'numeric'}) : '';
+      const stars = e.note ? '★'.repeat(e.note) : '';
+      return `<div class="ev-row">
+        <div class="badge badge-${e.type||'autre'}">${typeNames[e.type]||'Autre'}</div>
+        <div style="flex:1">${e.lieu||'–'}</div>
+        <div style="color:#555577;font-size:12px">${e.ville||''}</div>
+        <div style="color:#555577;font-size:12px">${d}</div>
+        <div style="color:#ffb740;font-size:12px">${stars}</div>
+      </div>`;
+    }).join('')}
+  </div>
+  ${topStyles.length ? `<div class="section"><div class="section-title">Styles les plus joués</div><div>${topStyles.map(s=>`<span class="tag">${s}</span>`).join('')}</div></div>` : ''}
+  ${topTracks.length ? `<div class="section"><div class="section-title">Top sons de la saison</div>${topTracks.map(([t],i)=>`<div class="track-row"><div class="rank">${i+1}</div><div style="font-size:13px">${t}</div></div>`).join('')}</div>` : ''}
+  <div class="footer"><div>Généré par DJ Recap · djrecap.github.io/djrecap</div><div>${today}</div></div>
+  </body></html>`;
+
+  const blob = new Blob([html], {type:'text/html'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `DJRecap_Bilan_${djName.replace(/ /g,'_')}_${new Date().toISOString().slice(0,10)}.html`;
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('✅ Bilan exporté ! Ouvre le fichier et imprime en PDF.');
+}
+
+// ══════════════════════════════════════
+// TEMPLATES EMAIL
+// ══════════════════════════════════════
+function openTemplates() {
+  const isPrem = userDoc.plan === 'premium';
+  if (!isPrem) { toast('🔒 Fonctionnalité Premium !'); goTo('premium'); return; }
+  renderTemplatesList();
+  goTo('templates');
+}
+
+function getTemplates() {
+  try { return JSON.parse(localStorage.getItem('dj_templates_'+currentUser.uid)||'[]'); }
+  catch(e) { return []; }
+}
+
+function saveTemplates(list) {
+  localStorage.setItem('dj_templates_'+currentUser.uid, JSON.stringify(list));
+}
+
+function renderTemplatesList() {
+  const templates = getTemplates();
+  const el = document.getElementById('templates-list');
+  if (!templates.length) {
+    el.innerHTML = `<div class="empty" style="padding:30px 0"><div class="empty-icon">✉️</div><div class="empty-title">Aucun template</div><div class="empty-sub">Crée ton premier modèle de mail personnalisé</div></div>`;
+    return;
+  }
+  el.innerHTML = templates.map((t,i) => `
+    <div class="card" style="margin-bottom:10px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+        <div style="font-size:15px;font-weight:500">${t.name}</div>
+        <div style="display:flex;gap:8px">
+          <button onclick="editTemplate(${i})" style="background:none;border:none;color:var(--accent2);font-size:12px;cursor:pointer">Modifier</button>
+          <button onclick="deleteTemplate(${i})" style="background:none;border:none;color:var(--pink);font-size:12px;cursor:pointer">Suppr.</button>
+        </div>
+      </div>
+      <div style="font-size:12px;color:var(--text2);line-height:1.5;white-space:pre-line;max-height:60px;overflow:hidden">${t.body}</div>
+    </div>`).join('');
+}
+
+function openNewTemplate() {
+  document.getElementById('modal-template').classList.add('open');
+  document.getElementById('tpl-name').value = '';
+  document.getElementById('tpl-body').value = `Bonjour {prénoms},\n\nMerci infiniment de m'avoir fait confiance pour votre soirée. Ce fut un réel plaisir !\n\nCordialement,\n${userDoc.djName||'Votre DJ'}`;
+  document.getElementById('tpl-edit-index').value = '';
+}
+
+function editTemplate(i) {
+  const templates = getTemplates();
+  const t = templates[i];
+  document.getElementById('tpl-name').value = t.name;
+  document.getElementById('tpl-body').value = t.body;
+  document.getElementById('tpl-edit-index').value = i;
+  document.getElementById('modal-template').classList.add('open');
+}
+
+function saveTemplate() {
+  const name = document.getElementById('tpl-name').value.trim();
+  const body = document.getElementById('tpl-body').value.trim();
+  if (!name || !body) { toast('⚠️ Remplis tous les champs !'); return; }
+  const templates = getTemplates();
+  const idx = document.getElementById('tpl-edit-index').value;
+  if (idx !== '') { templates[parseInt(idx)] = {name, body}; }
+  else { templates.push({name, body}); }
+  saveTemplates(templates);
+  closeModal('modal-template');
+  renderTemplatesList();
+  toast('✅ Template sauvegardé !');
+}
+
+function deleteTemplate(i) {
+  if (!confirm('Supprimer ce template ?')) return;
+  const templates = getTemplates();
+  templates.splice(i, 1);
+  saveTemplates(templates);
+  renderTemplatesList();
+  toast('🗑️ Template supprimé');
+}
+
+// ══════════════════════════════════════
+// ONBOARDING
+// ══════════════════════════════════════
+let obCurrent = 1;
+const obTotal = 4;
+
+function obNext() {
+  if (obCurrent < obTotal) {
+    document.getElementById('ob-slide-' + obCurrent).style.display = 'none';
+    document.getElementById('dot-' + obCurrent).classList.remove('active');
+    obCurrent++;
+    document.getElementById('ob-slide-' + obCurrent).style.display = 'block';
+    document.getElementById('dot-' + obCurrent).classList.add('active');
+    if (obCurrent === obTotal) {
+      document.getElementById('ob-next-btn').textContent = "C'est parti ! 🎧";
+    }
+  } else {
+    obSkip();
+  }
+}
+
+function obSkip() {
+  localStorage.setItem('ob_seen_' + currentUser.uid, '1');
+  document.getElementById('bottom-nav').style.display = 'flex';
+  obCurrent = 1;
+  goTo('home');
+  // Lance le tutoriel après l'onboarding
+  const tutSeen = localStorage.getItem('tut_seen_' + currentUser.uid);
+  if (!tutSeen) setTimeout(() => startTutorial(), 500);
+}
+
+// ══════════════════════════════════════
+// TUTORIEL INTERACTIF
+// ══════════════════════════════════════
+const TUT_STEPS = [
+  {
+    icon: '➕',
+    title: 'Ajoute ta première soirée',
+    desc: 'Appuie sur le bouton <strong style="color:var(--accent)">+</strong> en bas au centre pour créer ta première prestation.',
+    arrowTarget: 'nav-new',
+    arrowPos: 'bottom'
+  },
+  {
+    icon: '🎧',
+    title: 'Choisis le type de presta',
+    desc: 'Mariage, corporate, festival, résidence... Remplis les infos en 2 minutes juste après ta soirée.',
+    arrowTarget: null,
+    arrowPos: null
+  },
+  {
+    icon: '📊',
+    title: 'Consulte tes stats',
+    desc: 'L\'onglet <strong style="color:var(--accent)">Stats</strong> te donne une vue complète de ta saison — notes, ambiance, top sons.',
+    arrowTarget: 'nav-stats',
+    arrowPos: 'bottom'
+  },
+  {
+    icon: '🚀',
+    title: 'Passe Premium pour tout débloquer',
+    desc: 'Emails, modification, recherche, export PDF... Tout est dans l\'onglet <strong style="color:var(--gold)">Premium</strong>.',
+    arrowTarget: 'nav-premium',
+    arrowPos: 'bottom'
+  }
+];
+
+let tutCurrent = 0;
+
+function startTutorial() {
+  tutCurrent = 0;
+  renderTutStep();
+  document.getElementById('tutorial-overlay').style.display = 'block';
+}
+
+function renderTutStep() {
+  const step = TUT_STEPS[tutCurrent];
+  const total = TUT_STEPS.length;
+
+  document.getElementById('tut-step-label').textContent = `Étape ${tutCurrent+1}/${total}`;
+  document.getElementById('tut-icon').textContent = step.icon;
+  document.getElementById('tut-title').textContent = step.title;
+  document.getElementById('tut-desc').innerHTML = step.desc;
+  document.getElementById('tut-prev-btn').style.display = tutCurrent > 0 ? 'block' : 'none';
+  document.getElementById('tut-next-btn').textContent = tutCurrent === total-1 ? 'Terminer ✓' : 'Suivant →';
+
+  // Dots
+  const dotsEl = document.getElementById('tut-dots');
+  dotsEl.innerHTML = TUT_STEPS.map((_, i) =>
+    `<div style="width:${i===tutCurrent?'20':'8'}px;height:8px;border-radius:4px;background:${i===tutCurrent?'var(--accent)':'var(--bg3)'};transition:all 0.3s"></div>`
+  ).join('');
+
+  // Flèche
+  const arrow = document.getElementById('tut-arrow');
+  if (step.arrowTarget) {
+    const target = document.getElementById(step.arrowTarget);
+    if (target) {
+      const rect = target.getBoundingClientRect();
+      arrow.style.display = 'block';
+      arrow.style.left = (rect.left + rect.width/2 - 16) + 'px';
+      arrow.style.top = (rect.top - 50) + 'px';
+    }
+  } else {
+    arrow.style.display = 'none';
+  }
+
+  // Position de la box
+  const box = document.getElementById('tutorial-box');
+  box.style.top = step.arrowTarget ? '30%' : '35%';
+  box.style.bottom = 'auto';
+}
+
+function tutNext() {
+  if (tutCurrent < TUT_STEPS.length - 1) {
+    tutCurrent++;
+    renderTutStep();
+  } else {
+    skipTutorial();
+  }
+}
+
+function tutPrev() {
+  if (tutCurrent > 0) {
+    tutCurrent--;
+    renderTutStep();
+  }
+}
+
+function showEmailJSConfig() {
+  const panel = document.getElementById('emailjs-config-panel');
+  const arrow = document.getElementById('emailjs-arrow');
+  if (!panel) return;
+  const open = panel.style.display === 'block';
+  panel.style.display = open ? 'none' : 'block';
+  if (arrow) arrow.style.transform = open ? '' : 'rotate(90deg)';
+}
+
+function uploadPhoto(input) {
+  if (!input.files || !input.files[0]) return;
+  const file = input.files[0];
+  if (file.size > 2 * 1024 * 1024) { toast('⚠️ Photo trop lourde (max 2Mo)'); return; }
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const photoKey = 'profile_photo_' + currentUser.uid;
+    localStorage.setItem(photoKey, e.target.result);
+    const avatarEl = document.getElementById('profile-avatar');
+    avatarEl.innerHTML = `<img src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+    toast('✅ Photo de profil mise à jour !');
+  };
+  reader.readAsDataURL(file);
+}
+
+function skipTutorial() {
+  localStorage.setItem('tut_seen_' + currentUser.uid, '1');
+  document.getElementById('tutorial-overlay').style.display = 'none';
+}
+
+function searchEvents(q) {
+  const isPrem = userDoc.plan === 'premium';
+  if (!isPrem) { toast('🔒 Recherche réservée au Premium !'); goTo('premium'); return; }
+  const clearBtn = document.getElementById('search-clear');
+  clearBtn.style.display = q ? 'block' : 'none';
+  if (!q.trim()) { renderEvents(); return; }
+  const lower = q.toLowerCase();
+  const filtered = allEvents.filter(e =>
+    (e.lieu||'').toLowerCase().includes(lower) ||
+    (e.ville||'').toLowerCase().includes(lower) ||
+    (e.maries||'').toLowerCase().includes(lower) ||
+    (e.tracks||[]).some(t => t.title.toLowerCase().includes(lower) || (t.artist||'').toLowerCase().includes(lower))
+  );
+  const el = document.getElementById('events-list');
+  if (!filtered.length) {
+    el.innerHTML = `<div class="empty"><div class="empty-icon">🔍</div><div class="empty-title">Aucun résultat</div><div class="empty-sub">Essaie avec un autre mot clé</div></div>`;
+    return;
+  }
+  const typeNames = {mariage:'💒 Mariage',corporate:'🏢 Corporate',club:'🪩 Club',prive:'🏠 Privé',festival:'🎪 Festival',sportif:'🏟️ Sportif',residence:'🎧 Résidence',autre:'🎉 Autre'};
+  el.innerHTML = filtered.map(e => {
+    const d = e.date ? new Date(e.date+'T12:00:00').toLocaleDateString('fr-FR',{day:'numeric',month:'short',year:'numeric'}) : '';
+    const stars = e.note ? '★'.repeat(e.note)+'☆'.repeat(5-e.note) : '';
+    return `<div class="ev-card" onclick="openDetail('${e.id}')">
+      <div class="ev-badge b-${e.type||'autre'}">${typeNames[e.type]||'Autre'}</div>
+      <div class="ev-title">${e.lieu}</div>
+      <div class="ev-meta">
+        <span>📅 ${d}</span>${e.ville?`<span>📍 ${e.ville}</span>`:''}
+        ${stars?`<span style="color:var(--gold)">${stars}</span>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function clearSearch() {
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-clear').style.display = 'none';
+  renderEvents();
+}
+
+function toggleSection(id) {
+  const el = document.getElementById(id);
+  const icon = document.getElementById(id+'-icon');
+  if (!el) return;
+  const open = el.style.display === 'block';
+  el.style.display = open ? 'none' : 'block';
+  if (icon) icon.style.transform = open ? '' : 'rotate(90deg)';
+}
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+function applyTemplate(idx) {
+  if (idx === '') { document.getElementById('m-custom').value = ''; updatePreview(); return; }
+  const templates = getTemplates();
+  const t = templates[parseInt(idx)];
+  if (!t) return;
+  const e = currentEv || {};
+  const names = document.getElementById('m-names').value || 'chers mariés';
+  const d = e.date ? new Date(e.date+'T12:00:00').toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'}) : '';
+  let body = t.body
+    .replace(/\{prénoms\}/gi, names)
+    .replace(/\{lieu\}/gi, e.lieu || '')
+    .replace(/\{date\}/gi, d);
+  document.getElementById('m-custom').value = body;
+  updatePreview();
+}
+
+document.getElementById('modal-email').addEventListener('click', function(e) { if(e.target===this) closeModal('modal-email'); });
+document.getElementById('modal-template').addEventListener('click', function(e) { if(e.target===this) closeModal('modal-template'); });
 </script>
 </body>
 </html>
