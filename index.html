@@ -468,7 +468,7 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22p
     <!-- AVATAR + NOM -->
     <div style="display:flex;flex-direction:column;align-items:center;padding:20px 0 14px">
       <div style="position:relative;cursor:pointer;margin-bottom:10px" onclick="document.getElementById('photo-upload').click()">
-        <div class="avatar" id="profile-avatar" style="width:64px;height:64px;font-size:24px;overflow:hidden">DJ</div>
+        <div class="avatar" id="profile-avatar" style="width:90px;height:90px;font-size:32px;overflow:hidden">DJ</div>
         <div style="position:absolute;bottom:0;right:0;width:22px;height:22px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;border:2px solid #07051a">📷</div>
         <input type="file" id="photo-upload" accept="image/*" style="display:none" onchange="uploadPhoto(this)">
       </div>
@@ -1302,12 +1302,13 @@ function refreshStats() {
 // ══════════════════════════════════════
 // QUOI DE NEUF
 // ══════════════════════════════════════
-const WHATS_NEW_VERSION = '1.3';
+const WHATS_NEW_VERSION = '2.0';
 const WHATS_NEW_CONTENT = [
-  '🎧 Résidence DJ : sous-types Club, Radio, Bar',
-  '🏟️ Nouveaux types : Festival, Sportif, Résidence',
-  '🔍 Barre de recherche (Premium)',
-  '✏️ Modification des soirées (Premium)',
+  '🎨 Nouveau design glassmorphism indigo',
+  '📸 Photo de profil synchronisée',
+  '📊 Stats redesignées avec son le plus joué',
+  '🎧 7 soirées gratuites + 5 emails offerts',
+  '⚡ Passage Premium automatique via Stripe',
 ];
 
 function checkWhatsNew() {
@@ -1317,10 +1318,10 @@ function checkWhatsNew() {
   if (seen) { el.innerHTML = ''; return; }
 
   el.innerHTML = `
-    <div style="background:linear-gradient(135deg,rgba(124,92,252,0.15),rgba(0,212,255,0.1));border:1px solid rgba(124,92,252,0.3);border-radius:var(--radius-sm);padding:14px;margin:10px 0">
+    <div style="background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.2);border-radius:14px;padding:14px 16px;margin:8px 16px">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-        <div style="font-size:13px;font-weight:600;color:var(--accent)">🚀 Nouveautés v${WHATS_NEW_VERSION}</div>
-        <button onclick="dismissWhatsNew()" style="background:none;border:none;color:var(--text3);font-size:16px;cursor:pointer">✕</button>
+        <div style="font-size:12px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1px">🚀 Nouveautés v${WHATS_NEW_VERSION}</div>
+        <button onclick="dismissWhatsNew()" style="background:none;border:none;color:var(--text3);font-size:18px;cursor:pointer;line-height:1">✕</button>
       </div>
       ${WHATS_NEW_CONTENT.map(item => `<div style="font-size:12px;color:var(--text2);padding:3px 0">${item}</div>`).join('')}
     </div>`;
