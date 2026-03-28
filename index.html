@@ -16,6 +16,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&display=swap');
@@ -914,12 +915,13 @@ const FREE_EMAIL_LIMIT = 5;
 // ══════════════════════════════════
 // INIT
 // ══════════════════════════════════
-let auth, db, currentUser, userDoc = {};
+let auth, db, storage, currentUser, userDoc = {};
 let allEvents = [], tracks = [], selectedStyles = [], currentNote = 0, currentEv = null, filterType = 'tous';
 
 firebase.initializeApp(FIREBASE_CONFIG);
 auth = firebase.auth();
 db = firebase.firestore();
+storage = firebase.storage();
 
 auth.onAuthStateChanged(async user => {
   if (user) {
@@ -995,15 +997,8 @@ function updatePlanUI() {
   document.getElementById('home-djname').innerHTML = '<span style="color:var(--accent)">' + name + '</span>';
   document.getElementById('profile-name').textContent = name;
   document.getElementById('profile-email').textContent = currentUser.email;
-  // Photo de profil
-  const photoKey = 'profile_photo_' + currentUser.uid;
-  const savedPhoto = localStorage.getItem(photoKey);
-  const avatarEl = document.getElementById('profile-avatar');
-  if (savedPhoto) {
-    avatarEl.innerHTML = `<img src="${savedPhoto}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
-  } else {
-    avatarEl.textContent = name.slice(0,2).toUpperCase();
-  }
+  // Photo de profil depuis Firebase
+  updateAvatarDisplay(userDoc.photoURL || null);
   // Update profile top badge
   const profileTopBtn = document.getElementById('plan-btn-profile');
   if (profileTopBtn) {
@@ -2158,19 +2153,34 @@ function showEmailJSConfig() {
   if (arrow) arrow.style.transform = open ? '' : 'rotate(90deg)';
 }
 
-function uploadPhoto(input) {
+async function uploadPhoto(input) {
   if (!input.files || !input.files[0]) return;
   const file = input.files[0];
   if (file.size > 2 * 1024 * 1024) { toast('⚠️ Photo trop lourde (max 2Mo)'); return; }
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    const photoKey = 'profile_photo_' + currentUser.uid;
-    localStorage.setItem(photoKey, e.target.result);
-    const avatarEl = document.getElementById('profile-avatar');
-    avatarEl.innerHTML = `<img src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+  toast('📤 Upload en cours...');
+  try {
+    const ref = storage.ref('profile_photos/' + currentUser.uid + '/avatar.jpg');
+    await ref.put(file);
+    const url = await ref.getDownloadURL();
+    // Save URL to Firestore
+    await db.collection('users').doc(currentUser.uid).update({ photoURL: url });
+    userDoc.photoURL = url;
+    updateAvatarDisplay(url);
     toast('✅ Photo de profil mise à jour !');
-  };
-  reader.readAsDataURL(file);
+  } catch(e) {
+    toast('❌ Erreur upload : ' + e.message);
+  }
+}
+
+function updateAvatarDisplay(url) {
+  const avatarEl = document.getElementById('profile-avatar');
+  if (!avatarEl) return;
+  if (url) {
+    avatarEl.innerHTML = `<img src="${url}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+  } else {
+    const name = userDoc.djName || 'DJ';
+    avatarEl.textContent = name.slice(0,2).toUpperCase();
+  }
 }
 
 function skipTutorial() {
