@@ -215,7 +215,7 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22p
     </div>
     <div id="auth-error" style="color:var(--pink);font-size:13px;text-align:center;margin-top:12px;display:none"></div>
   </div>
-  <div style="font-size:11px;color:var(--text3);margin-top:24px;text-align:center">En t'inscrivant, tu acceptes les CGU · Gratuit jusqu'à 10 soirées</div>
+  <div style="font-size:11px;color:var(--text3);margin-top:24px;text-align:center">En t'inscrivant, tu acceptes les CGU · Gratuit jusqu'à 7 soirées</div>
 </div>
 
 <!-- ══ HOME ══ -->
@@ -415,7 +415,7 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22p
       <div style="font-family:var(--font-d);font-size:14px;font-weight:700;color:#fff;margin-bottom:2px">Gratuit</div>
       <div style="font-family:var(--font-d);font-size:22px;font-weight:800;color:rgba(255,255,255,0.4);margin:6px 0 10px">0€ <span style="font-size:11px;font-weight:400;color:var(--text2)">/pour toujours</span></div>
       <div style="height:1px;background:rgba(255,255,255,0.06);margin-bottom:10px"></div>
-      <div class="price-feature">3 soirées pour tester</div>
+      <div class="price-feature">7 soirées pour tester</div>
       <div class="price-feature">Suivi sons & styles</div>
       <div class="price-feature no">Emails de remerciement</div>
       <div class="price-feature no">Modification soirées</div>
@@ -1105,7 +1105,7 @@ function openNew() {
   const isPrem = userDoc.plan === 'premium';
   const warn = document.getElementById('new-limit-warn');
   if (!isPrem && allEvents.length >= FREE_LIMIT) {
-    warn.innerHTML = `<div class="limit-banner"><div class="limit-icon">🔒</div><div class="limit-text"><strong>Limite atteinte (${FREE_LIMIT} soirées)</strong><br>Passe en Premium pour ajouter des soirées illimitées.</div></div><button class="btn btn-gold btn-sm" style="margin-bottom:12px" onclick="goTo('premium')">🚀 Passer Premium</button>`;
+    warn.innerHTML = `<div class="limit-banner"><div class="limit-icon">✨</div><div class="limit-text"><strong>Tu as utilisé tes ${FREE_LIMIT} soirées gratuites !</strong><br>Passe Premium pour continuer à documenter tes prestas sans limite.</div></div><button class="btn btn-gold btn-sm" style="margin-bottom:12px" onclick="goTo('premium')">Découvrir Premium →</button>`;
     goTo('new');
     return;
   }
@@ -1214,7 +1214,7 @@ async function saveEvent() {
 
   if (type !== 'residence' && !lieu) { toast('⚠️ Indique le nom du lieu !'); return; }
   const isPrem = userDoc.plan === 'premium';
-  if (!isPrem && allEvents.length >= FREE_LIMIT) { toast('🔒 Limite atteinte — passe Premium !'); goTo('premium'); return; }
+  if (!isPrem && allEvents.length >= FREE_LIMIT) { toast('✨ 7 soirées gratuites utilisées — découvre Premium !'); goTo('premium'); return; }
 
   const ev = {
     uid: currentUser.uid,
@@ -1377,7 +1377,7 @@ function renderLimitBanner() {
   const n = allEvents.length;
   const pct = Math.round((n/FREE_LIMIT)*100);
   if (n >= FREE_LIMIT) {
-    el.innerHTML = `<div class="limit-banner"><div class="limit-icon">🔒</div><div class="limit-text"><strong>Limite atteinte (${FREE_LIMIT}/${FREE_LIMIT})</strong><br>Passe Premium pour des soirées illimitées.</div></div><button class="btn btn-gold btn-sm" style="margin-bottom:4px" onclick="goTo('premium')">🚀 Passer Premium</button>`;
+    el.innerHTML = `<div class="limit-banner"><div class="limit-icon">✨</div><div class="limit-text"><strong>Tu as testé les ${FREE_LIMIT} soirées gratuites !</strong><br>Prêt à passer à la vitesse supérieure ?</div></div><button class="btn btn-gold btn-sm" style="margin-bottom:4px" onclick="goTo('premium')">Découvrir Premium →</button>`;
   } else if (n >= 7) {
     el.innerHTML = `<div class="limit-banner"><div class="limit-icon">⚠️</div><div class="limit-text"><strong>${n}/${FREE_LIMIT} soirées utilisées</strong><br>Plus que ${FREE_LIMIT-n} soirée(s) gratuites.</div></div>`;
   } else { el.innerHTML = ''; }
@@ -1404,7 +1404,7 @@ function openDetail(id) {
     h += `<div class="card"><div class="stitle">👰 Mariés</div>
       ${e.maries?`<div style="font-size:16px;font-weight:500;margin-bottom:6px">${e.maries}</div>`:''}
       ${e.email?`<div style="font-size:13px;color:var(--cyan);margin-bottom:14px">${e.email}</div>
-        ${userDoc.plan === 'premium' ? `<button class="btn btn-outline btn-sm" onclick="openEmailModal()">✉️ Envoyer un mail de remerciement</button>` : `<div style="font-size:12px;color:var(--text3);padding:8px;background:var(--bg2);border-radius:6px">🔒 Envoi d'emails réservé au Premium</div>`}`:''}
+        ${userDoc.plan === 'premium' ? `<button class="btn btn-outline btn-sm" onclick="openEmailModal()">✉️ Envoyer un mail de remerciement</button>` : `<div style="font-size:12px;color:var(--text2);padding:8px;background:rgba(167,139,250,0.06);border-radius:6px;cursor:pointer" onclick="goTo('premium')">✉️ Envoie un mail de remerciement avec Premium ›</div>`}`:''}
     </div>`;
   }
 
@@ -1469,7 +1469,7 @@ function openDetail(id) {
 
 function openEditEvent() {
   const isPrem = userDoc.plan === 'premium';
-  if (!isPrem) { toast('🔒 Modification réservée au Premium !'); goTo('premium'); return; }
+  if (!isPrem) { toast('✏️ La modification est disponible en Premium'); goTo('premium'); return; }
   if (!currentEv) return;
   const e = currentEv;
 
@@ -1651,7 +1651,7 @@ async function sendEmail() {
   if (userDoc.emailMonthReset !== month) { userDoc.emailsSentThisMonth = 0; userDoc.emailMonthReset = month; }
 
   if (!isPrem && userDoc.emailsSentThisMonth >= FREE_EMAIL_LIMIT) {
-    toast('🔒 Limite emails atteinte — passe Premium !'); closeModal('modal-email'); goTo('premium'); return;
+    toast('✉️ 5 emails gratuits utilisés — continue avec Premium'); closeModal('modal-email'); goTo('premium'); return;
   }
 
   const cfg = JSON.parse(localStorage.getItem('ejs_cfg_'+currentUser.uid)||'{}');
@@ -1700,9 +1700,9 @@ function openStats() {
     el.innerHTML = `
       <div class="limit-banner" style="margin-top:16px">
         <div class="limit-icon">⭐</div>
-        <div class="limit-text"><strong>Fonctionnalité Premium</strong><br>Accède à tes statistiques avancées en passant Premium.</div>
+        <div class="limit-text"><strong>Stats avancées disponibles en Premium</strong><br>Visualise tes tendances, top sons, répartition par type et plus encore.</div>
       </div>
-      <button class="btn btn-gold" style="margin-top:12px" onclick="goTo('premium')">🚀 Passer Premium</button>`;
+      <button class="btn btn-gold" style="margin-top:12px" onclick="goTo('premium')">Découvrir Premium →</button>`;
     goTo('stats');
     return;
   }
@@ -1855,7 +1855,7 @@ function openStats() {
 }
 async function exportPDF() {
   const isPrem = userDoc.plan === 'premium';
-  if (!isPrem) { toast('🔒 Fonctionnalité Premium !'); goTo('premium'); return; }
+  if (!isPrem) { toast('✨ Fonctionnalité disponible en Premium'); goTo('premium'); return; }
   if (!allEvents.length) { toast('⚠️ Aucune soirée à exporter !'); return; }
 
   toast('📄 Génération du PDF…');
@@ -1950,7 +1950,7 @@ async function exportPDF() {
 // ══════════════════════════════════════
 function openTemplates() {
   const isPrem = userDoc.plan === 'premium';
-  if (!isPrem) { toast('🔒 Fonctionnalité Premium !'); goTo('premium'); return; }
+  if (!isPrem) { toast('✨ Fonctionnalité disponible en Premium'); goTo('premium'); return; }
   renderTemplatesList();
   goTo('templates');
 }
@@ -2180,7 +2180,7 @@ function skipTutorial() {
 
 function searchEvents(q) {
   const isPrem = userDoc.plan === 'premium';
-  if (!isPrem) { toast('🔒 Recherche réservée au Premium !'); goTo('premium'); return; }
+  if (!isPrem) { toast('🔍 La recherche est disponible en Premium'); goTo('premium'); return; }
   const clearBtn = document.getElementById('search-clear');
   clearBtn.style.display = q ? 'block' : 'none';
   if (!q.trim()) { renderEvents(); return; }
