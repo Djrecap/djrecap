@@ -6,8 +6,6 @@
 <meta name="theme-color" content="#080810">
 <title>DJ Recap</title>
 
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230d0d1a'/%3E%3Ccircle cx='50' cy='50' r='32' fill='none' stroke='%237c5cfc' stroke-width='3'/%3E%3Ccircle cx='50' cy='50' r='18' fill='%237c5cfc'/%3E%3Ccircle cx='50' cy='50' r='6' fill='%230d0d1a'/%3E%3Ccircle cx='50' cy='50' r='2.5' fill='%2300d4ff'/%3E%3C/svg%3E">
-
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
@@ -17,102 +15,174 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --bg: #07051a; --bg2: #0d0b2e; --bg3: #13103a;
-  --accent: #a78bfa; --cyan: #38bdf8; --pink: #f472b6; --gold: #fbbf24; --green: #34d399;
-  --text: rgba(255,255,255,0.92); --text2: rgba(255,255,255,0.45); --text3: rgba(255,255,255,0.2);
-  --radius: 16px; --radius-sm: 12px;
+  --bg: #07051a;
+  --accent: #a78bfa;
+  --cyan: #38bdf8;
+  --pink: #f472b6;
+  --gold: #fbbf24;
+  --text: rgba(255,255,255,0.92);
+  --text2: rgba(255,255,255,0.45);
 }
 
 * { box-sizing: border-box; margin:0; padding:0; }
-html, body { height:100%; background:var(--bg); color:var(--text); font-family:'Raleway',sans-serif; overflow:hidden; }
+body { background:var(--bg); color:var(--text); font-family:'Raleway',sans-serif; height:100vh; overflow:hidden; }
 
-.screen { display:none; flex-direction:column; flex:1; overflow:hidden; }
+.screen { display:none; flex-direction:column; height:100%; }
 .screen.active { display:flex; }
-.scroll-area { flex:1; overflow-y:auto; padding:0 16px 100px; }
 
-.topbar { padding:14px 18px 12px; display:flex; align-items:center; justify-content:space-between; background:rgba(7,5,26,0.8); border-bottom:1px solid rgba(255,255,255,0.1); backdrop-filter:blur(20px); }
-.btn { padding:13px 20px; border-radius:12px; border:none; font-weight:600; width:100%; cursor:pointer; }
-.btn-primary { background:var(--accent); color:#07051a; }
-.btn-gold { background:linear-gradient(135deg,#fbbf24,#f59e0b); color:#1a0500; }
-.limit-banner { background:rgba(251,191,36,0.07); border:1px solid rgba(251,191,36,0.2); border-radius:12px; padding:14px; margin:10px 0; display:flex; gap:12px; align-items:center; }
+.auth-box {
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(167,139,250,0.3);
+  border-radius:20px;
+  padding:30px;
+  margin:20px;
+}
+
+.btn {
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  font-weight:600;
+  margin-top:10px;
+  cursor:pointer;
+}
+
+.btn-primary { background:var(--accent); color:#000; }
+.btn-gold { background:var(--gold); color:#000; }
+
+.limit-banner {
+  background:rgba(251,191,36,0.1);
+  border:1px solid var(--gold);
+  border-radius:12px;
+  padding:14px;
+  margin:10px;
+}
 </style>
 </head>
 <body>
 <div id="app">
 
-<!-- ==================== AUTH ==================== -->
+<!-- ====================== AUTH ====================== -->
 <div class="screen active" id="screen-auth">
-  <div style="text-align:center;padding:40px 20px">
-    <h1 style="font-size:42px;margin-bottom:8px">DJ RECAP</h1>
-    <p style="color:#888">Ton carnet de bord de DJ</p>
+  <div style="padding:40px 20px 20px;text-align:center">
+    <h1 style="font-size:48px;margin:0 0 8px 0;color:var(--accent)">DJ RECAP</h1>
+    <p style="color:var(--text2)">Ton carnet de bord de DJ</p>
   </div>
-  <div style="padding:0 24px">
-    <div style="background:rgba(255,255,255,0.05);border-radius:20px;padding:28px">
-      <div style="display:flex;margin-bottom:20px;background:rgba(255,255,255,0.08);border-radius:10px;padding:4px">
-        <button onclick="switchAuth('login')" id="tab-login" class="auth-tab active" style="flex:1;padding:10px;border-radius:8px;border:none;background:none">Connexion</button>
-        <button onclick="switchAuth('signup')" id="tab-signup" class="auth-tab" style="flex:1;padding:10px;border-radius:8px;border:none;background:none">Inscription</button>
-      </div>
-      <div id="auth-form-login">
-        <input type="email" id="login-email" placeholder="Email" style="width:100%;padding:14px;margin-bottom:12px;background:rgba(255,255,255,0.08);border:none;border-radius:10px;color:white">
-        <input type="password" id="login-pw" placeholder="Mot de passe" style="width:100%;padding:14px;margin-bottom:20px;background:rgba(255,255,255,0.08);border:none;border-radius:10px;color:white">
-        <button onclick="doLogin()" class="btn btn-primary">Se connecter</button>
-      </div>
-      <div id="auth-form-signup" style="display:none">
-        <input type="text" id="signup-name" placeholder="Nom de DJ" style="width:100%;padding:14px;margin-bottom:12px;background:rgba(255,255,255,0.08);border:none;border-radius:10px;color:white">
-        <input type="email" id="signup-email" placeholder="Email" style="width:100%;padding:14px;margin-bottom:12px;background:rgba(255,255,255,0.08);border:none;border-radius:10px;color:white">
-        <input type="password" id="signup-pw" placeholder="Mot de passe (min 6)" style="width:100%;padding:14px;margin-bottom:20px;background:rgba(255,255,255,0.08);border:none;border-radius:10px;color:white">
-        <button onclick="doSignup()" class="btn btn-primary">Créer mon compte</button>
-      </div>
-      <div id="auth-error" style="color:#ff6b6b;text-align:center;margin-top:12px;font-size:13px;display:none"></div>
+
+  <div class="auth-box">
+    <div style="display:flex;background:rgba(255,255,255,0.08);border-radius:10px;padding:4px;margin-bottom:20px">
+      <button id="tab-login" onclick="switchAuth('login')" class="btn" style="flex:1;background:var(--accent);color:#000">Connexion</button>
+      <button id="tab-signup" onclick="switchAuth('signup')" class="btn" style="flex:1">Inscription</button>
     </div>
+
+    <div id="auth-form-login">
+      <input type="email" id="login-email" placeholder="Email" style="width:100%;padding:14px;margin-bottom:12px;background:rgba(255,255,255,0.1);border:none;border-radius:10px;color:white">
+      <input type="password" id="login-pw" placeholder="Mot de passe" style="width:100%;padding:14px;margin-bottom:20px;background:rgba(255,255,255,0.1);border:none;border-radius:10px;color:white">
+      <button onclick="doLogin()" class="btn btn-primary">Se connecter</button>
+      <div style="text-align:center;margin-top:15px">
+        <button onclick="doReset()" style="background:none;border:none;color:var(--text2);font-size:13px">Mot de passe oublié ?</button>
+      </div>
+    </div>
+
+    <div id="auth-form-signup" style="display:none">
+      <input type="text" id="signup-name" placeholder="Nom de DJ" style="width:100%;padding:14px;margin-bottom:12px;background:rgba(255,255,255,0.1);border:none;border-radius:10px;color:white">
+      <input type="email" id="signup-email" placeholder="Email" style="width:100%;padding:14px;margin-bottom:12px;background:rgba(255,255,255,0.1);border:none;border-radius:10px;color:white">
+      <input type="password" id="signup-pw" placeholder="Mot de passe (min 6)" style="width:100%;padding:14px;margin-bottom:20px;background:rgba(255,255,255,0.1);border:none;border-radius:10px;color:white">
+      <button onclick="doSignup()" class="btn btn-primary">Créer mon compte</button>
+    </div>
+
+    <div id="auth-error" style="color:#ff6b6b;text-align:center;margin-top:15px;font-size:14px;display:none"></div>
   </div>
 </div>
-
-<!-- ==================== HOME ==================== -->
+<!-- ====================== HOME ====================== -->
 <div class="screen" id="screen-home">
   <div class="topbar">
-    <div style="font-weight:800">DJ RECAP</div>
+    <div style="font-weight:800;font-size:20px">DJ RECAP</div>
     <div id="plan-btn" class="plan-badge plan-free" onclick="goTo('premium')">FREE</div>
   </div>
+
   <div class="scroll-area">
-    <div style="padding:20px 0">
-      <h2 id="home-djname" style="font-size:24px;margin-bottom:4px">–</h2>
-      <div id="home-stats" style="display:flex;justify-content:space-around;margin:20px 0">
-        <div style="text-align:center"><div id="s-total" style="font-size:28px;font-weight:700;color:var(--accent)">0</div><div style="font-size:12px;color:#888">Prestations</div></div>
-        <div style="text-align:center"><div id="s-maries" style="font-size:28px;font-weight:700;color:var(--accent)">0</div><div style="font-size:12px;color:#888">Mariages</div></div>
-        <div style="text-align:center"><div id="s-avg" style="font-size:28px;font-weight:700;color:var(--accent)">–</div><div style="font-size:12px;color:#888">Note moy.</div></div>
+    <div style="padding:20px 10px">
+      <div style="font-size:13px;color:var(--text2)">Bonjour,</div>
+      <div id="home-djname" style="font-size:26px;font-weight:700;margin-bottom:20px">–</div>
+
+      <div style="display:flex;justify-content:space-around;background:rgba(255,255,255,0.05);border-radius:16px;padding:20px;margin-bottom:20px">
+        <div style="text-align:center">
+          <div id="s-total" style="font-size:32px;font-weight:700;color:var(--accent)">0</div>
+          <div style="font-size:12px;color:var(--text2)">Prestations</div>
+        </div>
+        <div style="text-align:center">
+          <div id="s-maries" style="font-size:32px;font-weight:700;color:var(--accent)">0</div>
+          <div style="font-size:12px;color:var(--text2)">Mariages</div>
+        </div>
+        <div style="text-align:center">
+          <div id="s-avg" style="font-size:32px;font-weight:700;color:var(--accent)">–</div>
+          <div style="font-size:12px;color:var(--text2)">Note moy.</div>
+        </div>
+      </div>
+
+      <div id="limit-banner-home"></div>
+    </div>
+
+    <div id="events-list">
+      <div style="text-align:center;padding:60px 20px;color:#666">Aucune soirée pour le moment</div>
+    </div>
+  </div>
+
+  <button onclick="openNew()" style="position:fixed;bottom:85px;right:20px;width:60px;height:60px;border-radius:50%;background:var(--accent);color:#000;font-size:32px;border:none;box-shadow:0 6px 25px rgba(167,139,250,0.5)">+</button>
+</div>
+
+<!-- ====================== NOUVELLE SOIRÉE ====================== -->
+<div class="screen" id="screen-new">
+  <div class="topbar">
+    <button onclick="goTo('home')" style="background:none;border:none;color:var(--text2);font-size:16px">← Retour</button>
+    <div id="new-title" style="font-weight:700">Nouvelle soirée</div>
+    <div style="width:50px"></div>
+  </div>
+
+  <div class="scroll-area" style="padding-bottom:120px">
+    <div id="new-limit-warn"></div>
+
+    <div style="background:rgba(255,255,255,0.05);border-radius:16px;padding:20px;margin-bottom:15px">
+      <select id="f-type" onchange="toggleMaries(this.value)" style="width:100%;padding:14px;background:rgba(255,255,255,0.1);border:none;border-radius:10px;color:white;margin-bottom:15px">
+        <option value="mariage">💒 Mariage</option>
+        <option value="corporate">🏢 Corporate</option>
+        <option value="prive">🏠 Soirée privée</option>
+        <option value="festival">🎪 Festival</option>
+        <option value="sportif">🏟️ Événement sportif</option>
+        <option value="residence">🎧 Résidence DJ</option>
+        <option value="autre">🎉 Autre</option>
+      </select>
+
+      <input type="text" id="f-lieu" placeholder="Nom du lieu ou événement" style="width:100%;padding:14px;background:rgba(255,255,255,0.1);border:none;border-radius:10px;color:white;margin-bottom:15px">
+
+      <input type="date" id="f-date" style="width:100%;padding:14px;background:rgba(255,255,255,0.1);border:none;border-radius:10px;color:white;margin-bottom:15px">
+
+      <input type="text" id="f-ville" placeholder="Ville" style="width:100%;padding:14px;background:rgba(255,255,255,0.1);border:none;border-radius:10px;color:white;margin-bottom:15px">
+    </div>
+
+    <div id="section-maries" style="background:rgba(255,255,255,0.05);border-radius:16px;padding:20px;margin-bottom:15px">
+      <input type="text" id="f-maries" placeholder="Prénoms des mariés (ex: Sophie & Thomas)" style="width:100%;padding:14px;background:rgba(255,255,255,0.1);border:none;border-radius:10px;color:white;margin-bottom:12px">
+      <input type="email" id="f-email" placeholder="Email des mariés" style="width:100%;padding:14px;background:rgba(255,255,255,0.1);border:none;border-radius:10px;color:white">
+    </div>
+
+    <div class="card" style="margin-bottom:15px">
+      <div style="margin-bottom:10px;font-weight:600">⭐ Note de la soirée</div>
+      <div id="stars-input" style="font-size:32px">
+        <span class="star" data-v="1" onclick="setNote(1)">★</span>
+        <span class="star" data-v="2" onclick="setNote(2)">★</span>
+        <span class="star" data-v="3" onclick="setNote(3)">★</span>
+        <span class="star" data-v="4" onclick="setNote(4)">★</span>
+        <span class="star" data-v="5" onclick="setNote(5)">★</span>
       </div>
     </div>
 
-    <div id="limit-banner-home"></div>
-
-    <div id="events-list" style="margin-top:10px">
-      <div style="text-align:center;padding:40px;color:#666">Chargement...</div>
-    </div>
-  </div>
-  <button onclick="openNew()" style="position:fixed;bottom:80px;right:20px;width:56px;height:56px;border-radius:50%;background:var(--accent);color:#000;font-size:28px;border:none;box-shadow:0 4px 20px rgba(167,139,250,0.4)">+</button>
-</div>
-
-<!-- ==================== NOUVELLE SOIRÉE ==================== -->
-<div class="screen" id="screen-new">
-  <div class="topbar">
-    <button onclick="goTo('home')" style="background:none;border:none;color:#aaa">← Retour</button>
-    <div id="new-title" style="font-weight:700">Nouvelle soirée</div>
-  </div>
-  <div class="scroll-area">
-    <div id="new-limit-warn"></div>
-
-    <!-- Ton formulaire original ici (je l’ai gardé tel quel pour ne pas tout casser) -->
-    <!-- ... Colle ici tout ton formulaire de nouvelle soirée (f-type, f-lieu, etc.) ... -->
-
-    <button onclick="saveCurrentEvent()" class="btn btn-primary" style="margin:20px 0">💾 Enregistrer la soirée</button>
+    <button onclick="saveCurrentEvent()" class="btn btn-primary" style="margin-top:20px">💾 Enregistrer la soirée</button>
   </div>
 </div>
 
-<!-- Les autres écrans (detail, premium, profile, etc.) restent identiques à ta version originale -->
-
-</div>
-
+<!-- ====================== SCRIPT PRINCIPAL (début) ====================== -->
 <script>
 // ====================== CONFIG ======================
 const FREE_LIMIT = 7;
@@ -130,7 +200,7 @@ let currentEv = null;
 let isEditing = false;
 let editingId = null;
 
-// ====================== INIT ======================
+// ====================== INITIALISATION ======================
 firebase.initializeApp(FIREBASE_CONFIG);
 auth = firebase.auth();
 db = firebase.firestore();
@@ -146,18 +216,152 @@ auth.onAuthStateChanged(async (user) => {
   }
 });
 
-// ====================== FREEMIUM ======================
+// ====================== AUTH ======================
+function switchAuth(tab) {
+  document.getElementById('auth-form-login').style.display = tab === 'login' ? 'block' : 'none';
+  document.getElementById('auth-form-signup').style.display = tab === 'signup' ? 'block' : 'none';
+  document.getElementById('tab-login').classList.toggle('active', tab === 'login');
+  document.getElementById('tab-signup').classList.toggle('active', tab === 'signup');
+}
+
+async function doLogin() {
+  const email = document.getElementById('login-email').value.trim();
+  const pw = document.getElementById('login-pw').value;
+  try {
+    await auth.signInWithEmailAndPassword(email, pw);
+  } catch (e) {
+    document.getElementById('auth-error').textContent = "Email ou mot de passe incorrect";
+    document.getElementById('auth-error').style.display = 'block';
+  }
+}
+
+async function doSignup() {
+  const name = document.getElementById('signup-name').value.trim();
+  const email = document.getElementById('signup-email').value.trim();
+  const pw = document.getElementById('signup-pw').value;
+  
+  if (!name) return alert("Merci de mettre ton nom de DJ");
+
+  try {
+    const cred = await auth.createUserWithEmailAndPassword(email, pw);
+    await cred.user.updateProfile({ displayName: name });
+  } catch (e) {
+    document.getElementById('auth-error').textContent = "Erreur lors de l'inscription";
+    document.getElementById('auth-error').style.display = 'block';
+  }
+}
+
+function doReset() {
+  const email = document.getElementById('login-email').value.trim();
+  if (!email) return alert("Entre ton email");
+  auth.sendPasswordResetEmail(email).then(() => {
+    alert("Email de réinitialisation envoyé !");
+  }).catch(() => alert("Erreur"));
+}
+
+// ====================== NAV & SCREENS ======================
+function goTo(screen) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById('screen-' + screen);
+  if (el) el.classList.add('active');
+}
+
+function showApp() {
+  document.getElementById('screen-auth').classList.remove('active');
+  goTo('home');
+}
+
+function hideApp() {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-auth').classList.add('active');
+}
+  <!-- ====================== SUITE DU SCRIPT ====================== -->
+
+<script>
+// ====================== USER & FREEMIUM ======================
+async function loadUserDoc() {
+  const ref = db.collection('users').doc(currentUser.uid);
+  const snap = await ref.get();
+  
+  if (snap.exists) {
+    userDoc = snap.data();
+  } else {
+    userDoc = {
+      djName: currentUser.displayName || 'DJ',
+      plan: 'free',
+      emailsSentThisMonth: 0,
+      emailMonthReset: new Date().toISOString().slice(0,7),
+      createdAt: new Date().toISOString()
+    };
+    await ref.set(userDoc);
+  }
+
+  document.getElementById('home-djname').textContent = userDoc.djName || 'DJ';
+  updatePlanUI();
+}
+
+function updatePlanUI() {
+  const isPrem = userDoc.plan === 'premium';
+  const planBtn = document.getElementById('plan-btn');
+  planBtn.textContent = isPrem ? '⭐ PREMIUM' : 'FREE';
+  planBtn.className = `plan-badge ${isPrem ? 'plan-premium' : 'plan-free'}`;
+}
+
 function canAddEvent() {
   return userDoc.plan === 'premium' || allEvents.length < FREE_LIMIT;
 }
 
 function canSendEmail() {
   const month = new Date().toISOString().slice(0,7);
-  if (userDoc.emailMonthReset !== month) {
+  if (!userDoc.emailMonthReset || userDoc.emailMonthReset !== month) {
     userDoc.emailsSentThisMonth = 0;
     userDoc.emailMonthReset = month;
   }
   return userDoc.plan === 'premium' || (userDoc.emailsSentThisMonth || 0) < FREE_EMAIL_LIMIT;
+}
+
+// ====================== EVENTS ======================
+async function loadEvents() {
+  try {
+    const snap = await db.collection('events').where('uid', '==', currentUser.uid).get();
+    allEvents = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    allEvents.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    
+    renderEvents();
+    refreshStats();
+    renderLimitBanner();
+  } catch(e) {
+    console.error(e);
+  }
+}
+
+function renderEvents() {
+  const container = document.getElementById('events-list');
+  if (allEvents.length === 0) {
+    container.innerHTML = `<div style="text-align:center;padding:60px 20px;color:#666">Aucune soirée pour le moment.<br><br>Appuie sur le + pour commencer</div>`;
+    return;
+  }
+
+  let html = '';
+  allEvents.forEach(ev => {
+    const date = ev.date ? new Date(ev.date).toLocaleDateString('fr-FR', {day:'numeric', month:'short'}) : '';
+    html += `
+      <div onclick="openDetail('${ev.id}')" style="background:rgba(255,255,255,0.05);border-radius:14px;padding:16px;margin-bottom:12px;cursor:pointer">
+        <div style="font-size:13px;color:#888">${date} • ${ev.ville || ''}</div>
+        <div style="font-weight:600;margin:6px 0">${ev.lieu || 'Sans nom'}</div>
+        ${ev.note ? `<div style="color:#fbbf24">★ ${ev.note}/5</div>` : ''}
+      </div>`;
+  });
+  container.innerHTML = html;
+}
+
+function refreshStats() {
+  document.getElementById('s-total').textContent = allEvents.length;
+  document.getElementById('s-maries').textContent = allEvents.filter(e => e.type === 'mariage').length;
+  
+  const noted = allEvents.filter(e => e.note > 0);
+  const avg = noted.length ? (noted.reduce((a,b) => a + b.note, 0) / noted.length).toFixed(1) : '–';
+  document.getElementById('s-avg').textContent = avg;
 }
 
 function renderLimitBanner() {
@@ -170,36 +374,108 @@ function renderLimitBanner() {
 
   const remaining = FREE_LIMIT - allEvents.length;
   if (remaining <= 0) {
-    el.innerHTML = `<div class="limit-banner"><strong>Limite atteinte</strong><br>Passe Premium pour illimité</div><button onclick="goTo('premium')" class="btn btn-gold">Passer Premium</button>`;
-  } else if (remaining <= 2) {
-    el.innerHTML = `<div class="limit-banner">Plus que ${remaining} soirée${remaining>1?'s':''} gratuite${remaining>1?'s':''}</div>`;
+    el.innerHTML = `
+      <div class="limit-banner">
+        <strong>Tu as atteint la limite de ${FREE_LIMIT} soirées gratuites</strong><br>
+        Passe en Premium pour ajouter des soirées illimitées et envoyer des emails sans limite.
+      </div>
+      <button onclick="goTo('premium')" class="btn btn-gold" style="width:100%;margin-top:8px">🚀 Passer Premium</button>`;
+  } else if (remaining <= 3) {
+    el.innerHTML = `
+      <div class="limit-banner">
+        Plus que <strong>${remaining}</strong> soirée${remaining > 1 ? 's' : ''} gratuite${remaining > 1 ? 's' : ''}<br>
+        <small style="color:#aaa">Passe Premium pour continuer sans limite</small>
+      </div>`;
   } else {
     el.innerHTML = '';
   }
 }
 
-// ====================== NAVIGATION ======================
-function goTo(screen) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById('screen-' + screen).classList.add('active');
+// ====================== FORM & SAVE ======================
+function openNew() {
+  isEditing = false;
+  editingId = null;
+  document.getElementById('new-title').textContent = 'Nouvelle soirée';
+  
+  // Reset fields
+  document.getElementById('f-type').value = 'mariage';
+  document.getElementById('f-lieu').value = '';
+  document.getElementById('f-date').value = new Date().toISOString().split('T')[0];
+  document.getElementById('f-ville').value = '';
+  document.getElementById('f-maries').value = '';
+  document.getElementById('f-email').value = '';
+  
+  toggleMaries('mariage');
+  
+  const warn = document.getElementById('new-limit-warn');
+  if (!canAddEvent()) {
+    warn.innerHTML = `
+      <div class="limit-banner">
+        <strong>Limite atteinte (${FREE_LIMIT} soirées)</strong><br>
+        Passe en Premium pour continuer.
+      </div>
+      <button onclick="goTo('premium')" class="btn btn-gold" style="width:100%;margin-top:10px">Passer Premium</button>`;
+  } else {
+    warn.innerHTML = '';
+  }
+  
+  goTo('new');
 }
 
-// ====================== AUTRES FONCTIONS ======================
-// (auth, loadEvents, saveEvent, openNew, openEditEvent, etc.)
+function toggleMaries(type) {
+  document.getElementById('section-maries').style.display = type === 'mariage' ? 'block' : 'none';
+}
 
-// Pour l'instant, je mets un placeholder. On va les compléter dans les prochaines étapes.
+async function saveCurrentEvent() {
+  if (!canAddEvent()) {
+    alert("Tu as atteint la limite gratuite. Passe en Premium pour ajouter plus de soirées.");
+    goTo('premium');
+    return;
+  }
 
+  const eventData = {
+    uid: currentUser.uid,
+    type: document.getElementById('f-type').value,
+    lieu: document.getElementById('f-lieu').value.trim(),
+    date: document.getElementById('f-date').value,
+    ville: document.getElementById('f-ville').value.trim(),
+    maries: document.getElementById('f-maries').value.trim(),
+    email: document.getElementById('f-email').value.trim(),
+    createdAt: new Date().toISOString()
+  };
+
+  try {
+    if (isEditing && editingId) {
+      await db.collection('events').doc(editingId).update(eventData);
+      alert("Soirée mise à jour avec succès !");
+    } else {
+      await db.collection('events').add(eventData);
+      alert("Soirée enregistrée avec succès !");
+    }
+    
+    await loadEvents();
+    goTo('home');
+  } catch (e) {
+    console.error(e);
+    alert("Erreur lors de l'enregistrement");
+  }
+}
+
+// ====================== DETAIL ======================
+function openDetail(id) {
+  currentEv = allEvents.find(e => e.id === id);
+  if (!currentEv) return;
+  alert(`Détail de : ${currentEv.lieu}\nDate : ${currentEv.date || 'Non renseignée'}`);
+  // Tu peux développer cette fonction plus tard
+}
+
+// ====================== UTILS ======================
 function toast(msg) {
-  alert(msg); // Temporaire - on améliorera plus tard
+  alert(msg);
 }
 
-// ====================== START ======================
-function showApp() { /* à compléter */ }
-function hideApp() { /* à compléter */ }
-async function loadUserDoc() { /* à compléter */ }
-async function loadEvents() { /* à compléter */ }
-
-console.log("DJ Recap - Version améliorée chargée");
+// Lancement initial
+console.log("%cDJ Recap - Version améliorée chargée (7 soirées + 5 emails gratuits)", "color:#a78bfa;font-weight:bold");
 </script>
 </body>
 </html>
