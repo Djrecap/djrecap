@@ -1244,10 +1244,20 @@ async function saveEvent() {
   };
 
   try {
-    await db.collection('events').add(ev);
-    toast('✅ Soirée enregistrée !');
+    const docRef = await db.collection('events').add(ev);
     await loadEvents();
     goTo('home');
+    // Toast cliquable pour ajouter des photos
+    const toast2 = document.getElementById('toast');
+    toast2.innerHTML = '✅ Soirée enregistrée ! <span style="color:var(--accent);margin-left:6px">📸 Ajouter des photos →</span>';
+    toast2.style.cursor = 'pointer';
+    toast2.onclick = () => {
+      toast2.onclick = null;
+      toast2.style.cursor = '';
+      openDetail(docRef.id);
+    };
+    toast2.classList.add('show');
+    setTimeout(() => { toast2.classList.remove('show'); toast2.innerHTML = ''; }, 4000);
   } catch(e) { toast('❌ Erreur Firebase : ' + e.message); }
 }
 
