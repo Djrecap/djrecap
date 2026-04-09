@@ -502,6 +502,32 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22p
       </div>
 
       <!-- Aide -->
+      <!-- Mes infos -->
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;overflow:hidden">
+        <div style="padding:13px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="toggleMesInfos()">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:16px">🎤</span>
+            <div>
+              <span style="font-size:13px;color:rgba(255,255,255,0.7);font-weight:500">Mes infos pro</span>
+              <div id="infos-incomplete-hint" style="font-size:10px;color:#fbbf24;margin-top:1px;display:none">⚠️ Pense à compléter ton profil</div>
+            </div>
+          </div>
+          <span id="mes-infos-arrow" style="color:var(--text3);font-size:16px;transition:transform 0.2s">›</span>
+        </div>
+        <div id="mes-infos-panel" style="display:none;padding:0 16px 16px;border-top:1px solid rgba(255,255,255,0.05)">
+          <div style="height:12px"></div>
+          <div class="field"><label>Nom de scène / DJ Name</label><input type="text" id="info-djname" placeholder="Ex: DJ NL"></div>
+          <div class="field"><label>Email pro</label><input type="text" id="info-email-pro" placeholder="contact@monsite.fr"></div>
+          <div class="field"><label>Téléphone</label><input type="text" id="info-tel" placeholder="06 XX XX XX XX"></div>
+          <div class="field"><label>Site web</label><input type="text" id="info-site" placeholder="www.monsite.fr"></div>
+          <div class="field"><label>Instagram</label><input type="text" id="info-insta" placeholder="@ton_compte"></div>
+          <div class="field"><label>TikTok</label><input type="text" id="info-tiktok" placeholder="@ton_compte"></div>
+          <div class="field"><label>Ville</label><input type="text" id="info-ville" placeholder="Paris"></div>
+          <div class="field"><label>SIRET (facultatif)</label><input type="text" id="info-siret" placeholder="XXX XXX XXX XXXXX"></div>
+          <button class="btn btn-primary btn-sm" onclick="saveMesInfos()">💾 Sauvegarder</button>
+        </div>
+      </div>
+
       <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="goTo('aide')">
         <div style="display:flex;align-items:center;gap:10px">
           <span style="font-size:16px">📚</span>
@@ -1273,6 +1299,7 @@ async function loadEvents() {
     refreshStats();
     renderLimitBanner();
     checkWhatsNew();
+  checkInfosComplete();
     checkRecapReminder();
   } catch(e) { console.warn(e); }
 }
@@ -2247,6 +2274,57 @@ function viewPhoto(url) {
   modal.innerHTML = `<img src="${url}" style="max-width:95vw;max-height:90vh;border-radius:12px;object-fit:contain">`;
   modal.onclick = () => document.body.removeChild(modal);
   document.body.appendChild(modal);
+}
+
+// ── MES INFOS PRO ──
+function toggleMesInfos() {
+  const panel = document.getElementById('mes-infos-panel');
+  const arrow = document.getElementById('mes-infos-arrow');
+  const open = panel.style.display === 'block';
+  panel.style.display = open ? 'none' : 'block';
+  if (arrow) arrow.style.transform = open ? '' : 'rotate(90deg)';
+  if (!open) loadMesInfos();
+}
+
+function loadMesInfos() {
+  const infos = userDoc.infos || {};
+  document.getElementById('info-djname').value = infos.djname || '';
+  document.getElementById('info-email-pro').value = infos.emailPro || '';
+  document.getElementById('info-tel').value = infos.tel || '';
+  document.getElementById('info-site').value = infos.site || '';
+  document.getElementById('info-insta').value = infos.insta || '';
+  document.getElementById('info-tiktok').value = infos.tiktok || '';
+  document.getElementById('info-ville').value = infos.ville || '';
+  document.getElementById('info-siret').value = infos.siret || '';
+}
+
+async function saveMesInfos() {
+  const infos = {
+    djname: document.getElementById('info-djname').value.trim(),
+    emailPro: document.getElementById('info-email-pro').value.trim(),
+    tel: document.getElementById('info-tel').value.trim(),
+    site: document.getElementById('info-site').value.trim(),
+    insta: document.getElementById('info-insta').value.trim(),
+    tiktok: document.getElementById('info-tiktok').value.trim(),
+    ville: document.getElementById('info-ville').value.trim(),
+    siret: document.getElementById('info-siret').value.trim(),
+  };
+  try {
+    await db.collection('users').doc(currentUser.uid).update({ infos });
+    userDoc.infos = infos;
+    checkInfosComplete();
+    toast('✅ Infos sauvegardées !');
+  } catch(e) {
+    toast('❌ Erreur : ' + e.message);
+  }
+}
+
+function checkInfosComplete() {
+  const infos = userDoc.infos || {};
+  const hint = document.getElementById('infos-incomplete-hint');
+  if (!hint) return;
+  const incomplete = !infos.djname || !infos.emailPro || !infos.tel;
+  hint.style.display = incomplete ? 'block' : 'none';
 }
 
 function showEmailJSConfig() {
