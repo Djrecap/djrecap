@@ -196,12 +196,12 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22p
 <!-- ══ AUTH ══ -->
 <div class="screen active" id="screen-auth">
   <div class="auth-logo"><svg width="180" height="72" viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="160" rx="20" fill="#0d0d1a"/><circle cx="80" cy="80" r="52" fill="none" stroke="#7c5cfc" stroke-width="1.5"/><circle cx="80" cy="80" r="38" fill="none" stroke="#00d4ff" stroke-width="0.8" stroke-dasharray="4 4"/><circle cx="80" cy="80" r="18" fill="#7c5cfc"/><circle cx="80" cy="80" r="6" fill="#0d0d1a"/><circle cx="80" cy="80" r="2.5" fill="#00d4ff"/><line x1="48" y1="46" x2="58" y2="56" stroke="#7c5cfc" stroke-width="1" stroke-linecap="round"/><line x1="42" y1="54" x2="55" y2="60" stroke="#7c5cfc" stroke-width="0.8" stroke-linecap="round"/><line x1="112" y1="46" x2="102" y2="56" stroke="#00d4ff" stroke-width="1" stroke-linecap="round"/><line x1="118" y1="54" x2="105" y2="60" stroke="#00d4ff" stroke-width="0.8" stroke-linecap="round"/><rect x="148" y="34" width="3" height="92" rx="1.5" fill="#7c5cfc" opacity="0.4"/><text x="165" y="82" font-family="Arial Black,sans-serif" font-weight="900" font-size="48" fill="#ffffff" letter-spacing="-1">DJ</text><text x="165" y="118" font-family="Arial Black,sans-serif" font-weight="900" font-size="32" fill="#7c5cfc" letter-spacing="5">RECAP</text><line x1="165" y1="130" x2="355" y2="130" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round"/><circle cx="360" cy="130" r="3" fill="#00d4ff"/></svg></div>
-  <div style="display:flex;gap:10px;justify-content:center;margin-bottom:16px">
-  <button onclick="setLang('fr')" id="lang-fr" style="background:rgba(255,255,255,0.1);border:2px solid rgba(255,255,255,0.3);border-radius:50%;width:38px;height:38px;cursor:pointer;transition:all 0.2s;padding:0;overflow:hidden">
-    <img src="https://flagcdn.com/w40/fr.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
+  <div style="display:flex;gap:10px;justify-content:center;margin-bottom:16px;position:relative;z-index:10">
+  <button onclick="setLang('fr')" id="lang-fr" style="background:rgba(255,255,255,0.1);border:2px solid rgba(255,255,255,0.3);border-radius:50%;width:38px;height:38px;cursor:pointer;transition:all 0.2s;padding:0;overflow:hidden;position:relative;z-index:10">
+    <img src="https://flagcdn.com/w40/fr.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%;pointer-events:none">
   </button>
-  <button onclick="setLang('en')" id="lang-en" style="background:none;border:2px solid rgba(255,255,255,0.1);border-radius:50%;width:38px;height:38px;cursor:pointer;opacity:0.4;transition:all 0.2s;padding:0;overflow:hidden">
-    <img src="https://flagcdn.com/w40/gb.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
+  <button onclick="setLang('en')" id="lang-en" style="background:none;border:2px solid rgba(255,255,255,0.1);border-radius:50%;width:38px;height:38px;cursor:pointer;opacity:0.4;transition:all 0.2s;padding:0;overflow:hidden;position:relative;z-index:10">
+    <img src="https://flagcdn.com/w40/gb.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%;pointer-events:none">
   </button>
 </div>
 <div class="auth-tagline" id="auth-tagline">Ton carnet de bord de DJ</div>
