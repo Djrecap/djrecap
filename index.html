@@ -196,23 +196,23 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22p
 <!-- ══ AUTH ══ -->
 <div class="screen active" id="screen-auth">
   <div class="auth-logo"><svg width="180" height="72" viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="160" rx="20" fill="#0d0d1a"/><circle cx="80" cy="80" r="52" fill="none" stroke="#7c5cfc" stroke-width="1.5"/><circle cx="80" cy="80" r="38" fill="none" stroke="#00d4ff" stroke-width="0.8" stroke-dasharray="4 4"/><circle cx="80" cy="80" r="18" fill="#7c5cfc"/><circle cx="80" cy="80" r="6" fill="#0d0d1a"/><circle cx="80" cy="80" r="2.5" fill="#00d4ff"/><line x1="48" y1="46" x2="58" y2="56" stroke="#7c5cfc" stroke-width="1" stroke-linecap="round"/><line x1="42" y1="54" x2="55" y2="60" stroke="#7c5cfc" stroke-width="0.8" stroke-linecap="round"/><line x1="112" y1="46" x2="102" y2="56" stroke="#00d4ff" stroke-width="1" stroke-linecap="round"/><line x1="118" y1="54" x2="105" y2="60" stroke="#00d4ff" stroke-width="0.8" stroke-linecap="round"/><rect x="148" y="34" width="3" height="92" rx="1.5" fill="#7c5cfc" opacity="0.4"/><text x="165" y="82" font-family="Arial Black,sans-serif" font-weight="900" font-size="48" fill="#ffffff" letter-spacing="-1">DJ</text><text x="165" y="118" font-family="Arial Black,sans-serif" font-weight="900" font-size="32" fill="#7c5cfc" letter-spacing="5">RECAP</text><line x1="165" y1="130" x2="355" y2="130" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round"/><circle cx="360" cy="130" r="3" fill="#00d4ff"/></svg></div>
-  <div class="auth-tagline">La mémoire de ta carrière de DJ</div>
+<div class="auth-tagline">Ton carnet de bord de DJ</div>
   <div class="auth-box">
     <div class="auth-tabs">
-      <button class="auth-tab active" id="tab-login" onclick="switchAuth('login')">Connexion</button>
-      <button class="auth-tab" id="tab-signup" onclick="switchAuth('signup')">Inscription</button>
+      <button class="auth-tab active" id="tab-login" onclick="switchAuth('login')" id="btn-tab-login">Connexion</button>
+      <button class="auth-tab" id="tab-signup" onclick="switchAuth('signup')" id="btn-tab-signup">Inscription</button>
     </div>
     <div id="auth-form-login">
-      <div class="field"><label>Email</label><input type="email" id="login-email" placeholder="dj@exemple.fr"></div>
-      <div class="field"><label>Mot de passe</label><input type="password" id="login-pw" placeholder="••••••••"></div>
-      <button class="btn btn-primary" onclick="doLogin()">Se connecter</button>
+      <div class="field"><label id="lbl-email">Email</label><input type="email" id="login-email" placeholder="dj@exemple.fr"></div>
+      <div class="field"><label id="lbl-pw">Mot de passe</label><input type="password" id="login-pw" placeholder="••••••••"></div>
+      <button class="btn btn-primary" onclick="doLogin()" id="btn-login">Se connecter</button>
       <div style="text-align:center;margin-top:12px"><button onclick="doReset()" style="background:none;border:none;color:var(--text2);font-size:13px;cursor:pointer">Mot de passe oublié ?</button></div>
     </div>
     <div id="auth-form-signup" style="display:none">
-      <div class="field"><label>Nom de DJ</label><input type="text" id="signup-name" placeholder="DJ Nova"></div>
+      <div class="field"><label id="lbl-djname">Nom de DJ</label><input type="text" id="signup-name" placeholder="DJ Nova"></div>
       <div class="field"><label>Email</label><input type="email" id="signup-email" placeholder="dj@exemple.fr"></div>
-      <div class="field"><label>Mot de passe</label><input type="password" id="signup-pw" placeholder="Min. 6 caractères"></div>
-      <button class="btn btn-primary" onclick="doSignup()">Créer mon compte</button>
+      <div class="field"><label id="lbl-pw2">Mot de passe</label><input type="password" id="signup-pw" placeholder="Min. 6 caractères"></div>
+      <button class="btn btn-primary" onclick="doSignup()" id="btn-signup">Créer mon compte</button>
     </div>
     <div id="auth-error" style="color:var(--pink);font-size:13px;text-align:center;margin-top:12px;display:none"></div>
   </div>
@@ -428,7 +428,7 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22p
     <div style="margin:8px 16px;background:rgba(167,139,250,0.07);border:1px solid rgba(167,139,250,0.22);border-radius:16px;padding:16px;position:relative">
       <div style="position:absolute;top:12px;right:12px;background:var(--gold);color:#1a0500;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:3px 9px;border-radius:20px">⭐ Recommandé</div>
       <div style="font-size:9px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:4px">Premium</div>
-      <div style="font-family:var(--font-d);font-size:22px;font-weight:800;color:var(--accent);margin-bottom:10px">12,99€ <span style="font-size:11px;font-weight:400;color:var(--text2)">/mois</span></div>
+      <div style="font-family:var(--font-d);font-size:22px;font-weight:800;color:var(--accent);margin-bottom:4px">9,99€ <span style="font-size:11px;font-weight:400;color:var(--text2)">/mois</span></div><div style="font-size:11px;color:#34d399;margin-bottom:10px">ou 79€/an (6,58€/mois)</div>
       <div style="height:1px;background:rgba(255,255,255,0.06);margin-bottom:10px"></div>
       <div class="price-feature">Soirées illimitées</div>
       <div class="price-feature">Stats avancées</div>
@@ -438,11 +438,14 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22p
       <div class="price-feature">Modification soirées</div>
     </div>
 
-    <div id="stripe-section" style="margin:8px 16px">
+    <div id="stripe-section" style="margin:8px 16px;display:flex;flex-direction:column;gap:10px">
       <button style="width:100%;padding:14px;background:var(--accent);border:none;border-radius:12px;font-family:var(--font-d);font-size:13px;font-weight:700;color:#07051a;cursor:pointer" onclick="goStripe()">
-        💳 S'abonner — 12,99€/mois
+        💳 Mensuel — 9,99€/mois
       </button>
-      <div style="text-align:center;font-size:11px;color:var(--text3);margin-top:10px">Paiement sécurisé par Stripe · Annulation en 1 clic</div>
+      <button style="width:100%;padding:14px;background:linear-gradient(135deg,#34d399,#059669);border:none;border-radius:12px;font-family:var(--font-d);font-size:13px;font-weight:700;color:#fff;cursor:pointer" onclick="goStripeAnnual()">
+        🌿 Annuel — 79€/an <span style="font-size:11px;opacity:0.8">(6,58€/mois · économise 40€)</span>
+      </button>
+      <div style="text-align:center;font-size:11px;color:var(--text3)">Paiement sécurisé par Stripe · Annulation en 1 clic</div>
     </div>
 
     <div id="premium-active-msg" style="display:none;margin:8px 16px">
@@ -933,7 +936,8 @@ const FIREBASE_CONFIG = {
   projectId: "dj-recap",
   storageBucket: "dj-recap.firebasestorage.app",
 };
-const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/6oU28q55e72ReON8GG2Ry03";
+const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/eVq14mbtC86VbCB8GG2Ry05";
+const STRIPE_ANNUAL_LINK = "https://buy.stripe.com/9B6bJ069i86V4a9aOO2Ry06";
 const STRIPE_STUDENT_LINK = "https://buy.stripe.com/bJecN4apy0Et3656yy2Ry04";
 const STRIPE_PORTAL_LINK = "https://billing.stripe.com/p/login/5kQdR855e1Ix6ih8GG2Ry00";
 const FREE_LIMIT = 7;
@@ -949,6 +953,7 @@ firebase.initializeApp(FIREBASE_CONFIG);
 auth = firebase.auth();
 db = firebase.firestore();
 storage = firebase.storage();
+initLang();
 
 auth.onAuthStateChanged(async user => {
   if (user) {
@@ -1067,7 +1072,7 @@ async function doSignup() {
   const name = document.getElementById('signup-name').value.trim();
   const em = document.getElementById('signup-email').value.trim();
   const pw = document.getElementById('signup-pw').value;
-  if (!name) { authError('Renseigne ton nom de DJ'); return; }
+  if (!name) { authError(currentLang === 'en' ? 'Enter your DJ name' : 'Renseigne ton nom de DJ'); return; }
   try {
     const cred = await auth.createUserWithEmailAndPassword(em, pw);
     await cred.user.updateProfile({ displayName: name });
@@ -1077,7 +1082,7 @@ async function doSignup() {
 
 async function doReset() {
   const em = document.getElementById('login-email').value.trim();
-  if (!em) { authError('Entre ton email pour réinitialiser'); return; }
+  if (!em) { authError(currentLang === 'en' ? 'Enter your email to reset' : 'Entre ton email pour réinitialiser'); return; }
   try { await auth.sendPasswordResetEmail(em); authError(''); toast('📧 Email de réinitialisation envoyé !'); }
   catch(e) { authError(firebaseErr(e.code)); }
 }
@@ -1101,15 +1106,26 @@ async function deleteAccount() {
 }
 
 function firebaseErr(code) {
-  const map = {
+  const fr = {
     'auth/user-not-found': 'Aucun compte avec cet email',
     'auth/wrong-password': 'Mot de passe incorrect',
+    'auth/invalid-credential': 'Email ou mot de passe incorrect',
     'auth/email-already-in-use': 'Email déjà utilisé',
     'auth/weak-password': 'Mot de passe trop court (6 min)',
     'auth/invalid-email': 'Email invalide',
-    'auth/too-many-requests': 'Trop de tentatives, attends un peu',
+    'auth/too-many-requests': 'Trop de tentatives, réessaie dans quelques minutes',
   };
-  return map[code] || 'Erreur : ' + code;
+  const en = {
+    'auth/user-not-found': 'No account with this email',
+    'auth/wrong-password': 'Wrong password',
+    'auth/invalid-credential': 'Incorrect email or password',
+    'auth/email-already-in-use': 'Email already in use',
+    'auth/weak-password': 'Password too short (6 min)',
+    'auth/invalid-email': 'Invalid email',
+    'auth/too-many-requests': 'Too many attempts, please wait a few minutes',
+  };
+  const map = currentLang === 'en' ? en : fr;
+  return map[code] || (currentLang === 'en' ? 'Error: ' : 'Erreur : ') + code;
 }
 
 // ══════════════════════════════════
@@ -2322,6 +2338,247 @@ function checkInfosComplete() {
   if (!hint) return;
   const incomplete = !infos.djname || !infos.emailPro || !infos.tel;
   hint.style.display = incomplete ? 'block' : 'none';
+}
+
+// ══════════════════════════════════════
+// LANGUAGE SYSTEM
+// ══════════════════════════════════════
+const TRANSLATIONS = {
+  fr: {
+    tagline: "Ton carnet de bord de DJ",
+    login: "Connexion",
+    register: "Inscription",
+    email: "Email",
+    password: "Mot de passe",
+    djname: "Nom de DJ",
+    login_btn: "Se connecter",
+    register_btn: "S'inscrire",
+    nav_home: "Accueil",
+    nav_new: "Nouvelle",
+    nav_stats: "Stats",
+    nav_premium: "Abonnement",
+    nav_profile: "Profil",
+    home_greeting: "BONSOIR",
+    home_search: "Rechercher...",
+    home_filter_all: "Tous",
+    home_filter_wedding: "Mariages",
+    home_filter_club: "Club",
+    home_filter_festival: "Festival",
+    home_section: "DERNIÈRES SOIRÉES",
+    home_empty: "Aucune soirée pour l'instant",
+    home_empty_sub: "Ajoute ta première prestation !",
+    new_title: "Nouvelle soirée",
+    new_type: "TYPE D'ÉVÉNEMENT",
+    new_info: "INFORMATIONS",
+    new_lieu: "Lieu",
+    new_date: "Date",
+    new_ville: "Ville",
+    new_maries: "Prénoms des mariés",
+    new_email: "Email des mariés",
+    new_note: "NOTE DE LA SOIRÉE",
+    new_ambiance: "AMBIANCE PISTE",
+    new_sons: "SONS QUI ONT CARTONNÉ",
+    new_styles: "STYLES MUSICAUX",
+    new_notes_salle: "NOTES SALLE",
+    new_acoustique: "Acoustique",
+    new_capacite: "Capacité",
+    new_notes: "Notes libres",
+    new_save: "💾 Enregistrer la soirée",
+    stats_title: "Mes stats",
+    stats_prestas: "Prestas cette saison",
+    stats_export: "📄 Exporter mon bilan PDF",
+    premium_title: "Mon abonnement",
+    premium_free: "Gratuit",
+    premium_forever: "/pour toujours",
+    premium_btn: "💳 S'abonner — 12,99€/mois",
+    premium_manage: "Gérer mon abonnement",
+    premium_active: "Tu es déjà Premium !",
+    premium_thanks: "Merci pour ton soutien 🙏",
+    profile_title: "DJ Recap",
+    profile_logout: "Déconnexion",
+    profile_emailjs: "Configuration EmailJS",
+    profile_aide: "Aide & Documentation",
+    profile_abo: "Gérer mon abonnement",
+    profile_templates: "Mes templates email",
+    profile_infos: "Mes infos pro",
+    profile_delete: "Supprimer mon compte",
+    type_mariage: "Mariage",
+    type_club: "Club",
+    type_prive: "Soirée privée",
+    type_corporate: "Corporate",
+    type_festival: "Festival",
+    type_sportif: "Sportif",
+    type_residence: "Résidence",
+    type_discotheque: "Discothèque",
+    type_autre: "Autre",
+    save_photos: "📸 Ajouter des photos →",
+    add_photo: "Ajouter une photo",
+    send_email: "✉️ Envoyer un mail de remerciement",
+    logout_confirm: "Déconnexion confirmée",
+    delete_confirm: "Es-tu sûr de vouloir supprimer ton compte ? Cette action est irréversible.",
+  },
+  en: {
+    tagline: "Your DJ career logbook",
+    login: "Login",
+    register: "Sign up",
+    email: "Email",
+    password: "Password",
+    djname: "DJ Name",
+    login_btn: "Log in",
+    register_btn: "Sign up",
+    nav_home: "Home",
+    nav_new: "New",
+    nav_stats: "Stats",
+    nav_premium: "Plan",
+    nav_profile: "Profile",
+    home_greeting: "GOOD EVENING",
+    home_search: "Search...",
+    home_filter_all: "All",
+    home_filter_wedding: "Weddings",
+    home_filter_club: "Club",
+    home_filter_festival: "Festival",
+    home_section: "LATEST GIGS",
+    home_empty: "No gigs yet",
+    home_empty_sub: "Add your first performance!",
+    new_title: "New gig",
+    new_type: "EVENT TYPE",
+    new_info: "INFORMATION",
+    new_lieu: "Venue",
+    new_date: "Date",
+    new_ville: "City",
+    new_maries: "Couple's names",
+    new_email: "Couple's email",
+    new_note: "GIG RATING",
+    new_ambiance: "DANCEFLOOR VIBE",
+    new_sons: "SONGS THAT KILLED IT",
+    new_styles: "MUSIC STYLES",
+    new_notes_salle: "VENUE NOTES",
+    new_acoustique: "Acoustics",
+    new_capacite: "Capacity",
+    new_notes: "Free notes",
+    new_save: "💾 Save gig",
+    stats_title: "My stats",
+    stats_prestas: "Gigs this season",
+    stats_export: "📄 Export season report PDF",
+    premium_title: "My plan",
+    premium_free: "Free",
+    premium_forever: "/forever",
+    premium_btn: "💳 Subscribe — €12.99/month",
+    premium_manage: "Manage subscription",
+    premium_active: "You're already Premium!",
+    premium_thanks: "Thank you for your support 🙏",
+    profile_title: "DJ Recap",
+    profile_logout: "Log out",
+    profile_emailjs: "EmailJS Setup",
+    profile_aide: "Help & Documentation",
+    profile_abo: "Manage subscription",
+    profile_templates: "My email templates",
+    profile_infos: "My pro info",
+    profile_delete: "Delete my account",
+    type_mariage: "Wedding",
+    type_club: "Club",
+    type_prive: "Private party",
+    type_corporate: "Corporate",
+    type_festival: "Festival",
+    type_sportif: "Sports event",
+    type_residence: "Residency",
+    type_discotheque: "Nightclub",
+    type_autre: "Other",
+    save_photos: "📸 Add photos →",
+    add_photo: "Add a photo",
+    send_email: "✉️ Send thank you email",
+    logout_confirm: "Logged out",
+    delete_confirm: "Are you sure you want to delete your account? This action is irreversible.",
+  }
+};
+
+let currentLang = localStorage.getItem('dj_lang') || 'fr';
+
+function t(key) {
+  return TRANSLATIONS[currentLang][key] || TRANSLATIONS['fr'][key] || key;
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('dj_lang', lang);
+  applyLang();
+}
+
+function applyLang() {
+  // Auth screen
+  const tagline = document.getElementById('auth-tagline');
+  if (tagline) tagline.textContent = t('tagline');
+  
+  // Lang buttons
+  const btnFr = document.getElementById('lang-fr');
+  const btnEn = document.getElementById('lang-en');
+  if (btnFr && btnEn) {
+    if (currentLang === 'fr') {
+      btnFr.style.background = 'rgba(255,255,255,0.15)';
+      btnFr.style.border = '1px solid rgba(255,255,255,0.3)';
+      btnFr.style.opacity = '1';
+      btnEn.style.background = 'none';
+      btnEn.style.border = '1px solid rgba(255,255,255,0.1)';
+      btnEn.style.opacity = '0.35';
+    } else {
+      btnEn.style.background = 'rgba(255,255,255,0.15)';
+      btnEn.style.border = '1px solid rgba(255,255,255,0.3)';
+      btnEn.style.opacity = '1';
+      btnFr.style.background = 'none';
+      btnFr.style.border = '1px solid rgba(255,255,255,0.1)';
+      btnFr.style.opacity = '0.35';
+    }
+  }
+
+  // Nav labels
+  const navLabels = {
+    'nav-home': t('nav_home'),
+    'nav-new': t('nav_new'),
+    'nav-stats': t('nav_stats'),
+    'nav-premium': t('nav_premium'),
+    'nav-profile': t('nav_profile'),
+  };
+  Object.entries(navLabels).forEach(([id, label]) => {
+    const btn = document.getElementById(id);
+    if (btn) btn.childNodes[btn.childNodes.length-1].textContent = ' ' + label;
+  });
+
+  // Auth form
+  const tabLogin = document.getElementById('tab-login');
+  const tabSignup = document.getElementById('tab-signup');
+  if (tabLogin) tabLogin.textContent = t('login');
+  if (tabSignup) tabSignup.textContent = t('register');
+
+  const btnLogin = document.getElementById('btn-login');
+  if (btnLogin) btnLogin.textContent = t('login_btn');
+
+  const btnSignup = document.getElementById('btn-signup');
+  if (btnSignup) btnSignup.textContent = t('register_btn');
+
+  const lblEmail = document.getElementById('lbl-email');
+  if (lblEmail) lblEmail.textContent = t('email');
+
+  const lblPw = document.getElementById('lbl-pw');
+  if (lblPw) lblPw.textContent = t('password');
+
+  const lblPw2 = document.getElementById('lbl-pw2');
+  if (lblPw2) lblPw2.textContent = t('password');
+
+  const lblDjname = document.getElementById('lbl-djname');
+  if (lblDjname) lblDjname.textContent = t('djname');
+
+  // Logout button
+  const logoutBtn = document.querySelector('[onclick="doLogout()"]');
+  if (logoutBtn) logoutBtn.textContent = t('profile_logout');
+
+  // New gig save button
+  const saveBtn = document.getElementById('save-btn');
+  if (saveBtn && saveBtn.textContent.includes('Enregistrer')) saveBtn.textContent = t('new_save');
+}
+
+function initLang() {
+  currentLang = localStorage.getItem('dj_lang') || 'fr';
+  applyLang();
 }
 
 function showEmailJSConfig() {
