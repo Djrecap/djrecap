@@ -408,47 +408,56 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22p
     <div class="topbar-logo">Mon <span>abonnement</span></div>
     <div style="width:60px"></div>
   </div>
-  <div class="scroll-area">
-    <div style="padding:14px 20px 6px;text-align:center;font-size:12px;color:var(--text2)">Débloque toutes les fonctionnalités</div>
+  <div class="scroll-area" style="padding:0 0 80px">
 
-    <!-- CARTE GRATUIT -->
-    <div style="margin:8px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:16px">
-      <div style="font-family:var(--font-d);font-size:14px;font-weight:700;color:#fff;margin-bottom:2px">Gratuit</div>
-      <div style="font-family:var(--font-d);font-size:22px;font-weight:800;color:rgba(255,255,255,0.4);margin:6px 0 10px">0€ <span style="font-size:11px;font-weight:400;color:var(--text2)">/pour toujours</span></div>
-      <div style="height:1px;background:rgba(255,255,255,0.06);margin-bottom:10px"></div>
-      <div class="price-feature">7 soirées pour tester</div>
-      <div class="price-feature">Suivi sons & styles</div>
-      <div class="price-feature no">Emails de remerciement</div>
-      <div class="price-feature no">Modification soirées</div>
-      <div class="price-feature no">Stats avancées</div>
-      <div class="price-feature no">Export PDF</div>
+    <div style="padding:10px 16px 6px;text-align:center;font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:1px">Choisis ton plan</div>
+
+    <!-- GRILLE 3 CARTES -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:0 10px;margin-bottom:12px">
+
+      <!-- GRATUIT -->
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:12px 10px">
+        <div style="font-size:9px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Gratuit</div>
+        <div style="font-size:20px;font-weight:800;color:rgba(255,255,255,0.35);margin-bottom:2px">0€</div>
+        <div style="font-size:9px;color:rgba(255,255,255,0.2);margin-bottom:10px">pour toujours</div>
+        <div style="height:1px;background:rgba(255,255,255,0.05);margin-bottom:8px"></div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.5);line-height:1.8">✓ 7 soirées<br>✓ Sons & styles<br>✓ 3 photos<br>✗ Illimité<br>✗ Stats<br>✗ PDF</div>
+      </div>
+
+      <!-- MENSUEL -->
+      <div style="background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.25);border-radius:14px;padding:12px 10px;position:relative">
+        <div style="position:absolute;top:-8px;left:50%;transform:translateX(-50%);background:var(--gold);color:#1a0500;font-size:8px;font-weight:800;padding:2px 8px;border-radius:10px;white-space:nowrap">⭐ POP</div>
+        <div style="font-size:9px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Mensuel</div>
+        <div style="font-size:20px;font-weight:800;color:var(--accent);margin-bottom:2px">9,90€</div>
+        <div style="font-size:9px;color:rgba(255,255,255,0.3);margin-bottom:10px">/mois</div>
+        <div style="height:1px;background:rgba(255,255,255,0.05);margin-bottom:8px"></div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.7);line-height:1.8">✓ Illimité<br>✓ Stats<br>✓ Emails<br>✓ PDF<br>✓ Templates<br>✓ Modif.</div>
+      </div>
+
+      <!-- ANNUEL -->
+      <div style="background:rgba(52,211,153,0.07);border:1px solid rgba(52,211,153,0.2);border-radius:14px;padding:12px 10px;position:relative">
+        <div style="position:absolute;top:-8px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#34d399,#059669);color:#fff;font-size:8px;font-weight:800;padding:2px 8px;border-radius:10px;white-space:nowrap">🌿 -34%</div>
+        <div style="font-size:9px;color:#34d399;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Annuel</div>
+        <div style="font-size:20px;font-weight:800;color:#fff;margin-bottom:2px">79€</div>
+        <div style="font-size:9px;color:#34d399;margin-bottom:10px">6,58€/mois</div>
+        <div style="height:1px;background:rgba(255,255,255,0.05);margin-bottom:8px"></div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.7);line-height:1.8">✓ Illimité<br>✓ Stats<br>✓ Emails<br>✓ PDF<br>✓ Templates<br>✓ Modif.</div>
+      </div>
+
     </div>
 
-    <!-- CARTE PREMIUM -->
-    <div style="margin:8px 16px;background:rgba(167,139,250,0.07);border:1px solid rgba(167,139,250,0.22);border-radius:16px;padding:16px;position:relative">
-      <div style="position:absolute;top:12px;right:12px;background:var(--gold);color:#1a0500;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:3px 9px;border-radius:20px">⭐ Recommandé</div>
-      <div style="font-size:9px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:4px">Premium</div>
-      <div style="font-family:var(--font-d);font-size:22px;font-weight:800;color:var(--accent);margin-bottom:4px">9,99€ <span style="font-size:11px;font-weight:400;color:var(--text2)">/mois</span></div><div style="font-size:11px;color:#34d399;margin-bottom:10px">ou 79€/an (6,58€/mois)</div>
-      <div style="height:1px;background:rgba(255,255,255,0.06);margin-bottom:10px"></div>
-      <div class="price-feature">Soirées illimitées</div>
-      <div class="price-feature">Stats avancées</div>
-      <div class="price-feature">Emails illimités</div>
-      <div class="price-feature">Export PDF pro</div>
-      <div class="price-feature">Templates email</div>
-      <div class="price-feature">Modification soirées</div>
-    </div>
-
-    <div id="stripe-section" style="margin:8px 16px;display:flex;flex-direction:column;gap:10px">
-      <button style="width:100%;padding:14px;background:var(--accent);border:none;border-radius:12px;font-family:var(--font-d);font-size:13px;font-weight:700;color:#07051a;cursor:pointer" onclick="goStripe()">
-        💳 Mensuel — 9,99€/mois
+    <!-- BOUTONS -->
+    <div id="stripe-section" style="padding:0 16px;display:flex;flex-direction:column;gap:8px">
+      <button style="width:100%;padding:13px;background:var(--accent);border:none;border-radius:12px;font-family:var(--font-d);font-size:13px;font-weight:700;color:#07051a;cursor:pointer" onclick="goStripe()">
+        💳 S'abonner — 9,90€/mois
       </button>
-      <button style="width:100%;padding:14px;background:linear-gradient(135deg,#34d399,#059669);border:none;border-radius:12px;font-family:var(--font-d);font-size:13px;font-weight:700;color:#fff;cursor:pointer" onclick="goStripeAnnual()">
-        🌿 Annuel — 79€/an <span style="font-size:11px;opacity:0.8">(6,58€/mois · économise 40€)</span>
+      <button style="width:100%;padding:13px;background:linear-gradient(135deg,#34d399,#059669);border:none;border-radius:12px;font-family:var(--font-d);font-size:13px;font-weight:700;color:#fff;cursor:pointer" onclick="goStripeAnnual()">
+        🌿 Annuel — 79€/an · économise 40€
       </button>
-      <div style="text-align:center;font-size:11px;color:var(--text3)">Paiement sécurisé par Stripe · Annulation en 1 clic</div>
+      <div style="text-align:center;font-size:10px;color:var(--text3)">Paiement sécurisé par Stripe · Annulation en 1 clic</div>
     </div>
 
-    <div id="premium-active-msg" style="display:none;margin:8px 16px">
+    <div id="premium-active-msg" style="display:none;padding:0 16px;margin-top:8px">
       <div style="background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.2);border-radius:14px;padding:16px;text-align:center">
         <div style="font-size:28px;margin-bottom:8px">✅</div>
         <div style="font-weight:700;color:var(--green)">Tu es déjà Premium !</div>
@@ -456,7 +465,7 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22p
       </div>
       <button class="btn btn-ghost btn-sm" style="margin-top:10px" onclick="manageStripe()">Gérer mon abonnement</button>
     </div>
-    <div style="height:20px"></div>
+
   </div>
 </div>
 
