@@ -199,19 +199,19 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22p
 <div class="auth-tagline">Ton carnet de bord de DJ</div>
   <div class="auth-box">
     <div class="auth-tabs">
-      <button class="auth-tab active" id="tab-login" onclick="switchAuth('login')" id="btn-tab-login">Connexion</button>
-      <button class="auth-tab" id="tab-signup" onclick="switchAuth('signup')" id="btn-tab-signup">Inscription</button>
+      <button class="auth-tab active" id="tab-login" onclick="switchAuth('login')">Connexion</button>
+      <button class="auth-tab" id="tab-signup" onclick="switchAuth('signup')">Inscription</button>
     </div>
     <div id="auth-form-login">
-      <div class="field"><label id="lbl-email">Email</label><input type="email" id="login-email" placeholder="dj@exemple.fr"></div>
-      <div class="field"><label id="lbl-pw">Mot de passe</label><input type="password" id="login-pw" placeholder="••••••••"></div>
+      <div class="field"><label>Email</label><input type="email" id="login-email" placeholder="dj@exemple.fr"></div>
+      <div class="field"><label>Mot de passe</label><input type="password" id="login-pw" placeholder="••••••••"></div>
       <button class="btn btn-primary" onclick="doLogin()" id="btn-login">Se connecter</button>
       <div style="text-align:center;margin-top:12px"><button onclick="doReset()" style="background:none;border:none;color:var(--text2);font-size:13px;cursor:pointer">Mot de passe oublié ?</button></div>
     </div>
     <div id="auth-form-signup" style="display:none">
-      <div class="field"><label id="lbl-djname">Nom de DJ</label><input type="text" id="signup-name" placeholder="DJ Nova"></div>
+      <div class="field"><label>Nom de DJ</label><input type="text" id="signup-name" placeholder="DJ Nova"></div>
       <div class="field"><label>Email</label><input type="email" id="signup-email" placeholder="dj@exemple.fr"></div>
-      <div class="field"><label id="lbl-pw2">Mot de passe</label><input type="password" id="signup-pw" placeholder="Min. 6 caractères"></div>
+      <div class="field"><label>Mot de passe</label><input type="password" id="signup-pw" placeholder="Min. 6 caractères"></div>
       <button class="btn btn-primary" onclick="doSignup()" id="btn-signup">Créer mon compte</button>
     </div>
     <div id="auth-error" style="color:var(--pink);font-size:13px;text-align:center;margin-top:12px;display:none"></div>
