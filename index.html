@@ -953,7 +953,6 @@ firebase.initializeApp(FIREBASE_CONFIG);
 auth = firebase.auth();
 db = firebase.firestore();
 storage = firebase.storage();
-initLang();
 
 auth.onAuthStateChanged(async user => {
   if (user) {
@@ -1072,7 +1071,7 @@ async function doSignup() {
   const name = document.getElementById('signup-name').value.trim();
   const em = document.getElementById('signup-email').value.trim();
   const pw = document.getElementById('signup-pw').value;
-  if (!name) { authError(currentLang === 'en' ? 'Enter your DJ name' : 'Renseigne ton nom de DJ'); return; }
+  if (!name) { authError('Renseigne ton nom de DJ'); return; }
   try {
     const cred = await auth.createUserWithEmailAndPassword(em, pw);
     await cred.user.updateProfile({ displayName: name });
@@ -1082,7 +1081,7 @@ async function doSignup() {
 
 async function doReset() {
   const em = document.getElementById('login-email').value.trim();
-  if (!em) { authError(currentLang === 'en' ? 'Enter your email to reset' : 'Entre ton email pour réinitialiser'); return; }
+  if (!em) { authError('Entre ton email pour réinitialiser'); return; }
   try { await auth.sendPasswordResetEmail(em); authError(''); toast('📧 Email de réinitialisation envoyé !'); }
   catch(e) { authError(firebaseErr(e.code)); }
 }
@@ -1106,7 +1105,7 @@ async function deleteAccount() {
 }
 
 function firebaseErr(code) {
-  const fr = {
+  const map = {
     'auth/user-not-found': 'Aucun compte avec cet email',
     'auth/wrong-password': 'Mot de passe incorrect',
     'auth/invalid-credential': 'Email ou mot de passe incorrect',
@@ -1115,17 +1114,7 @@ function firebaseErr(code) {
     'auth/invalid-email': 'Email invalide',
     'auth/too-many-requests': 'Trop de tentatives, réessaie dans quelques minutes',
   };
-  const en = {
-    'auth/user-not-found': 'No account with this email',
-    'auth/wrong-password': 'Wrong password',
-    'auth/invalid-credential': 'Incorrect email or password',
-    'auth/email-already-in-use': 'Email already in use',
-    'auth/weak-password': 'Password too short (6 min)',
-    'auth/invalid-email': 'Invalid email',
-    'auth/too-many-requests': 'Too many attempts, please wait a few minutes',
-  };
-  const map = currentLang === 'en' ? en : fr;
-  return map[code] || (currentLang === 'en' ? 'Error: ' : 'Erreur : ') + code;
+  return map[code] || 'Erreur : ' + code;
 }
 
 // ══════════════════════════════════
@@ -2338,247 +2327,6 @@ function checkInfosComplete() {
   if (!hint) return;
   const incomplete = !infos.djname || !infos.emailPro || !infos.tel;
   hint.style.display = incomplete ? 'block' : 'none';
-}
-
-// ══════════════════════════════════════
-// LANGUAGE SYSTEM
-// ══════════════════════════════════════
-const TRANSLATIONS = {
-  fr: {
-    tagline: "Ton carnet de bord de DJ",
-    login: "Connexion",
-    register: "Inscription",
-    email: "Email",
-    password: "Mot de passe",
-    djname: "Nom de DJ",
-    login_btn: "Se connecter",
-    register_btn: "S'inscrire",
-    nav_home: "Accueil",
-    nav_new: "Nouvelle",
-    nav_stats: "Stats",
-    nav_premium: "Abonnement",
-    nav_profile: "Profil",
-    home_greeting: "BONSOIR",
-    home_search: "Rechercher...",
-    home_filter_all: "Tous",
-    home_filter_wedding: "Mariages",
-    home_filter_club: "Club",
-    home_filter_festival: "Festival",
-    home_section: "DERNIÈRES SOIRÉES",
-    home_empty: "Aucune soirée pour l'instant",
-    home_empty_sub: "Ajoute ta première prestation !",
-    new_title: "Nouvelle soirée",
-    new_type: "TYPE D'ÉVÉNEMENT",
-    new_info: "INFORMATIONS",
-    new_lieu: "Lieu",
-    new_date: "Date",
-    new_ville: "Ville",
-    new_maries: "Prénoms des mariés",
-    new_email: "Email des mariés",
-    new_note: "NOTE DE LA SOIRÉE",
-    new_ambiance: "AMBIANCE PISTE",
-    new_sons: "SONS QUI ONT CARTONNÉ",
-    new_styles: "STYLES MUSICAUX",
-    new_notes_salle: "NOTES SALLE",
-    new_acoustique: "Acoustique",
-    new_capacite: "Capacité",
-    new_notes: "Notes libres",
-    new_save: "💾 Enregistrer la soirée",
-    stats_title: "Mes stats",
-    stats_prestas: "Prestas cette saison",
-    stats_export: "📄 Exporter mon bilan PDF",
-    premium_title: "Mon abonnement",
-    premium_free: "Gratuit",
-    premium_forever: "/pour toujours",
-    premium_btn: "💳 S'abonner — 12,99€/mois",
-    premium_manage: "Gérer mon abonnement",
-    premium_active: "Tu es déjà Premium !",
-    premium_thanks: "Merci pour ton soutien 🙏",
-    profile_title: "DJ Recap",
-    profile_logout: "Déconnexion",
-    profile_emailjs: "Configuration EmailJS",
-    profile_aide: "Aide & Documentation",
-    profile_abo: "Gérer mon abonnement",
-    profile_templates: "Mes templates email",
-    profile_infos: "Mes infos pro",
-    profile_delete: "Supprimer mon compte",
-    type_mariage: "Mariage",
-    type_club: "Club",
-    type_prive: "Soirée privée",
-    type_corporate: "Corporate",
-    type_festival: "Festival",
-    type_sportif: "Sportif",
-    type_residence: "Résidence",
-    type_discotheque: "Discothèque",
-    type_autre: "Autre",
-    save_photos: "📸 Ajouter des photos →",
-    add_photo: "Ajouter une photo",
-    send_email: "✉️ Envoyer un mail de remerciement",
-    logout_confirm: "Déconnexion confirmée",
-    delete_confirm: "Es-tu sûr de vouloir supprimer ton compte ? Cette action est irréversible.",
-  },
-  en: {
-    tagline: "Your DJ career logbook",
-    login: "Login",
-    register: "Sign up",
-    email: "Email",
-    password: "Password",
-    djname: "DJ Name",
-    login_btn: "Log in",
-    register_btn: "Sign up",
-    nav_home: "Home",
-    nav_new: "New",
-    nav_stats: "Stats",
-    nav_premium: "Plan",
-    nav_profile: "Profile",
-    home_greeting: "GOOD EVENING",
-    home_search: "Search...",
-    home_filter_all: "All",
-    home_filter_wedding: "Weddings",
-    home_filter_club: "Club",
-    home_filter_festival: "Festival",
-    home_section: "LATEST GIGS",
-    home_empty: "No gigs yet",
-    home_empty_sub: "Add your first performance!",
-    new_title: "New gig",
-    new_type: "EVENT TYPE",
-    new_info: "INFORMATION",
-    new_lieu: "Venue",
-    new_date: "Date",
-    new_ville: "City",
-    new_maries: "Couple's names",
-    new_email: "Couple's email",
-    new_note: "GIG RATING",
-    new_ambiance: "DANCEFLOOR VIBE",
-    new_sons: "SONGS THAT KILLED IT",
-    new_styles: "MUSIC STYLES",
-    new_notes_salle: "VENUE NOTES",
-    new_acoustique: "Acoustics",
-    new_capacite: "Capacity",
-    new_notes: "Free notes",
-    new_save: "💾 Save gig",
-    stats_title: "My stats",
-    stats_prestas: "Gigs this season",
-    stats_export: "📄 Export season report PDF",
-    premium_title: "My plan",
-    premium_free: "Free",
-    premium_forever: "/forever",
-    premium_btn: "💳 Subscribe — €12.99/month",
-    premium_manage: "Manage subscription",
-    premium_active: "You're already Premium!",
-    premium_thanks: "Thank you for your support 🙏",
-    profile_title: "DJ Recap",
-    profile_logout: "Log out",
-    profile_emailjs: "EmailJS Setup",
-    profile_aide: "Help & Documentation",
-    profile_abo: "Manage subscription",
-    profile_templates: "My email templates",
-    profile_infos: "My pro info",
-    profile_delete: "Delete my account",
-    type_mariage: "Wedding",
-    type_club: "Club",
-    type_prive: "Private party",
-    type_corporate: "Corporate",
-    type_festival: "Festival",
-    type_sportif: "Sports event",
-    type_residence: "Residency",
-    type_discotheque: "Nightclub",
-    type_autre: "Other",
-    save_photos: "📸 Add photos →",
-    add_photo: "Add a photo",
-    send_email: "✉️ Send thank you email",
-    logout_confirm: "Logged out",
-    delete_confirm: "Are you sure you want to delete your account? This action is irreversible.",
-  }
-};
-
-let currentLang = localStorage.getItem('dj_lang') || 'fr';
-
-function t(key) {
-  return TRANSLATIONS[currentLang][key] || TRANSLATIONS['fr'][key] || key;
-}
-
-function setLang(lang) {
-  currentLang = lang;
-  localStorage.setItem('dj_lang', lang);
-  applyLang();
-}
-
-function applyLang() {
-  // Auth screen
-  const tagline = document.getElementById('auth-tagline');
-  if (tagline) tagline.textContent = t('tagline');
-  
-  // Lang buttons
-  const btnFr = document.getElementById('lang-fr');
-  const btnEn = document.getElementById('lang-en');
-  if (btnFr && btnEn) {
-    if (currentLang === 'fr') {
-      btnFr.style.background = 'rgba(255,255,255,0.15)';
-      btnFr.style.border = '1px solid rgba(255,255,255,0.3)';
-      btnFr.style.opacity = '1';
-      btnEn.style.background = 'none';
-      btnEn.style.border = '1px solid rgba(255,255,255,0.1)';
-      btnEn.style.opacity = '0.35';
-    } else {
-      btnEn.style.background = 'rgba(255,255,255,0.15)';
-      btnEn.style.border = '1px solid rgba(255,255,255,0.3)';
-      btnEn.style.opacity = '1';
-      btnFr.style.background = 'none';
-      btnFr.style.border = '1px solid rgba(255,255,255,0.1)';
-      btnFr.style.opacity = '0.35';
-    }
-  }
-
-  // Nav labels
-  const navLabels = {
-    'nav-home': t('nav_home'),
-    'nav-new': t('nav_new'),
-    'nav-stats': t('nav_stats'),
-    'nav-premium': t('nav_premium'),
-    'nav-profile': t('nav_profile'),
-  };
-  Object.entries(navLabels).forEach(([id, label]) => {
-    const btn = document.getElementById(id);
-    if (btn) btn.childNodes[btn.childNodes.length-1].textContent = ' ' + label;
-  });
-
-  // Auth form
-  const tabLogin = document.getElementById('tab-login');
-  const tabSignup = document.getElementById('tab-signup');
-  if (tabLogin) tabLogin.textContent = t('login');
-  if (tabSignup) tabSignup.textContent = t('register');
-
-  const btnLogin = document.getElementById('btn-login');
-  if (btnLogin) btnLogin.textContent = t('login_btn');
-
-  const btnSignup = document.getElementById('btn-signup');
-  if (btnSignup) btnSignup.textContent = t('register_btn');
-
-  const lblEmail = document.getElementById('lbl-email');
-  if (lblEmail) lblEmail.textContent = t('email');
-
-  const lblPw = document.getElementById('lbl-pw');
-  if (lblPw) lblPw.textContent = t('password');
-
-  const lblPw2 = document.getElementById('lbl-pw2');
-  if (lblPw2) lblPw2.textContent = t('password');
-
-  const lblDjname = document.getElementById('lbl-djname');
-  if (lblDjname) lblDjname.textContent = t('djname');
-
-  // Logout button
-  const logoutBtn = document.querySelector('[onclick="doLogout()"]');
-  if (logoutBtn) logoutBtn.textContent = t('profile_logout');
-
-  // New gig save button
-  const saveBtn = document.getElementById('save-btn');
-  if (saveBtn && saveBtn.textContent.includes('Enregistrer')) saveBtn.textContent = t('new_save');
-}
-
-function initLang() {
-  currentLang = localStorage.getItem('dj_lang') || 'fr';
-  applyLang();
 }
 
 function showEmailJSConfig() {
